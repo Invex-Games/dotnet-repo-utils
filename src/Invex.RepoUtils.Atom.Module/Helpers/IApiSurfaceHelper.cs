@@ -80,7 +80,7 @@ public interface IApiSurfaceHelper : IBuildAccessor
         // Restrict the diff to the API definition files we care about and only keep files where
         // lines were removed since those are the candidates for breaking changes.
         IReadOnlyList<Change> suspiciousChanges = changes
-            .Where(x => targetFiles.Contains(x.Path) && x.LinesDeleted > 0)
+            .Where(x => targetFiles.Contains(x.Path) && (x.LinesAdded > 0 || x.LinesDeleted > 0))
             .Select(x => new Change(RootedFileSystem.AtomRootDirectory / x.Path, x.AddedLines, x.DeletedLines))
             .ToList();
 
