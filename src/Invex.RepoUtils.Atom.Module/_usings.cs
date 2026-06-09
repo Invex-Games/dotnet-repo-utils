@@ -1,6 +1,7 @@
 ﻿global using System.Diagnostics.CodeAnalysis;
 global using Invex.RepoUtils.Atom.Module.Helpers;
 global using Invex.RepoUtils.Atom.Module.Model;
+global using Invex.RepoUtils.Atom.Module.Targets;
 global using JetBrains.Annotations;
 global using LibGit2Sharp;
 global using Microsoft.Extensions.Logging;

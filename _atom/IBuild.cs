@@ -1,4 +1,6 @@
-﻿namespace Atom;
+﻿using Invex.RepoUtils.Atom.Module.Extensions;
+
+namespace Atom;
 
 [BuildDefinition]
 [GenerateEntryPoint]
@@ -220,16 +222,10 @@ internal interface IBuild : IWorkflowBuildDefinition,
                 {
                     Options =
                     [
-                        BuildOptions.Inject.Secret(nameof(GithubToken)),
                         BuildOptions.Inject.Github.PullRequestNumber,
+                        BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                         BuildOptions.Target.RunIfWorkflowCondition(
                             TextExpressions.Github.GithubActor.EqualToString("dependabot[bot]")),
-                        new GithubTokenPermissionsOption(new Permissions.Exact(new()
-                        {
-                            IdTokens = PermissionsLevel.Write,
-                            Contents = PermissionsLevel.Write,
-                            PullRequests = PermissionsLevel.Write,
-                        })),
                     ],
                 },
             ],

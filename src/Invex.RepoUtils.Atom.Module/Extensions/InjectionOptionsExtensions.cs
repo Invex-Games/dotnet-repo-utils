@@ -1,4 +1,4 @@
-namespace Invex.RepoUtils.Atom.Module.Helpers;
+namespace Invex.RepoUtils.Atom.Module.Extensions;
 
 /// <summary>
 /// Provides additional, GitHub-specific value injection options for build targets, extending the
@@ -27,6 +27,9 @@ public static class InjectionOptionsExtensions
         public IBuildOption PullRequestNumber =>
             field ??= BuildOptions.Inject.Param(nameof(IGithubPrHelper.GithubPullRequestNumber),
                 TextExpressions.Github.GithubEvent["number"]);
+
+        public IBuildOption DependabotEnableAutoMergePat =>
+            field ??= BuildOptions.Inject.Secret(nameof(IApproveDependabotPr.DependabotEnableAutoMergePat));
     }
 
     extension(WorkflowBuildOptionsExtensions.InjectionBuildOptions _)
