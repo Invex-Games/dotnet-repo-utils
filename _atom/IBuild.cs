@@ -15,10 +15,11 @@ internal interface IBuild : IWorkflowBuildDefinition,
     IDotnetPackHelper,
     IDotnetTestHelper,
     INugetHelper,
+    INugetPackageUnlistHelper,
     IGithubReleaseHelper,
+    IDocFxHelper,
     IApproveDependabotPr,
-    ICheckPrForBreakingChanges,
-    IDocFxHelper
+    ICheckPrForBreakingChanges
 {
     [ParamDefinition("test-framework", "Test framework to use for unit tests")]
     string TestFramework => GetParam(() => TestFramework, "net10.0");
@@ -111,6 +112,30 @@ internal interface IBuild : IWorkflowBuildDefinition,
             {
                 foreach (var project in ProjectsToPack)
                     await PushProject(project, NugetFeed, NugetApiKey, cancellationToken: cancellationToken);
+            });
+
+    Target UnlistSupersededPrereleases =>
+        t => t
+            .DescribedAs("Unlists prerelease packages superseded by the just-published version.")
+            .RequiresParam(nameof(NugetFeed), nameof(NugetApiKey))
+            .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildVersion))
+            .DependsOn(nameof(PushToNuget))
+            .Executes(async cancellationToken =>
+            {
+                var packages = ProjectsToPack.ToArray();
+
+                if (packages.Length is 0)
+                {
+                    Logger.LogInformation("No packages configured for prerelease unlisting. Skipping.");
+
+                    return;
+                }
+
+                await UnlistSupersededPrereleasesForPackages(NugetFeed,
+                    NugetApiKey,
+                    packages,
+                    BuildVersion,
+                    cancellationToken);
             });
 
     Target PushToRelease =>
@@ -219,6 +244,10 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     Options = [BuildOptions.Steps.SetupDotnet.Dotnet80X(), BuildOptions.Steps.SetupDotnet.Dotnet90X()],
                 },
                 new(nameof(PushToNuget))
+                {
+                    Options = [BuildOptions.Inject.Secret(nameof(NugetApiKey))],
+                },
+                new(nameof(UnlistSupersededPrereleases))
                 {
                     Options = [BuildOptions.Inject.Secret(nameof(NugetApiKey))],
                 },

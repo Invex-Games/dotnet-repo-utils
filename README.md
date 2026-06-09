@@ -164,6 +164,7 @@ dotnet add package Invex.RepoUtils.Atom.Module
 |-----------------------------|------------------------------|-------------------------------------------------------------------------------------------|
 | `ApproveDependabotPr`       | `IApproveDependabotPr`       | Enables auto-merge on pull requests opened by `dependabot[bot]`.                          |
 | `CheckPrForBreakingChanges` | `ICheckPrForBreakingChanges` | Detects public API breaking changes in a PR and reports the result as a GitHub check run. |
+| `UnlistSupersededPrereleases` | `IUnlistSupersededPrereleases` | Unlists prerelease packages superseded by a just-published version and reports the outcome to Atom. |
 
 ### Helpers
 
@@ -172,6 +173,7 @@ dotnet add package Invex.RepoUtils.Atom.Module
 | `IApiSurfaceHelper`            | Diffs API definition files between two commits and classifies major/minor breaking changes.                                                                                                                                     |
 | `IPrBreakingChangeHelper`      | Orchestrates the full PR breaking-change check against the latest release baseline.                                                                                                                                             |
 | `IGithubPrHelper`              | Surfaces the GitHub pull-request number parameter for PR-scoped targets.                                                                                                                                                        |
+| `INugetPackageUnlistHelper`    | Discovers superseded prereleases via the NuGet flat-container API and unlists them with resilient HTTP `DELETE` calls, writing a summary to the Atom build report.                                                               |
 | `IDocFxHelper`                 | Builds, serves, and publishes DocFX documentation to a project's `gh-pages` branch for GitHub Pages hosting.                                                                                                                     |
 | `DependabotEnableAutoMergePat` | Adds GitHub-specific injection options: `BuildOptions.Inject.Github.PullRequestNumber` (PR number from the event payload) and `BuildOptions.Inject.Github.DependabotEnableAutoMergePat` (the Dependabot auto-merge PAT secret). |
 

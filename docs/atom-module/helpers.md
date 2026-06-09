@@ -64,6 +64,65 @@ public interface IGithubPrHelper : IBuildAccessor
 
 ---
 
+## INugetPackageUnlistHelper
+
+Discovers and unlists prerelease packages that have been superseded by a newly published version.
+
+### Interface
+
+```csharp
+public interface INugetPackageUnlistHelper : IBuildAccessor, IReportsHelper
+```
+
+### Methods
+
+#### `SelectSupersededPrereleases`
+
+```csharp
+static IReadOnlyList<SemVer> SelectSupersededPrereleases(
+    SemVer currentVersion,
+    IEnumerable<SemVer> publishedVersions)
+```
+
+Selects the published versions superseded by `currentVersion`: every version that shares the same
+`SemVer.Prefix` (core `MAJOR.MINOR.PATCH`), is a prerelease, and has lower SemVer precedence than the
+current version. Results are returned in ascending precedence order.
+
+- A **stable** `currentVersion` matches **all** prereleases of the same core version (for example,
+  `1.1.0` selects `1.1.0-alpha.1`, `1.1.0-beta.2`, `1.1.0-rc.1`).
+- A **prerelease** `currentVersion` matches only **earlier** prereleases of the same core version (for
+  example, `1.1.0-rc.2` selects `1.1.0-beta.1` and `1.1.0-rc.1`, but not `1.1.0-rc.3` or `1.1.0`).
+- Versions of a different core (`1.0.1-rc.1`), equal/higher versions, and the current version itself are
+  never selected.
+
+#### `UnlistSupersededPrereleasesForPackages`
+
+```csharp
+Task<IReadOnlyList<UnlistResult>> UnlistSupersededPrereleasesForPackages(
+    string feedUrl,
+    string apiKey,
+    IEnumerable<string> packageIds,
+    SemVer currentVersion,
+    CancellationToken cancellationToken)
+```
+
+Unlists every superseded prerelease for the supplied package ids and writes a summary to the Atom
+build report:
+
+1. Reads the feed's service index and resolves the `PackageBaseAddress/3.0.0` (flat container) and
+   `PackagePublish/2.0.0` resources. When either is missing, the work is skipped and reported.
+2. For each package, reads the published versions from the flat-container API and selects the
+   superseded prereleases via `SelectSupersededPrereleases`.
+3. Unlists each selected version with an HTTP `DELETE` (authenticated with the `X-NuGet-ApiKey`
+   header). Transient failures are retried with exponential backoff; a `404` is treated as
+   already-unlisted and skipped.
+4. Adds a `TableReportData` summary (or a `TextReportData` note when nothing was unlisted) to the
+   build report.
+
+**Throws:** `StepFailedException` when one or more versions could not be unlisted after retries.
+
+---
+
 ## IPrBreakingChangeHelper
 
 Orchestrates the full PR breaking-change check against the latest release baseline.
