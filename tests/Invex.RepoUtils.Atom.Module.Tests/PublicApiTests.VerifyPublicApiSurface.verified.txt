@@ -59,7 +59,13 @@
         Name: PublishResourceType
       },
       {
+        Name: SelectPrereleasesBelowVersion
+      },
+      {
         Name: SelectSupersededPrereleases
+      },
+      {
+        Name: UnlistPrereleasesBelowVersionForPackages
       },
       {
         Name: UnlistSupersededPrereleasesForPackages

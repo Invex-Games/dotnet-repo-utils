@@ -30,6 +30,9 @@ internal interface IBuild : IWorkflowBuildDefinition,
     [SecretDefinition("nuget-push-api-key", "The API key to use to push to Nuget.")]
     string NugetApiKey => GetParam(() => NugetApiKey)!;
 
+    [ParamDefinition("prerelease-cleanup-below-version", "Unlist all prerelease packages below this stable version.")]
+    string PrereleaseCleanupBelowVersion => GetParam(() => PrereleaseCleanupBelowVersion)!;
+
     static readonly string[] ProjectsToPack =
     [
         Projects.Invex_RepoUtils_Atom_Module.Name,
@@ -138,6 +141,32 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     cancellationToken);
             });
 
+    Target UnlistOldPrereleases =>
+        t => t
+            .DescribedAs("Unlists all prerelease packages below the configured stable version.")
+            .RequiresParam(nameof(NugetFeed), nameof(NugetApiKey), nameof(PrereleaseCleanupBelowVersion))
+            .Executes(async cancellationToken =>
+            {
+                var packages = ProjectsToPack.ToArray();
+
+                if (packages.Length is 0)
+                {
+                    Logger.LogInformation("No packages configured for prerelease cleanup. Skipping.");
+
+                    return;
+                }
+
+                if (!SemVer.TryParse(PrereleaseCleanupBelowVersion, out var belowVersion))
+                    throw new StepFailedException(
+                        $"'{PrereleaseCleanupBelowVersion}' is not a valid version for {nameof(PrereleaseCleanupBelowVersion)}.");
+
+                await UnlistPrereleasesBelowVersionForPackages(NugetFeed,
+                    NugetApiKey,
+                    packages,
+                    belowVersion,
+                    cancellationToken);
+            });
+
     Target PushToRelease =>
         d => d
             .DescribedAs("Pushes the packages to the release feed.")
@@ -153,18 +182,25 @@ internal interface IBuild : IWorkflowBuildDefinition,
             });
 
     Target BuildDocs =>
-        t => t.Executes(cancellationToken =>
-            BuildDocFxDocs([Projects.Invex_RepoUtils_PublicApiAnalyzers.Path(RootedFileSystem)], cancellationToken));
+        t => t
+            .DescribedAs("Builds the DocFX documentation.")
+            .ProducesArtifact(GeneratedDocsArtifactName)
+            .Executes(cancellationToken =>
+                BuildDocFxDocs([Projects.Invex_RepoUtils_PublicApiAnalyzers.Path(RootedFileSystem)],
+                    cancellationToken));
 
     Target ServeDocs =>
         t => t
+            .DescribedAs("Serves the DocFX documentation.")
             .DependsOn(nameof(BuildDocs))
             .Executes(ServeDocFxDocs);
 
     Target PublishDocs =>
         t => t
+            .DescribedAs("Publishes the DocFX documentation to Github Pages.")
             .RequiresParam(nameof(GithubToken))
-            .DependsOn(nameof(BuildDocs))
+            .ConsumesArtifact(nameof(BuildDocs), GeneratedDocsArtifactName)
+            .DependsOn(nameof(SetupBuildInfo))
             .Executes(cancellationToken =>
                 PublishDocFxDocsToGithub(GithubToken, GeneratedDocsArtifactName, cancellationToken));
 
@@ -267,6 +303,22 @@ internal interface IBuild : IWorkflowBuildDefinition,
                             .EqualTo(false)),
                     ],
                 },
+                new(nameof(PublishDocs))
+                {
+                    Options =
+                    [
+                        BuildOptions.Inject.Secret(nameof(GithubToken)),
+                        new GithubTokenPermissionsOption(new Permissions.Exact(new()
+                        {
+                            Contents = PermissionsLevel.Write,
+                        })),
+                        BuildOptions.Target.RunIfWorkflowCondition(TextExpressions
+                            .Target
+                            .ParamOutput(this, nameof(SetupBuildInfo), nameof(BuildVersion))
+                            .Contains("-")
+                            .EqualTo(false)),
+                    ],
+                },
             ],
             Types = [WorkflowTypes.Github.Action],
         },
@@ -283,6 +335,26 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                         BuildOptions.Target.RunIfWorkflowCondition(
                             TextExpressions.Github.GithubActor.EqualToString("dependabot[bot]")),
+                    ],
+                },
+            ],
+            Types = [WorkflowTypes.Github.Action],
+        },
+        new("Cleanup Prereleases")
+        {
+            Triggers =
+            [
+                WorkflowTriggers.ManualWithInputs(
+                    ManualStringInput.ForParam(ParamDefinitions[nameof(PrereleaseCleanupBelowVersion)])),
+            ],
+            Targets =
+            [
+                new(nameof(UnlistOldPrereleases))
+                {
+                    Options =
+                    [
+                        BuildOptions.Target.SuppressArtifactPublishing,
+                        BuildOptions.Inject.Secret(nameof(NugetApiKey)),
                     ],
                 },
             ],

@@ -95,6 +95,21 @@ current version. Results are returned in ascending precedence order.
 - Versions of a different core (`1.0.1-rc.1`), equal/higher versions, and the current version itself are
   never selected.
 
+#### `SelectPrereleasesBelowVersion`
+
+```csharp
+static IReadOnlyList<SemVer> SelectPrereleasesBelowVersion(
+    SemVer version,
+    IEnumerable<SemVer> publishedVersions)
+```
+
+Selects every published **prerelease** whose SemVer precedence is strictly below `version`, in
+ascending precedence order. Stable versions and prereleases at or above the given version are never
+selected. For example, a `version` of `2.0.0` selects every prerelease below `2.0.0` (such as
+`1.5.0-rc.1` and `2.0.0-rc.1`) while leaving all stable versions and every prerelease at or above
+`2.0.0` untouched. This is intended for cleaning up obsolete prerelease packages left behind once a
+newer stable version has shipped.
+
 #### `UnlistSupersededPrereleasesForPackages`
 
 ```csharp
@@ -121,6 +136,26 @@ build report:
 
 **Throws:** `StepFailedException` when one or more versions could not be unlisted after retries.
 
+#### `UnlistPrereleasesBelowVersionForPackages`
+
+```csharp
+Task<IReadOnlyList<UnlistResult>> UnlistPrereleasesBelowVersionForPackages(
+    string feedUrl,
+    string apiKey,
+    IEnumerable<string> packageIds,
+    SemVer version,
+    CancellationToken cancellationToken)
+```
+
+Unlists every prerelease whose SemVer precedence is strictly below `version` (typically a stable
+version) for the supplied package ids, writing the same kind of build-report summary as
+`UnlistSupersededPrereleasesForPackages`. It uses the same feed-resource discovery, retry/backoff, and
+reporting pipeline but selects versions with `SelectPrereleasesBelowVersion`. This is intended for a
+**manually-triggered** cleanup of old prerelease packages rather than the automatic per-publish
+supersedence cleanup.
+
+**Throws:** `StepFailedException` when one or more versions could not be unlisted after retries.
+
 ### Usage
 
 The module does not ship a ready-made target for this helper — wire it into your own target so it
@@ -141,6 +176,30 @@ internal interface IBuild : INugetPackageUnlistHelper, ISetupBuildInfo /* , ... 
                     NugetApiKey,
                     ProjectsToPack,
                     BuildVersion,
+                    cancellationToken));
+}
+```
+
+For one-off housekeeping, wire `UnlistPrereleasesBelowVersionForPackages` into a manually-triggered
+(`workflow_dispatch`) target to bulk-unlist old prereleases below a given stable version:
+
+```csharp
+internal interface IBuild : INugetPackageUnlistHelper /* , ... */
+{
+    [ParamDefinition("prerelease-cleanup-below-version",
+        "Unlist all prerelease packages below this stable version.")]
+    string PrereleaseCleanupBelowVersion => GetParam(() => PrereleaseCleanupBelowVersion)!;
+
+    Target CleanupOldPrereleases =>
+        t => t
+            .DescribedAs("Unlists all prerelease packages below the configured stable version.")
+            .RequiresParam(nameof(NugetFeed), nameof(NugetApiKey), nameof(PrereleaseCleanupBelowVersion))
+            .Executes(cancellationToken =>
+                UnlistPrereleasesBelowVersionForPackages(
+                    NugetFeed,
+                    NugetApiKey,
+                    ProjectsToPack,
+                    SemVer.Parse(PrereleaseCleanupBelowVersion),
                     cancellationToken));
 }
 ```
