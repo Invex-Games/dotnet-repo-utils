@@ -164,7 +164,6 @@ dotnet add package Invex.RepoUtils.Atom.Module
 |-----------------------------|------------------------------|-------------------------------------------------------------------------------------------|
 | `ApproveDependabotPr`       | `IApproveDependabotPr`       | Enables auto-merge on pull requests opened by `dependabot[bot]`.                          |
 | `CheckPrForBreakingChanges` | `ICheckPrForBreakingChanges` | Detects public API breaking changes in a PR and reports the result as a GitHub check run. |
-| `UnlistSupersededPrereleases` | `IUnlistSupersededPrereleases` | Unlists prerelease packages superseded by a just-published version and reports the outcome to Atom. |
 
 ### Helpers
 

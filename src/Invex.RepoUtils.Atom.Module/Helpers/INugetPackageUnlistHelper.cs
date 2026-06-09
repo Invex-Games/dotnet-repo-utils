@@ -142,13 +142,35 @@ public interface INugetPackageUnlistHelper : IReportsHelper
 
         foreach (var resource in resources.EnumerateArray())
             if (resource.TryGetProperty("@type", out var typeProperty) &&
-                typeProperty.GetString() is { } type &&
-                type.StartsWith(resourceType, StringComparison.OrdinalIgnoreCase) &&
+                ResourceTypeMatches(typeProperty, resourceType) &&
                 resource.TryGetProperty("@id", out var idProperty) &&
                 idProperty.GetString() is { } id)
                 return id.TrimEnd('/');
 
         return null;
+    }
+
+    /// <summary>
+    /// Determines whether a service index resource's <c>@type</c> matches the requested resource type.
+    /// The <c>@type</c> may be expressed either as a single string or, following JSON-LD conventions,
+    /// as an array of strings; both shapes are supported.
+    /// </summary>
+    /// <param name="typeProperty">The <c>@type</c> property of a resource entry.</param>
+    /// <param name="resourceType">The resource type to look for.</param>
+    /// <returns><see langword="true"/> when any advertised type matches; otherwise <see langword="false"/>.</returns>
+    private static bool ResourceTypeMatches(JsonElement typeProperty, string resourceType)
+    {
+        bool IsMatch(string? type) =>
+            type is not null && type.StartsWith(resourceType, StringComparison.OrdinalIgnoreCase);
+
+        return typeProperty.ValueKind switch
+        {
+            JsonValueKind.String => IsMatch(typeProperty.GetString()),
+            JsonValueKind.Array => typeProperty
+                .EnumerateArray()
+                .Any(element => element.ValueKind is JsonValueKind.String && IsMatch(element.GetString())),
+            _ => false,
+        };
     }
 
     /// <summary>

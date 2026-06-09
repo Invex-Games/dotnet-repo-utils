@@ -71,7 +71,7 @@ Discovers and unlists prerelease packages that have been superseded by a newly p
 ### Interface
 
 ```csharp
-public interface INugetPackageUnlistHelper : IBuildAccessor, IReportsHelper
+public interface INugetPackageUnlistHelper : IReportsHelper
 ```
 
 ### Methods
@@ -120,6 +120,30 @@ build report:
    build report.
 
 **Throws:** `StepFailedException` when one or more versions could not be unlisted after retries.
+
+### Usage
+
+The module does not ship a ready-made target for this helper — wire it into your own target so it
+runs after your package-publish target:
+
+```csharp
+internal interface IBuild : INugetPackageUnlistHelper, ISetupBuildInfo /* , ... */
+{
+    Target UnlistSupersededPrereleases =>
+        t => t
+            .DescribedAs("Unlists prerelease packages superseded by the just-published version.")
+            .RequiresParam(nameof(NugetFeed), nameof(NugetApiKey))
+            .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildVersion))
+            .DependsOn(nameof(PushToNuget))
+            .Executes(cancellationToken =>
+                UnlistSupersededPrereleasesForPackages(
+                    NugetFeed,
+                    NugetApiKey,
+                    ProjectsToPack,
+                    BuildVersion,
+                    cancellationToken));
+}
+```
 
 ---
 
