@@ -11,7 +11,7 @@ consistent, well-versioned, and safe to release. It ships three complementary pi
 - A **Roslyn analyzer** that enforces explicit annotation of your public API surface.
 - A **test utilities** library for snapshot-testing your public API surface.
 - An **[Atom](https://github.com/Invex-Games/atom) build module** that adds reusable CI/CD targets
-  for packing, testing, releasing, breaking-change detection, and Dependabot automation.
+  for packing, testing, releasing, breaking-change detection, documentation generation, and Dependabot automation.
 
 ---
 
@@ -172,6 +172,7 @@ dotnet add package Invex.RepoUtils.Atom.Module
 | `IApiSurfaceHelper`            | Diffs API definition files between two commits and classifies major/minor breaking changes.                                                                                                                                     |
 | `IPrBreakingChangeHelper`      | Orchestrates the full PR breaking-change check against the latest release baseline.                                                                                                                                             |
 | `IGithubPrHelper`              | Surfaces the GitHub pull-request number parameter for PR-scoped targets.                                                                                                                                                        |
+| `IDocFxHelper`                 | Builds, serves, and publishes DocFX documentation to a project's `gh-pages` branch for GitHub Pages hosting.                                                                                                                     |
 | `DependabotEnableAutoMergePat` | Adds GitHub-specific injection options: `BuildOptions.Inject.Github.PullRequestNumber` (PR number from the event payload) and `BuildOptions.Inject.Github.DependabotEnableAutoMergePat` (the Dependabot auto-merge PAT secret). |
 
 The breaking-change check compares the current build version against the most recent release tag

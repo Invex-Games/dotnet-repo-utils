@@ -1,4 +1,5 @@
 ﻿global using System.Diagnostics.CodeAnalysis;
+global using System.Runtime.InteropServices;
 global using Invex.RepoUtils.Atom.Module.Helpers;
 global using Invex.RepoUtils.Atom.Module.Model;
 global using Invex.RepoUtils.Atom.Module.Targets;

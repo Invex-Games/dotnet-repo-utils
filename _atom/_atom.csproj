@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\Invex.RepoUtils.Atom.Module\Invex.RepoUtils.Atom.Module.csproj" />
+    <ProjectReference Include="..\src\Invex.RepoUtils.TestUtils\Invex.RepoUtils.TestUtils.csproj" />
   </ItemGroup>
 
 </Project>

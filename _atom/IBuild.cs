@@ -1,4 +1,4 @@
-﻿using Invex.RepoUtils.Atom.Module.Extensions;
+﻿using Invex.RepoUtils.Atom.Module.Helpers;
 
 namespace Atom;
 
@@ -13,7 +13,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
     INugetHelper,
     IGithubReleaseHelper,
     IApproveDependabotPr,
-    ICheckPrForBreakingChanges
+    ICheckPrForBreakingChanges,
+    IDocFxHelper
 {
     [ParamDefinition("test-framework", "Test framework to use for unit tests")]
     string TestFramework => GetParam(() => TestFramework, "net10.0");
@@ -121,6 +122,22 @@ internal interface IBuild : IWorkflowBuildDefinition,
                 foreach (var artifact in ProjectsToPack)
                     await UploadArtifactToRelease(artifact, $"v{BuildVersion}");
             });
+
+    Target BuildDocs =>
+        t => t.Executes(cancellationToken =>
+            BuildDocFxDocs([Projects.Invex_RepoUtils_PublicApiAnalyzers.Path(RootedFileSystem)], cancellationToken));
+
+    Target ServeDocs =>
+        t => t
+            .DependsOn(nameof(BuildDocs))
+            .Executes(ServeDocFxDocs);
+
+    Target PublishDocs =>
+        t => t
+            .RequiresParam(nameof(GithubToken))
+            .DependsOn(nameof(BuildDocs))
+            .Executes(cancellationToken =>
+                PublishDocFxDocsToGithub(GithubToken, GeneratedDocsArtifactName, cancellationToken));
 
     IReadOnlyList<WorkflowDefinition> IWorkflowBuildDefinition.Workflows =>
     [

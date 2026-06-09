@@ -1,0 +1,74 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "src/Invex.RepoUtils.Atom.Module/Invex.RepoUtils.Atom.Module.csproj",
+            "src/Invex.RepoUtils.TestUtils/Invex.RepoUtils.TestUtils.csproj"
+          ]
+        }
+      ],
+      "dest": "api",
+      "properties": {
+        "TargetFramework": "net10.0"
+      },
+      "filter": "docs/filterConfig.yml"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "toc.yml",
+          "index.md",
+          "README.md"
+        ]
+      },
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md"
+        ]
+      },
+      {
+        "files": [
+          "docs/toc.yml",
+          "docs/**/*.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "globalMetadata": {
+      "_appTitle": "Dotnet Repo Utils",
+      "_appName": "Dotnet Repo Utils",
+      "_appFooter": "Dotnet Repo Utils: A collection of utilities for dotnet projects.",
+      "_enableSearch": true,
+      "_disableContribution": false,
+      "_disableToc": false,
+      "_gitContribute": {
+        "repo": "https://github.com/Invex-Games/dotnet-repo-utils",
+        "branch": "main"
+      }
+    },
+    "template": [
+      "default",
+      "modern"
+    ],
+    "postProcessors": [],
+    "keepFileLink": false,
+    "disableGitFeatures": false
+  }
+}
+
+

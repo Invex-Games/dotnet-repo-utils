@@ -1,0 +1,27 @@
+- name: Getting Started
+  href: getting-started.md
+- name: Public API Analyzers
+  href: public-api-analyzers/index.md
+  items:
+    - name: Rules
+      href: public-api-analyzers/rules.md
+    - name: Configuration
+      href: public-api-analyzers/configuration.md
+- name: Test Utilities
+  href: test-utils/index.md
+- name: Atom Build Module
+  href: atom-module/index.md
+  items:
+    - name: Targets
+      href: atom-module/targets.md
+    - name: Helpers
+      href: atom-module/helpers.md
+    - name: Breaking Change Detection
+      href: atom-module/breaking-changes.md
+    - name: Dependabot Auto-Merge
+      href: atom-module/dependabot.md
+- name: Contributing
+  href: contributing.md
+- name: Versioning
+  href: versioning.md
+
