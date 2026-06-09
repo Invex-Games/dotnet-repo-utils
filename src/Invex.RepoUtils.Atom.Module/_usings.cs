@@ -1,0 +1,11 @@
+﻿global using System.Diagnostics.CodeAnalysis;
+global using Invex.RepoUtils.Atom.Module.Helpers;
+global using Invex.RepoUtils.Atom.Module.Model;
+global using JetBrains.Annotations;
+global using LibGit2Sharp;
+global using Microsoft.Extensions.Logging;
+global using Octokit.GraphQL;
+global using Octokit.GraphQL.Internal;
+global using Octokit.GraphQL.Model;
+global using Commit = LibGit2Sharp.Commit;
+global using Repository = LibGit2Sharp.Repository;

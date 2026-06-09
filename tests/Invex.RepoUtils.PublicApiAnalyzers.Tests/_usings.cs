@@ -1,0 +1,14 @@
+﻿global using System;
+global using System.IO;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;
+global using JetBrains.Annotations;
+global using Microsoft.CodeAnalysis;
+global using Microsoft.CodeAnalysis.CodeFixes;
+global using Microsoft.CodeAnalysis.CSharp;
+global using Microsoft.CodeAnalysis.CSharp.Testing;
+global using Microsoft.CodeAnalysis.Diagnostics;
+global using Microsoft.CodeAnalysis.Testing;
+global using Microsoft.CodeAnalysis.Text;
+global using Xunit;
