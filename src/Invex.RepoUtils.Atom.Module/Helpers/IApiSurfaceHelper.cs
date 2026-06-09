@@ -34,7 +34,7 @@ public interface IApiSurfaceHelper : IBuildAccessor
     {
         var filesToCheckArray = filesToCheck.ToArray();
 
-        var filesToCheckDisplay = string.Join(", ", filesToCheckArray);
+        var filesToCheckDisplay = string.Join(", ", filesToCheckArray.Select(f => f.ToString()));
 
         Logger.LogDebug("Identifying breaking changes with options: {@Options}",
             new
