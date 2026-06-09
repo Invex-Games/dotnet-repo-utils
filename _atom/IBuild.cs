@@ -1,4 +1,8 @@
-﻿using Invex.RepoUtils.Atom.Module.Helpers;
+﻿using Invex.RepoUtils.Atom.Module.Extensions;
+using Invex.RepoUtils.Atom.Module.Helpers;
+using Invex.RepoUtils.Atom.Module.Targets;
+using Invex.StructuredText.GithubActions.DependabotConfigModel.Model;
+using Target = Invex.Atom.Build.Definition.Target;
 
 namespace Atom;
 

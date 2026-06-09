@@ -16,6 +16,29 @@
     ]
   },
   {
+    Name: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper,
+    Members: [
+      {
+        Name: BuildDocFxDocs
+      },
+      {
+        Name: CopyDirectory
+      },
+      {
+        Name: ForceDeleteDirectory
+      },
+      {
+        Name: GeneratedDocsArtifactName
+      },
+      {
+        Name: PublishDocFxDocsToGithub
+      },
+      {
+        Name: ServeDocFxDocs
+      }
+    ]
+  },
+  {
     Name: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper,
     Members: [
       {
