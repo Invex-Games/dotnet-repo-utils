@@ -47,6 +47,26 @@
     ]
   },
   {
+    Name: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper,
+    Members: [
+      {
+        Name: FlatContainerResourceType
+      },
+      {
+        Name: MaxHttpAttempts
+      },
+      {
+        Name: PublishResourceType
+      },
+      {
+        Name: SelectSupersededPrereleases
+      },
+      {
+        Name: UnlistSupersededPrereleasesForPackages
+      }
+    ]
+  },
+  {
     Name: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper,
     Members: [
       {
@@ -138,6 +158,58 @@
       },
       {
         Name: GetHashCode
+      },
+      {
+        Name: ToString
+      },
+      {
+        Name: Version
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome,
+    Members: [
+      {
+        Name: Failed
+      },
+      {
+        Name: Skipped
+      },
+      {
+        Name: Unlisted
+      },
+      {
+        Name: value__
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Model.UnlistResult,
+    Members: [
+      {
+        Name: <Clone>$
+      },
+      {
+        Name: Deconstruct
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: GetHashCode
+      },
+      {
+        Name: Message
+      },
+      {
+        Name: Outcome
+      },
+      {
+        Name: PackageId
       },
       {
         Name: ToString

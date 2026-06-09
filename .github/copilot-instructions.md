@@ -27,6 +27,23 @@ DocFX documentation site under `docs/`.
   dotnet test
   ```
 
+## Atom workflows
+
+- The GitHub Actions workflow YAML under `.github/workflows/` (`Validate.yml`, `Build.yml`,
+  `Dependabot Enable auto-merge.yml`) is **generated** from the Atom build definition in `_atom/`
+  (`IBuild.cs` and the module interfaces it inherits, e.g. those in
+  `src/Invex.RepoUtils.Atom.Module`).
+- **Whenever you change anything that affects the workflows** — targets, workflow definitions,
+  triggers, options, params/secrets, or the interfaces `IBuild` inherits — regenerate the YAML:
+
+  ```shell
+  atom gen
+  ```
+
+  (equivalently `dotnet run --project _atom -- gen`). Commit the regenerated `.github/workflows/`
+  files alongside your `_atom/` changes; **never hand-edit the generated YAML**.
+- A drift between `_atom/` and the committed YAML should be treated as a missing `atom gen` run.
+
 ## Conventions
 
 - Annotate every new public member with `[PublicAPI]` — the in-repo analyzer flags anything missing,
