@@ -26,10 +26,17 @@ internal interface IBuild : IWorkflowBuildDefinition,
 
     static readonly string[] ProjectsToPack =
     [
-        Projects.Invex_RepoUtils_PublicApiAnalyzers.Name, Projects.Invex_RepoUtils_Atom_Module.Name
+        Projects.Invex_RepoUtils_Atom_Module.Name,
+        Projects.Invex_RepoUtils_PublicApiAnalyzers.Name,
+        Projects.Invex_RepoUtils_TestUtils.Name,
     ];
 
-    static readonly string[] ProjectsToTest = [Projects.Invex_RepoUtils_PublicApiAnalyzers_Tests.Name];
+    static readonly string[] ProjectsToTest =
+    [
+        Projects.Invex_RepoUtils_Atom_Module_Tests.Name,
+        Projects.Invex_RepoUtils_PublicApiAnalyzers_Tests.Name,
+        Projects.Invex_RepoUtils_TestUtils_Tests.Name,
+    ];
 
     static readonly string[] TestFrameworkNames =
     [

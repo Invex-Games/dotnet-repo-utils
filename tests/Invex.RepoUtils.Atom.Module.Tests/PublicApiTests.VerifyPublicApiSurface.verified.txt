@@ -1,0 +1,152 @@
+﻿[
+  {
+    Name: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions,
+    Members: [
+      {
+        Name: get_Github
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper,
+    Members: [
+      {
+        Name: IdentifyBreakingChanges
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper,
+    Members: [
+      {
+        Name: GithubPullRequestNumber
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper,
+    Members: [
+      {
+        Name: FindLatestReleaseInfo
+      },
+      {
+        Name: PerformPrBreakingChangeCheck
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Model.BreakingChanges,
+    Members: [
+      {
+        Name: <Clone>$
+      },
+      {
+        Name: Deconstruct
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: GetHashCode
+      },
+      {
+        Name: MajorChanges
+      },
+      {
+        Name: MinorChanges
+      },
+      {
+        Name: ToString
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Model.Change,
+    Members: [
+      {
+        Name: <Clone>$
+      },
+      {
+        Name: AddedLines
+      },
+      {
+        Name: Deconstruct
+      },
+      {
+        Name: DeletedLines
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: GetHashCode
+      },
+      {
+        Name: Path
+      },
+      {
+        Name: ToString
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo,
+    Members: [
+      {
+        Name: <Clone>$
+      },
+      {
+        Name: CommitHash
+      },
+      {
+        Name: Deconstruct
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: Equals
+      },
+      {
+        Name: GetHashCode
+      },
+      {
+        Name: ToString
+      },
+      {
+        Name: Version
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr,
+    Members: [
+      {
+        Name: ApproveDependabotPr
+      },
+      {
+        Name: DependabotActorName
+      },
+      {
+        Name: DependabotEnableAutoMergePat
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges,
+    Members: [
+      {
+        Name: BreakingChangeFilesToCheck
+      },
+      {
+        Name: CheckPrForBreakingChanges
+      }
+    ]
+  }
+]

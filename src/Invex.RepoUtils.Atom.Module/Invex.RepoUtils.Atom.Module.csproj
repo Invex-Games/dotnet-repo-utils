@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Invex.Atom.Module.GithubWorkflows" Version="3.0.0" />
-      <PackageReference Include="LibGit2Sharp" Version="0.31.0" />
-      <PackageReference Include="Octokit.GraphQL" Version="0.4.0-beta" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Invex.Atom.Module.GithubWorkflows" Version="3.0.0" />
+    <PackageReference Include="LibGit2Sharp" Version="0.31.0" />
+    <PackageReference Include="Octokit.GraphQL" Version="0.4.0-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Invex.RepoUtils.PublicApiAnalyzers\Invex.RepoUtils.PublicApiAnalyzers.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
 
 </Project>

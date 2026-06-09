@@ -6,9 +6,10 @@
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4.svg)](https://dotnet.microsoft.com/)
 
 `Invex.RepoUtils` bundles the tooling the Invex team uses to keep its .NET repositories
-consistent, well-versioned, and safe to release. It ships two complementary pieces:
+consistent, well-versioned, and safe to release. It ships three complementary pieces:
 
 - A **Roslyn analyzer** that enforces explicit annotation of your public API surface.
+- A **test utilities** library for snapshot-testing your public API surface.
 - An **[Atom](https://github.com/Invex-Games/atom) build module** that adds reusable CI/CD targets
   for packing, testing, releasing, breaking-change detection, and Dependabot automation.
 
@@ -22,10 +23,13 @@ consistent, well-versioned, and safe to release. It ships two complementary piec
     - [Rules](#rules)
     - [Configuration](#configuration)
     - [Example](#example)
+- [Invex.RepoUtils.TestUtils](#invexreputilstestutils)
+    - [Installation](#installation-1)
+    - [Usage](#usage)
 - [Invex.RepoUtils.Atom.Module](#invexreputilsatommodule)
     - [Targets](#targets)
     - [Helpers](#helpers)
-    - [Usage](#usage)
+    - [Usage](#usage-1)
 - [Repository structure](#repository-structure)
 - [Building & testing](#building--testing)
 - [Versioning](#versioning)
@@ -39,6 +43,7 @@ consistent, well-versioned, and safe to release. It ships two complementary piec
 | Package                              | Description                                                                                | Target           |
 |--------------------------------------|--------------------------------------------------------------------------------------------|------------------|
 | `Invex.RepoUtils.PublicApiAnalyzers` | Roslyn analyzer that flags public members not annotated as part of the public API surface. | `netstandard2.0` |
+| `Invex.RepoUtils.TestUtils`         | Test utilities for snapshot-testing your assembly's public API surface.                    | `net10.0`        |
 | `Invex.RepoUtils.Atom.Module`        | Atom build module providing pack/test/release, breaking-change, and Dependabot CI targets. | `net10.0`        |
 
 ---
@@ -110,6 +115,37 @@ public class Marked
 
 ---
 
+## Invex.RepoUtils.TestUtils
+
+A test utility library that makes it easy to snapshot-test the public API surface of your
+assemblies. It uses reflection to extract all public types and their members, serialises the result
+to JSON, and pairs well with [Verify](https://github.com/VerifyTests/Verify) for approval-based
+testing.
+
+### Installation
+
+```shell
+dotnet add package Invex.RepoUtils.TestUtils
+```
+
+### Usage
+
+Call `PublicApiSurfaceTestUtil.GetPublicApiSurface` with the assembly you want to inspect. The
+returned JSON string can be verified with your preferred snapshot testing library:
+
+```csharp
+using Invex.RepoUtils.TestUtils;
+
+[Test]
+public Task PublicApiSurface()
+{
+    var surface = PublicApiSurfaceTestUtil.GetPublicApiSurface(typeof(MyLibType).Assembly);
+    return Verify(surface);
+}
+```
+
+---
+
 ## Invex.RepoUtils.Atom.Module
 
 An [Atom](https://github.com/DecSM/atom) build module that contributes reusable, opinionated
@@ -175,9 +211,12 @@ including the `Validate`, `Build`, and Dependabot auto-merge workflows.
 ├── _atom/                                   # Atom build definition for this repo (IBuild.cs)
 ├── src/
 │   ├── Invex.RepoUtils.Atom.Module/         # Atom CI/CD module (targets, helpers, models)
-│   └── Invex.RepoUtils.PublicApiAnalyzers/  # Roslyn public-API analyzer
+│   ├── Invex.RepoUtils.PublicApiAnalyzers/  # Roslyn public-API analyzer
+│   └── Invex.RepoUtils.TestUtils/           # Test utilities for public API surface snapshots
 ├── tests/
-│   └── Invex.RepoUtils.PublicApiAnalyzers.Tests/
+│   ├── Invex.RepoUtils.Atom.Module.Tests/
+│   ├── Invex.RepoUtils.PublicApiAnalyzers.Tests/
+│   └── Invex.RepoUtils.TestUtils.Tests/
 ├── Directory.Build.props                    # Shared build settings
 ├── GitVersion.yml                           # Versioning configuration
 └── Invex.RepoUtils.slnx                     # Solution

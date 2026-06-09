@@ -2,9 +2,12 @@
   <Folder Name="/src/">
     <Project Path="src/Invex.RepoUtils.Atom.Module/Invex.RepoUtils.Atom.Module.csproj" />
     <Project Path="src/Invex.RepoUtils.PublicApiAnalyzers/Invex.RepoUtils.PublicApiAnalyzers.csproj" />
+    <Project Path="src/Invex.RepoUtils.TestUtils/Invex.RepoUtils.TestUtils.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/Invex.RepoUtils.Atom.Module.Tests/Invex.RepoUtils.Atom.Module.Tests.csproj" />
     <Project Path="tests/Invex.RepoUtils.PublicApiAnalyzers.Tests/Invex.RepoUtils.PublicApiAnalyzers.Tests.csproj" />
+    <Project Path="tests/Invex.RepoUtils.TestUtils.Tests/Invex.RepoUtils.TestUtils.Tests.csproj" />
   </Folder>
   <Project Path="_atom/_atom.csproj" />
 </Solution>

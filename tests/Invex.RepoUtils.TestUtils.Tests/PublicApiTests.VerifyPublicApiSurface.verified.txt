@@ -1,0 +1,10 @@
+﻿[
+  {
+    Name: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil,
+    Members: [
+      {
+        Name: GetPublicApiSurface
+      }
+    ]
+  }
+]

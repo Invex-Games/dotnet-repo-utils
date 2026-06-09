@@ -52,17 +52,23 @@ jobs:
         id: PackProjects
         run: dotnet run --project _atom/_atom.csproj -- PackProjects --skip --headless
 
+      - name: Store Invex.RepoUtils.Atom.Module
+        uses: actions/upload-artifact@v7
+        with:
+          name: Invex.RepoUtils.Atom.Module
+          path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.Atom.Module'
+
       - name: Store Invex.RepoUtils.PublicApiAnalyzers
         uses: actions/upload-artifact@v7
         with:
           name: Invex.RepoUtils.PublicApiAnalyzers
           path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.PublicApiAnalyzers'
 
-      - name: Store Invex.RepoUtils.Atom.Module
+      - name: Store Invex.RepoUtils.TestUtils
         uses: actions/upload-artifact@v7
         with:
-          name: Invex.RepoUtils.Atom.Module
-          path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.Atom.Module'
+          name: Invex.RepoUtils.TestUtils
+          path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.TestUtils'
 
   TestProjects:
     runs-on: ubuntu-latest
@@ -98,11 +104,23 @@ jobs:
           test-framework: ${{ matrix.test-framework }}
           build-slice: ${{ matrix.test-framework }}
 
+      - name: Store Invex.RepoUtils.Atom.Module.Tests
+        uses: actions/upload-artifact@v7
+        with:
+          name: 'Invex.RepoUtils.Atom.Module.Tests-${{ matrix.test-framework }}'
+          path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.Atom.Module.Tests'
+
       - name: Store Invex.RepoUtils.PublicApiAnalyzers.Tests
         uses: actions/upload-artifact@v7
         with:
           name: 'Invex.RepoUtils.PublicApiAnalyzers.Tests-${{ matrix.test-framework }}'
           path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.PublicApiAnalyzers.Tests'
+
+      - name: Store Invex.RepoUtils.TestUtils.Tests
+        uses: actions/upload-artifact@v7
+        with:
+          name: 'Invex.RepoUtils.TestUtils.Tests-${{ matrix.test-framework }}'
+          path: '${{ github.workspace }}/.github/publish/Invex.RepoUtils.TestUtils.Tests'
 
   PushToNuget:
     needs: [ TestProjects, PackProjects, SetupBuildInfo ]
@@ -119,17 +137,23 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Retrieve Invex.RepoUtils.Atom.Module
+        uses: actions/download-artifact@v8
+        with:
+          name: Invex.RepoUtils.Atom.Module
+          path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.Atom.Module'
+
       - name: Retrieve Invex.RepoUtils.PublicApiAnalyzers
         uses: actions/download-artifact@v8
         with:
           name: Invex.RepoUtils.PublicApiAnalyzers
           path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.PublicApiAnalyzers'
 
-      - name: Retrieve Invex.RepoUtils.Atom.Module
+      - name: Retrieve Invex.RepoUtils.TestUtils
         uses: actions/download-artifact@v8
         with:
-          name: Invex.RepoUtils.Atom.Module
-          path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.Atom.Module'
+          name: Invex.RepoUtils.TestUtils
+          path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.TestUtils'
 
       - name: PushToNuget
         id: PushToNuget
@@ -156,17 +180,23 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Retrieve Invex.RepoUtils.Atom.Module
+        uses: actions/download-artifact@v8
+        with:
+          name: Invex.RepoUtils.Atom.Module
+          path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.Atom.Module'
+
       - name: Retrieve Invex.RepoUtils.PublicApiAnalyzers
         uses: actions/download-artifact@v8
         with:
           name: Invex.RepoUtils.PublicApiAnalyzers
           path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.PublicApiAnalyzers'
 
-      - name: Retrieve Invex.RepoUtils.Atom.Module
+      - name: Retrieve Invex.RepoUtils.TestUtils
         uses: actions/download-artifact@v8
         with:
-          name: Invex.RepoUtils.Atom.Module
-          path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.Atom.Module'
+          name: Invex.RepoUtils.TestUtils
+          path: '${{ github.workspace }}/.github/artifacts/Invex.RepoUtils.TestUtils'
 
       - name: PushToRelease
         id: PushToRelease
