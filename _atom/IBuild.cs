@@ -153,17 +153,23 @@ internal interface IBuild : IWorkflowBuildDefinition,
             });
 
     Target BuildDocs =>
-        t => t.Executes(cancellationToken =>
-            BuildDocFxDocs([Projects.Invex_RepoUtils_PublicApiAnalyzers.Path(RootedFileSystem)], cancellationToken));
+        t => t
+            .DescribedAs("Builds the DocFX documentation.")
+            .Executes(cancellationToken =>
+                BuildDocFxDocs([Projects.Invex_RepoUtils_PublicApiAnalyzers.Path(RootedFileSystem)],
+                    cancellationToken));
 
     Target ServeDocs =>
         t => t
+            .DescribedAs("Serves the DocFX documentation.")
             .DependsOn(nameof(BuildDocs))
             .Executes(ServeDocFxDocs);
 
     Target PublishDocs =>
         t => t
+            .DescribedAs("Publishes the DocFX documentation to Github Pages.")
             .RequiresParam(nameof(GithubToken))
+            .DependsOn(nameof(SetupBuildInfo))
             .DependsOn(nameof(BuildDocs))
             .Executes(cancellationToken =>
                 PublishDocFxDocsToGithub(GithubToken, GeneratedDocsArtifactName, cancellationToken));
@@ -252,6 +258,22 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     Options = [BuildOptions.Inject.Secret(nameof(NugetApiKey))],
                 },
                 new(nameof(PushToRelease))
+                {
+                    Options =
+                    [
+                        BuildOptions.Inject.Secret(nameof(GithubToken)),
+                        new GithubTokenPermissionsOption(new Permissions.Exact(new()
+                        {
+                            Contents = PermissionsLevel.Write,
+                        })),
+                        BuildOptions.Target.RunIfWorkflowCondition(TextExpressions
+                            .Target
+                            .ParamOutput(this, nameof(SetupBuildInfo), nameof(BuildVersion))
+                            .Contains("-")
+                            .EqualTo(false)),
+                    ],
+                },
+                new(nameof(PublishDocs))
                 {
                     Options =
                     [
