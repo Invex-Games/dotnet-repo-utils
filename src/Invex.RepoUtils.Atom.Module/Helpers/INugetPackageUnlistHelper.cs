@@ -46,6 +46,26 @@ public interface INugetPackageUnlistHelper : IReportsHelper
             .ToList();
 
     /// <summary>
+    /// Selects every published prerelease version whose SemVer precedence is strictly below
+    /// <paramref name="version"/>. Stable versions and prereleases at or above the given version are
+    /// never selected, which makes this suitable for cleaning up obsolete prerelease packages left
+    /// behind once a newer stable version has shipped.
+    /// </summary>
+    /// <param name="version">The exclusive version ceiling (typically a stable version); only prereleases with lower precedence are selected.</param>
+    /// <param name="publishedVersions">All versions currently published for the package.</param>
+    /// <returns>
+    /// The matching prerelease versions in ascending precedence order. For example, a
+    /// <paramref name="version"/> of <c>2.0.0</c> selects every prerelease below <c>2.0.0</c> (such as
+    /// <c>1.5.0-rc.1</c> and <c>2.0.0-rc.1</c>) while leaving every stable version and every prerelease
+    /// at or above <c>2.0.0</c> untouched.
+    /// </returns>
+    static IReadOnlyList<SemVer> SelectPrereleasesBelowVersion(SemVer version, IEnumerable<SemVer> publishedVersions) =>
+        publishedVersions
+            .Where(published => published.IsPreRelease && published < version)
+            .OrderBy(published => published)
+            .ToList();
+
+    /// <summary>
     /// Unlists every prerelease package version that is superseded by <paramref name="currentVersion"/>
     /// for the supplied package ids, and writes a summary of the work performed to the Atom build report.
     /// </summary>
@@ -56,11 +76,69 @@ public interface INugetPackageUnlistHelper : IReportsHelper
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <returns>The per-version results of the unlist attempts.</returns>
     /// <exception cref="StepFailedException">Thrown when one or more versions could not be unlisted after retries.</exception>
-    async Task<IReadOnlyList<UnlistResult>> UnlistSupersededPrereleasesForPackages(
+    Task<IReadOnlyList<UnlistResult>> UnlistSupersededPrereleasesForPackages(
         string feedUrl,
         string apiKey,
         IEnumerable<string> packageIds,
         SemVer currentVersion,
+        CancellationToken cancellationToken) =>
+        UnlistPrereleasesForPackages(
+            feedUrl,
+            apiKey,
+            packageIds,
+            versions => SelectSupersededPrereleases(currentVersion, versions),
+            $"Superseded Prerelease Unlisting (published {currentVersion})",
+            $"No superseded prerelease packages were found to unlist for published version {currentVersion}.",
+            cancellationToken);
+
+    /// <summary>
+    /// Unlists every prerelease package version whose SemVer precedence is strictly below
+    /// <paramref name="version"/> for the supplied package ids, and writes a summary of the work
+    /// performed to the Atom build report. This is intended for a manually-triggered cleanup of old
+    /// prerelease packages left behind once a newer stable version has shipped.
+    /// </summary>
+    /// <param name="feedUrl">The service index URL of the NuGet feed (for example, <c>https://api.nuget.org/v3/index.json</c>).</param>
+    /// <param name="apiKey">The API key used to authenticate the unlist (<c>DELETE</c>) requests.</param>
+    /// <param name="packageIds">The ids of the packages whose old prereleases should be unlisted.</param>
+    /// <param name="version">The exclusive version ceiling (typically a stable version); only prereleases with lower precedence are unlisted.</param>
+    /// <param name="cancellationToken">A token used to cancel the operation.</param>
+    /// <returns>The per-version results of the unlist attempts.</returns>
+    /// <exception cref="StepFailedException">Thrown when one or more versions could not be unlisted after retries.</exception>
+    Task<IReadOnlyList<UnlistResult>> UnlistPrereleasesBelowVersionForPackages(
+        string feedUrl,
+        string apiKey,
+        IEnumerable<string> packageIds,
+        SemVer version,
+        CancellationToken cancellationToken) =>
+        UnlistPrereleasesForPackages(
+            feedUrl,
+            apiKey,
+            packageIds,
+            versions => SelectPrereleasesBelowVersion(version, versions),
+            $"Prerelease Cleanup (below {version})",
+            $"No prerelease packages below version {version} were found to unlist.",
+            cancellationToken);
+
+    /// <summary>
+    /// Discovers the feed resources, selects the prerelease versions to unlist for each package using
+    /// <paramref name="selectVersions"/>, unlists them, and writes a summary to the Atom build report.
+    /// </summary>
+    /// <param name="feedUrl">The service index URL of the NuGet feed.</param>
+    /// <param name="apiKey">The API key used to authenticate the unlist (<c>DELETE</c>) requests.</param>
+    /// <param name="packageIds">The ids of the packages to process.</param>
+    /// <param name="selectVersions">Selects the versions to unlist from a package's published versions.</param>
+    /// <param name="reportTitle">The title used for the build-report summary.</param>
+    /// <param name="emptyReportMessage">The message reported when no versions were found to unlist.</param>
+    /// <param name="cancellationToken">A token used to cancel the operation.</param>
+    /// <returns>The per-version results of the unlist attempts.</returns>
+    /// <exception cref="StepFailedException">Thrown when one or more versions could not be unlisted after retries.</exception>
+    private async Task<IReadOnlyList<UnlistResult>> UnlistPrereleasesForPackages(
+        string feedUrl,
+        string apiKey,
+        IEnumerable<string> packageIds,
+        Func<IReadOnlyList<SemVer>, IReadOnlyList<SemVer>> selectVersions,
+        string reportTitle,
+        string emptyReportMessage,
         CancellationToken cancellationToken)
     {
         var results = new List<UnlistResult>();
@@ -80,7 +158,7 @@ public interface INugetPackageUnlistHelper : IReportsHelper
                 flatContainerBase is not null,
                 publishBase is not null);
 
-            AddUnlistReport(currentVersion, results);
+            AddUnlistReport(reportTitle, emptyReportMessage, results);
 
             return results;
         }
@@ -89,24 +167,23 @@ public interface INugetPackageUnlistHelper : IReportsHelper
         {
             var publishedVersions = await GetPublishedVersionsAsync(client, flatContainerBase, packageId, cancellationToken);
 
-            var superseded = SelectSupersededPrereleases(currentVersion, publishedVersions);
+            var toUnlist = selectVersions(publishedVersions);
 
             Logger.LogInformation(
-                "Found {Count} superseded prerelease version(s) of {PackageId} for published version {Version}.",
-                superseded.Count,
-                packageId,
-                currentVersion);
+                "Found {Count} prerelease version(s) of {PackageId} to unlist.",
+                toUnlist.Count,
+                packageId);
 
-            foreach (var version in superseded)
+            foreach (var version in toUnlist)
                 results.Add(await UnlistPackageAsync(client, publishBase, apiKey, packageId, version, cancellationToken));
         }
 
-        AddUnlistReport(currentVersion, results);
+        AddUnlistReport(reportTitle, emptyReportMessage, results);
 
         var failures = results.Count(result => result.Outcome is UnlistOutcome.Failed);
 
         if (failures > 0)
-            throw new StepFailedException($"Failed to unlist {failures} superseded prerelease package version(s).");
+            throw new StepFailedException($"Failed to unlist {failures} prerelease package version(s).");
 
         return results;
     }
@@ -363,16 +440,16 @@ public interface INugetPackageUnlistHelper : IReportsHelper
     /// <summary>
     /// Adds a summary of the unlisting work to the Atom build report.
     /// </summary>
-    /// <param name="currentVersion">The version that was published.</param>
+    /// <param name="reportTitle">The title used for the report entry.</param>
+    /// <param name="emptyReportMessage">The message reported when no versions were unlisted.</param>
     /// <param name="results">The per-version unlist results to report.</param>
-    private void AddUnlistReport(SemVer currentVersion, IReadOnlyList<UnlistResult> results)
+    private void AddUnlistReport(string reportTitle, string emptyReportMessage, IReadOnlyList<UnlistResult> results)
     {
         if (results.Count is 0)
         {
-            AddReportData(new TextReportData(
-                $"No superseded prerelease packages were found to unlist for published version {currentVersion}.")
+            AddReportData(new TextReportData(emptyReportMessage)
             {
-                Title = "Superseded Prerelease Unlisting",
+                Title = reportTitle,
             });
 
             return;
@@ -385,7 +462,7 @@ public interface INugetPackageUnlistHelper : IReportsHelper
 
         AddReportData(new TableReportData(rows)
         {
-            Title = $"Superseded Prerelease Unlisting (published {currentVersion})",
+            Title = reportTitle,
             Header = ["Package", "Version", "Outcome", "Details"],
             ColumnAlignments = [ColumnAlignment.Left, ColumnAlignment.Left, ColumnAlignment.Left, ColumnAlignment.Left],
         });
