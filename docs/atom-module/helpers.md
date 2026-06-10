@@ -322,6 +322,59 @@ The temporary checkout is always removed once the operation completes, even on f
 
 ---
 
+## ICopilotReviewHelper
+
+Waits until GitHub Copilot has finished reviewing a pull request. GitHub does not expose a native way to block auto-merge on a Copilot review, so this helper polls the pull request's review state until Copilot's review has landed.
+
+### Interface
+
+```csharp
+public interface ICopilotReviewHelper : IBuildAccessor
+```
+
+### Members
+
+| Member | Type | Description |
+|--------|------|-------------|
+| `DefaultCopilotReviewerLogin` | `const string` | The default login of the GitHub Copilot reviewer bot (`"Copilot"`). |
+
+### Methods
+
+#### `WaitForCopilotReviewToComplete`
+
+```csharp
+Task<bool> WaitForCopilotReviewToComplete(
+    int pullRequestNumber,
+    string githubToken,
+    string copilotReviewerLogin,
+    TimeSpan timeout,
+    TimeSpan pollInterval,
+    CancellationToken cancellationToken)
+```
+
+Polls the pull request via GitHub's GraphQL API until Copilot has finished reviewing:
+
+1. While Copilot is reviewing it remains a **pending review request** on the pull request.
+2. Once done it is removed from the pending review requests and a **review** authored by the Copilot bot appears.
+3. The review is considered complete when Copilot is no longer pending and a review from it exists.
+
+Returns `true` when Copilot finished reviewing, or `false` when Copilot was never requested as a reviewer (nothing to wait for).
+
+**Parameters:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `pullRequestNumber` | The number of the pull request to wait on. |
+| `githubToken` | The GitHub token used to authenticate the GraphQL requests. |
+| `copilotReviewerLogin` | The login of the Copilot reviewer bot to match against. |
+| `timeout` | The maximum amount of time to wait for Copilot to finish reviewing. |
+| `pollInterval` | The delay between successive polls of the pull request state. |
+| `cancellationToken` | A token used to cancel the operation. |
+
+**Throws:** `StepFailedException` when Copilot does not finish reviewing within `timeout`, or when the pull request cannot be resolved.
+
+---
+
 ## Extension: InjectionOptionsExtensions
 
 Provides GitHub-specific value injection options for build targets.

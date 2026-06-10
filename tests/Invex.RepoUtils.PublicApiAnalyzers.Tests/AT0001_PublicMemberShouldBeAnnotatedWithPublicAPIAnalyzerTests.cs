@@ -300,7 +300,7 @@ public class IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzerTests
             return solution.AddAnalyzerConfigDocument(documentId,
                 ".editorconfig",
                 SourceText.From(
-                    "is_global = true\r\ndotnet_code_quality.DecSm_Analyzers_ValidPublicApiAttributes = MyCustom"),
+                    "is_global = true\r\ndotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes = MyCustom"),
                 filePath: "/.editorconfig");
         });
 
