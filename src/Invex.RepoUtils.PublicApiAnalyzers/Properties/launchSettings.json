@@ -3,7 +3,7 @@
   "profiles": {
     "DebugRoslynAnalyzers": {
       "commandName": "DebugRoslynComponent",
-      "targetProject": "../DecSm.Atom.Analyzers.Sample/DecSm.Atom.Analyzers.Sample.csproj"
+      "targetProject": "../Invex.RepoUtils.PublicApiAnalyzers.Sample/Invex.RepoUtils.PublicApiAnalyzers.Sample.csproj"
     }
   }
 }

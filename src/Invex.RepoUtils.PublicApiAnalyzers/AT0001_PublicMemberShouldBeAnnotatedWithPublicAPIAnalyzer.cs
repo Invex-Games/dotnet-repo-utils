@@ -122,10 +122,10 @@ public class IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzer : Diagn
         if (tree != null &&
             optionsProvider
                 .GetOptions(tree)
-                .TryGetValue("dotnet_code_quality.DecSm_Analyzers_ValidPublicApiAttributes", out var treeValues))
+                .TryGetValue("dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes", out var treeValues))
             return ParseAndCache(treeValues, cache);
 
-        optionsProvider.GlobalOptions.TryGetValue("dotnet_code_quality.DecSm_Analyzers_ValidPublicApiAttributes",
+        optionsProvider.GlobalOptions.TryGetValue("dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes",
             out var globalValues);
 
         return ParseAndCache(globalValues ?? string.Empty, cache);
