@@ -116,7 +116,7 @@ public interface ICopilotReviewHelper : IBuildAccessor
     /// authored by Copilot already exists.
     /// </returns>
     /// <exception cref="StepFailedException">Thrown when the pull request cannot be resolved.</exception>
-    private static async Task<(bool IsPending, bool HasReview)> QueryCopilotReviewState(
+    private async Task<(bool IsPending, bool HasReview)> QueryCopilotReviewState(
         Connection connection,
         string repository,
         string owner,
@@ -152,15 +152,29 @@ public interface ICopilotReviewHelper : IBuildAccessor
         if (result is null)
             throw new StepFailedException($"Could not find pull request #{pullRequestNumber}.");
 
+        Logger.LogInformation(
+            "Pull request #{PullRequest} review state. Pending reviewers: [{PendingReviewers}]. Review authors: [{ReviewAuthors}].",
+            pullRequestNumber,
+            string.Join(", ", result.PendingReviewerLogins.Where(login => login is not null)),
+            string.Join(", ", result.ReviewAuthorLogins));
+
+        // GitHub Copilot's reviewer bot surfaces with a login such as "copilot-pull-request-reviewer"
+        // (the "Copilot" shown in the UI is only the display name), so match on a case-insensitive
+        // substring rather than an exact login to remain robust across these representations.
         var isPending = result
             .PendingReviewerLogins
-            .Any(login => string.Equals(login, copilotReviewerLogin, StringComparison.OrdinalIgnoreCase));
+            .Any(login => IsCopilotLogin(login, copilotReviewerLogin));
 
         var hasReview = result
             .ReviewAuthorLogins
-            .Any(login => string.Equals(login, copilotReviewerLogin, StringComparison.OrdinalIgnoreCase));
+            .Any(login => IsCopilotLogin(login, copilotReviewerLogin));
 
         return (isPending, hasReview);
+
+        static bool IsCopilotLogin(string? login, string copilotReviewerLogin) =>
+            login is not null &&
+            (login.Contains(copilotReviewerLogin, StringComparison.OrdinalIgnoreCase) ||
+             copilotReviewerLogin.Contains(login, StringComparison.OrdinalIgnoreCase));
     }
 
     /// <summary>
