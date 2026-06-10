@@ -87,7 +87,7 @@ attribute names (the `Attribute` suffix is optional — both forms are accepted)
 ```ini
 # .editorconfig
 [*.cs]
-dotnet_code_quality.DecSm_Analyzers_ValidPublicApiAttributes = Experimental, MyCompanyApi
+dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes = Experimental, MyCompanyApi
 ```
 
 To change the severity of the rule:
