@@ -50,6 +50,7 @@ public interface IWaitForCopilotReview : ICopilotReviewHelper, IGithubHelper, IG
         t => t
             .RequiresParam(nameof(GithubPullRequestNumber))
             .UsesParam(nameof(CopilotReviewerLogin))
+            .UsesParam(nameof(GithubToken))
             .UsesParam(nameof(CopilotReviewTimeoutSeconds))
             .UsesParam(nameof(CopilotReviewPollIntervalSeconds))
             .UsesParam(nameof(CopilotReviewToken))
