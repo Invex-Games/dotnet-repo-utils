@@ -16,6 +16,17 @@
     ]
   },
   {
+    Name: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper,
+    Members: [
+      {
+        Name: DefaultCopilotReviewerLogin
+      },
+      {
+        Name: WaitForCopilotReviewToComplete
+      }
+    ]
+  },
+  {
     Name: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper,
     Members: [
       {
@@ -247,6 +258,26 @@
       },
       {
         Name: CheckPrForBreakingChanges
+      }
+    ]
+  },
+  {
+    Name: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview,
+    Members: [
+      {
+        Name: CopilotReviewerLogin
+      },
+      {
+        Name: CopilotReviewPollIntervalSeconds
+      },
+      {
+        Name: CopilotReviewTimeoutSeconds
+      },
+      {
+        Name: CopilotReviewToken
+      },
+      {
+        Name: WaitForCopilotReview
       }
     ]
   }

@@ -104,4 +104,61 @@ new(nameof(CheckPrForBreakingChanges))
 
 See [Breaking Change Detection](breaking-changes.md) for details on how the analysis works.
 
+---
+
+## IWaitForCopilotReview
+
+Blocks until GitHub Copilot has finished reviewing a pull request. This fills the gap where GitHub cannot natively wait for a Copilot review before completing an auto-merge, allowing the target to be sequenced ahead of an auto-merge step.
+
+### Interface
+
+```csharp
+public interface IWaitForCopilotReview : ICopilotReviewHelper, IGithubHelper, IGithubPrHelper
+```
+
+### Target
+
+| Name | Required Parameters | Description |
+|------|-------------------|-------------|
+| `WaitForCopilotReview` | `GithubPullRequestNumber` | Waits until Copilot has finished reviewing the target pull request. |
+
+### Behaviour
+
+1. Polls the pull request's review state via GitHub's GraphQL API.
+2. **Succeeds immediately** when Copilot was not requested as a reviewer (nothing to wait for).
+3. Considers the review complete once Copilot is no longer a pending review request and a Copilot review exists.
+4. **Fails** when Copilot does not finish reviewing within the configured timeout.
+
+### Configuration
+
+| Member | Type | Description |
+|--------|------|-------------|
+| `CopilotReviewerLogin` | `string` | The login of the Copilot reviewer bot to wait for. Defaults to `"Copilot"`. |
+| `CopilotReviewTimeoutSeconds` | `int` | Maximum time, in seconds, to wait before failing. Defaults to `600`. |
+| `CopilotReviewPollIntervalSeconds` | `int` | Delay, in seconds, between polls. Defaults to `15`. |
+| `CopilotReviewToken` | `string?` | Optional PAT used to read the review state; falls back to `GithubToken`. Defined as a secret. |
+
+### Workflow Example
+
+```csharp
+new(nameof(WaitForCopilotReview))
+{
+    Options =
+    [
+        BuildOptions.Target.SuppressArtifactPublishing,
+        BuildOptions.Inject.Secret(nameof(GithubToken)),
+        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+        {
+            PullRequests = PermissionsLevel.Read,
+        })),
+        BuildOptions.Inject.Github.PullRequestNumber,
+    ],
+}
+```
+
+Sequence this target ahead of an auto-merge step (e.g. `ApproveDependabotPr`) so the merge only proceeds once Copilot's review has landed.
+
+
+
+
 

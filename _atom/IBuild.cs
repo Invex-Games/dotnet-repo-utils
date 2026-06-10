@@ -19,7 +19,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
     IGithubReleaseHelper,
     IDocFxHelper,
     IApproveDependabotPr,
-    ICheckPrForBreakingChanges
+    ICheckPrForBreakingChanges,
+    IWaitForCopilotReview
 {
     [ParamDefinition("test-framework", "Test framework to use for unit tests")]
     string TestFramework => GetParam(() => TestFramework, "net10.0");
@@ -248,6 +249,14 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         BuildOptions.Inject.Github.PullRequestNumber,
                         BuildOptions.Target.RunIfWorkflowCondition(
                             TextExpressions.Github.GithubEventName.EqualToString("pull_request")),
+                    ],
+                },
+                new(nameof(WaitForCopilotReview))
+                {
+                    Options =
+                    [
+                        BuildOptions.Inject.Secret(nameof(GithubToken)),
+                        BuildOptions.Inject.Github.PullRequestNumber,
                     ],
                 },
             ],

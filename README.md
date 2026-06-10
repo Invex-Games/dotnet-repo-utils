@@ -164,6 +164,7 @@ dotnet add package Invex.RepoUtils.Atom.Module
 |-----------------------------|------------------------------|-------------------------------------------------------------------------------------------|
 | `ApproveDependabotPr`       | `IApproveDependabotPr`       | Enables auto-merge on pull requests opened by `dependabot[bot]`.                          |
 | `CheckPrForBreakingChanges` | `ICheckPrForBreakingChanges` | Detects public API breaking changes in a PR and reports the result as a GitHub check run. |
+| `WaitForCopilotReview`      | `IWaitForCopilotReview`      | Blocks until GitHub Copilot has finished reviewing a PR (e.g. before enabling auto-merge). |
 
 ### Helpers
 
@@ -174,6 +175,7 @@ dotnet add package Invex.RepoUtils.Atom.Module
 | `IGithubPrHelper`              | Surfaces the GitHub pull-request number parameter for PR-scoped targets.                                                                                                                                                        |
 | `INugetPackageUnlistHelper`    | Discovers superseded prereleases (or all prereleases below a given stable version) via the NuGet flat-container API and unlists them with resilient HTTP `DELETE` calls, writing a summary to the Atom build report.             |
 | `IDocFxHelper`                 | Builds, serves, and publishes DocFX documentation to a project's `gh-pages` branch for GitHub Pages hosting.                                                                                                                     |
+| `ICopilotReviewHelper`         | Polls a pull request until GitHub Copilot has finished reviewing it, failing on timeout.                                                                                                                                         |
 | `DependabotEnableAutoMergePat` | Adds GitHub-specific injection options: `BuildOptions.Inject.Github.PullRequestNumber` (PR number from the event payload) and `BuildOptions.Inject.Github.DependabotEnableAutoMergePat` (the Dependabot auto-merge PAT secret). |
 
 The breaking-change check compares the current build version against the most recent release tag
