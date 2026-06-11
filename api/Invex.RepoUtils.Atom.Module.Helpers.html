@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace Invex.RepoUtils.Atom.Module.Helpers | Dotnet Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace Invex.RepoUtils.Atom.Module.Helpers | Dotnet Repo Utils ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Dotnet Repo Utils">
+            Dotnet Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Invex.RepoUtils.Atom.Module.Helpers">
+
+  <h1 id="Invex_RepoUtils_Atom_Module_Helpers" data-uid="Invex.RepoUtils.Atom.Module.Helpers" class="text-break">Namespace Invex.RepoUtils.Atom.Module.Helpers</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="interfaces">
+Interfaces
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html">IApiSurfaceHelper</a></dt>
+      <dd><p>Provides functionality for analyzing the public API surface of the repository by diffing the
+tracked API definition files between two commits, and classifying the resulting changes as
+either major (removals) or minor (additions) breaking changes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html">ICopilotReviewHelper</a></dt>
+      <dd><p>Provides functionality for waiting until GitHub Copilot has finished reviewing a pull request.
+GitHub does not currently expose a native way to block auto-merge on a Copilot review, so this
+helper polls the pull request's review state until Copilot's review has landed (or a timeout
+elapses).</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html">IDocFxHelper</a></dt>
+      <dd><p>Provides functionality for generating, serving, and publishing
+<a href="https://dotnet.github.io/docfx/">DocFX</a> documentation for the repository.
+The helper builds the static documentation site, can host it locally for previewing, and
+publishes the generated output to a project's <code>gh-pages</code> branch for GitHub Pages hosting.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html">IGithubPrHelper</a></dt>
+      <dd><p>Exposes the GitHub pull request context that targets operating on a specific pull request require.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html">INugetPackageUnlistHelper</a></dt>
+      <dd><p>Provides functionality for discovering and unlisting prerelease packages that have been
+superseded by a newly published version. Versions are discovered through the NuGet flat-container
+API and unlisted via the feed's HTTP <code>DELETE</code> endpoint, with a summary written to the Atom
+build report.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html">IPrBreakingChangeHelper</a></dt>
+      <dd><p>Orchestrates the end-to-end breaking change check for a pull request: it locates the most recent
+release to use as a baseline, identifies breaking changes against it, validates that the version
+has been bumped appropriately, and reports the result back to GitHub as a check run.</p>
+</dd>
+    </dl>
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Dotnet Repo Utils: A collection of utilities for dotnet projects.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

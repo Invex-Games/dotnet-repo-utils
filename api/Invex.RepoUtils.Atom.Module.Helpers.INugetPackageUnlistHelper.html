@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface INugetPackageUnlistHelper | Dotnet Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface INugetPackageUnlistHelper | Dotnet Repo Utils ">
+      
+      <meta name="description" content="Provides functionality for discovering and unlisting prerelease packages that have been superseded by a newly published version. Versions are discovered through the NuGet flat-container API and unlisted via the feed&#39;s HTTP DELETE endpoint, with a summary written to the Atom build report.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/new/main/apiSpec/new?filename=Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper.md&amp;value=---%0Auid%3A%20Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Dotnet Repo Utils">
+            Dotnet Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper">
+
+
+
+  <h1 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper" class="text-break">
+Interface INugetPackageUnlistHelper  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Invex.html">Invex</a>.<a class="xref" href="Invex.RepoUtils.html">RepoUtils</a>.<a class="xref" href="Invex.RepoUtils.Atom.html">Atom</a>.<a class="xref" href="Invex.RepoUtils.Atom.Module.html">Module</a>.<a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.html">Helpers</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Invex.RepoUtils.Atom.Module.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Provides functionality for discovering and unlisting prerelease packages that have been
+superseded by a newly published version. Versions are discovered through the NuGet flat-container
+API and unlisted via the feed's HTTP <code>DELETE</code> endpoint, with a summary written to the Atom
+build report.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public interface INugetPackageUnlistHelper : IReportsHelper, IBuildAccessor</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <span class="xref">IReportsHelper.AddReportData(IReportData)</span>
+    </div>
+    <div>
+      <span class="xref">IBuildAccessor.GetService&lt;T&gt;()</span>
+    </div>
+    <div>
+      <span class="xref">IBuildAccessor.GetServices&lt;T&gt;()</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">IBuildAccessor.GetParam&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt;, T, Func&lt;string, T&gt;)</a>
+    </div>
+    <div>
+      <span class="xref">IBuildAccessor.Services</span>
+    </div>
+    <div>
+      <span class="xref">IBuildAccessor.Logger</span>
+    </div>
+    <div>
+      <span class="xref">IBuildAccessor.RootedFileSystem</span>
+    </div>
+    <div>
+      <span class="xref">IBuildAccessor.ProcessRunner</span>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_FlatContainerResourceType" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.FlatContainerResourceType">
+  FlatContainerResourceType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The NuGet flat-container resource type advertised in a feed's service index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string FlatContainerResourceType = &quot;PackageBaseAddress/3.0.0&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_MaxHttpAttempts" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.MaxHttpAttempts">
+  MaxHttpAttempts
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The maximum number of attempts (including the initial attempt) made for each HTTP request
+before giving up.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int MaxHttpAttempts = 3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_PublishResourceType" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.PublishResourceType">
+  PublishResourceType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The NuGet package publish resource type advertised in a feed's service index. The same base
+address is used to unlist packages via an HTTP <code>DELETE</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string PublishResourceType = &quot;PackagePublish/2.0.0&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectPrereleasesBelowVersion_" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion*"></a>
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectPrereleasesBelowVersion_Invex_SemanticVersion_SemVer_System_Collections_Generic_IEnumerable_Invex_SemanticVersion_SemVer__" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(Invex.SemanticVersion.SemVer,System.Collections.Generic.IEnumerable{Invex.SemanticVersion.SemVer})">
+  SelectPrereleasesBelowVersion(SemVer, IEnumerable&lt;SemVer&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Selects every published prerelease version whose SemVer precedence is strictly below
+<code class="paramref">version</code>. Stable versions and prereleases at or above the given version are
+never selected, which makes this suitable for cleaning up obsolete prerelease packages left
+behind once a newer stable version has shipped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;SemVer&gt; SelectPrereleasesBelowVersion(SemVer version, IEnumerable&lt;SemVer&gt; publishedVersions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>version</code> <span class="xref">SemVer</span></dt>
+    <dd><p>The exclusive version ceiling (typically a stable version); only prereleases with lower precedence are selected.</p>
+</dd>
+    <dt><code>publishedVersions</code> <span class="xref">IEnumerable</span>&lt;<span class="xref">SemVer</span>&gt;</dt>
+    <dd><p>All versions currently published for the package.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IReadOnlyList</span>&lt;<span class="xref">SemVer</span>&gt;</dt>
+    <dd><p>The matching prerelease versions in ascending precedence order. For example, a
+<code class="paramref">version</code> of <code>2.0.0</code> selects every prerelease below <code>2.0.0</code> (such as
+<code>1.5.0-rc.1</code> and <code>2.0.0-rc.1</code>) while leaving every stable version and every prerelease
+at or above <code>2.0.0</code> untouched.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectSupersededPrereleases_" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases*"></a>
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectSupersededPrereleases_Invex_SemanticVersion_SemVer_System_Collections_Generic_IEnumerable_Invex_SemanticVersion_SemVer__" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases(Invex.SemanticVersion.SemVer,System.Collections.Generic.IEnumerable{Invex.SemanticVersion.SemVer})">
+  SelectSupersededPrereleases(SemVer, IEnumerable&lt;SemVer&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Selects the published versions that are superseded by <code class="paramref">currentVersion</code>: every
+version that shares the same <span class="xref">Invex.SemanticVersion.SemVer.Prefix</span> (core <code>MAJOR.MINOR.PATCH</code>), is a
+prerelease, and has lower SemVer precedence than the current version.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;SemVer&gt; SelectSupersededPrereleases(SemVer currentVersion, IEnumerable&lt;SemVer&gt; publishedVersions)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentVersion</code> <span class="xref">SemVer</span></dt>
+    <dd><p>The version that was just published.</p>
+</dd>
+    <dt><code>publishedVersions</code> <span class="xref">IEnumerable</span>&lt;<span class="xref">SemVer</span>&gt;</dt>
+    <dd><p>All versions currently published for the package.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">IReadOnlyList</span>&lt;<span class="xref">SemVer</span>&gt;</dt>
+    <dd><p>The superseded prerelease versions in ascending precedence order. A stable
+<code class="paramref">currentVersion</code> matches all prereleases of the same core version, while a
+versions of a different
+core, equal/higher versions, and the current version itself are never selected.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistPrereleasesBelowVersionForPackages_" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages*"></a>
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistPrereleasesBelowVersionForPackages_System_String_System_String_System_Collections_Generic_IEnumerable_System_String__Invex_SemanticVersion_SemVer_System_Threading_CancellationToken_" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Invex.SemanticVersion.SemVer,System.Threading.CancellationToken)">
+  UnlistPrereleasesBelowVersionForPackages(string, string, IEnumerable&lt;string&gt;, SemVer, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlists every prerelease package version whose SemVer precedence is strictly below
+<code class="paramref">version</code> for the supplied package ids, and writes a summary of the work
+performed to the Atom build report. This is intended for a manually-triggered cleanup of old
+prerelease packages left behind once a newer stable version has shipped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;UnlistResult&gt;&gt; UnlistPrereleasesBelowVersionForPackages(string feedUrl, string apiKey, IEnumerable&lt;string&gt; packageIds, SemVer version, CancellationToken cancellationToken)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>feedUrl</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The service index URL of the NuGet feed (for example, <code>https://api.nuget.org/v3/index.json</code>).</p>
+</dd>
+    <dt><code>apiKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The API key used to authenticate the unlist (<code>DELETE</code>) requests.</p>
+</dd>
+    <dt><code>packageIds</code> <span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>The ids of the packages whose old prereleases should be unlisted.</p>
+</dd>
+    <dt><code>version</code> <span class="xref">SemVer</span></dt>
+    <dd><p>The exclusive version ceiling (typically a stable version); only prereleases with lower precedence are unlisted.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>A token used to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Invex.RepoUtils.Atom.Module.Model.UnlistResult.html">UnlistResult</a>&gt;&gt;</dt>
+    <dd><p>The per-version results of the unlist attempts.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">StepFailedException</span></dt>
+    <dd><p>Thrown when one or more versions could not be unlisted after retries.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistSupersededPrereleasesForPackages_" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages*"></a>
+
+  <h3 id="Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistSupersededPrereleasesForPackages_System_String_System_String_System_Collections_Generic_IEnumerable_System_String__Invex_SemanticVersion_SemVer_System_Threading_CancellationToken_" data-uid="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Invex.SemanticVersion.SemVer,System.Threading.CancellationToken)">
+  UnlistSupersededPrereleasesForPackages(string, string, IEnumerable&lt;string&gt;, SemVer, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unlists every prerelease package version that is superseded by <code class="paramref">currentVersion</code>
+for the supplied package ids, and writes a summary of the work performed to the Atom build report.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;IReadOnlyList&lt;UnlistResult&gt;&gt; UnlistSupersededPrereleasesForPackages(string feedUrl, string apiKey, IEnumerable&lt;string&gt; packageIds, SemVer currentVersion, CancellationToken cancellationToken)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>feedUrl</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The service index URL of the NuGet feed (for example, <code>https://api.nuget.org/v3/index.json</code>).</p>
+</dd>
+    <dt><code>apiKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The API key used to authenticate the unlist (<code>DELETE</code>) requests.</p>
+</dd>
+    <dt><code>packageIds</code> <span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>The ids of the packages whose superseded prereleases should be unlisted.</p>
+</dd>
+    <dt><code>currentVersion</code> <span class="xref">SemVer</span></dt>
+    <dd><p>The version that was just published, used as the supersedence baseline.</p>
+</dd>
+    <dt><code>cancellationToken</code> <span class="xref">CancellationToken</span></dt>
+    <dd><p>A token used to cancel the operation.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Task</span>&lt;<span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Invex.RepoUtils.Atom.Module.Model.UnlistResult.html">UnlistResult</a>&gt;&gt;</dt>
+    <dd><p>The per-version results of the unlist attempts.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><span class="xref">StepFailedException</span></dt>
+    <dd><p>Thrown when one or more versions could not be unlisted after retries.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/v1.5.0/src/Invex.RepoUtils.Atom.Module/Helpers/INugetPackageUnlistHelper.cs/#L9" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Dotnet Repo Utils: A collection of utilities for dotnet projects.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

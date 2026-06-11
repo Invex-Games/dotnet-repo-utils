@@ -1,0 +1,779 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Invex.RepoUtils.Atom.Module.Extensions
+  name: Invex.RepoUtils.Atom.Module.Extensions
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.html
+  commentId: N:Invex.RepoUtils.Atom.Module.Extensions
+  fullName: Invex.RepoUtils.Atom.Module.Extensions
+  nameWithType: Invex.RepoUtils.Atom.Module.Extensions
+- uid: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions
+  name: InjectionOptionsExtensions
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions
+  fullName: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions
+  nameWithType: InjectionOptionsExtensions
+- uid: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions
+  name: InjectionOptionsExtensions.GithubInjectionOptions
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions
+  fullName: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions
+  nameWithType: InjectionOptionsExtensions.GithubInjectionOptions
+- uid: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+  name: DependabotEnableAutoMergePat
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html#Invex_RepoUtils_Atom_Module_Extensions_InjectionOptionsExtensions_GithubInjectionOptions_DependabotEnableAutoMergePat
+  commentId: P:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+  fullName: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+  nameWithType: InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+- uid: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat*
+  name: DependabotEnableAutoMergePat
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html#Invex_RepoUtils_Atom_Module_Extensions_InjectionOptionsExtensions_GithubInjectionOptions_DependabotEnableAutoMergePat_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+  nameWithType: InjectionOptionsExtensions.GithubInjectionOptions.DependabotEnableAutoMergePat
+- uid: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+  name: PullRequestNumber
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html#Invex_RepoUtils_Atom_Module_Extensions_InjectionOptionsExtensions_GithubInjectionOptions_PullRequestNumber
+  commentId: P:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+  fullName: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+  nameWithType: InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+- uid: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber*
+  name: PullRequestNumber
+  href: api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html#Invex_RepoUtils_Atom_Module_Extensions_InjectionOptionsExtensions_GithubInjectionOptions_PullRequestNumber_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+  nameWithType: InjectionOptionsExtensions.GithubInjectionOptions.PullRequestNumber
+- uid: Invex.RepoUtils.Atom.Module.Helpers
+  name: Invex.RepoUtils.Atom.Module.Helpers
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.html
+  commentId: N:Invex.RepoUtils.Atom.Module.Helpers
+  fullName: Invex.RepoUtils.Atom.Module.Helpers
+  nameWithType: Invex.RepoUtils.Atom.Module.Helpers
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper
+  name: IApiSurfaceHelper
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper
+  nameWithType: IApiSurfaceHelper
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges(Invex.SemanticVersion.SemVer,System.String,Invex.SemanticVersion.SemVer,System.String,System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath})
+  name: IdentifyBreakingChanges(SemVer, string, SemVer, string, params IEnumerable<RootedPath>)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IApiSurfaceHelper_IdentifyBreakingChanges_Invex_SemanticVersion_SemVer_System_String_Invex_SemanticVersion_SemVer_System_String_System_Collections_Generic_IEnumerable_Invex_FileSystem_RootedPath__
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges(Invex.SemanticVersion.SemVer,System.String,Invex.SemanticVersion.SemVer,System.String,System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath})
+  name.vb: IdentifyBreakingChanges(SemVer, String, SemVer, String, IEnumerable(Of RootedPath))
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges(Invex.SemanticVersion.SemVer, string, Invex.SemanticVersion.SemVer, string, params System.Collections.Generic.IEnumerable<Invex.FileSystem.RootedPath>)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges(Invex.SemanticVersion.SemVer, String, Invex.SemanticVersion.SemVer, String, System.Collections.Generic.IEnumerable(Of Invex.FileSystem.RootedPath))
+  nameWithType: IApiSurfaceHelper.IdentifyBreakingChanges(SemVer, string, SemVer, string, params IEnumerable<RootedPath>)
+  nameWithType.vb: IApiSurfaceHelper.IdentifyBreakingChanges(SemVer, String, SemVer, String, IEnumerable(Of RootedPath))
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges*
+  name: IdentifyBreakingChanges
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IApiSurfaceHelper_IdentifyBreakingChanges_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.IdentifyBreakingChanges
+  nameWithType: IApiSurfaceHelper.IdentifyBreakingChanges
+- uid: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper
+  name: ICopilotReviewHelper
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper
+  nameWithType: ICopilotReviewHelper
+- uid: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.DefaultCopilotReviewerLogin
+  name: DefaultCopilotReviewerLogin
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html#Invex_RepoUtils_Atom_Module_Helpers_ICopilotReviewHelper_DefaultCopilotReviewerLogin
+  commentId: F:Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.DefaultCopilotReviewerLogin
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.DefaultCopilotReviewerLogin
+  nameWithType: ICopilotReviewHelper.DefaultCopilotReviewerLogin
+- uid: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete(System.Int32,System.String,System.String,System.TimeSpan,System.TimeSpan,System.Threading.CancellationToken)
+  name: WaitForCopilotReviewToComplete(int, string, string, TimeSpan, TimeSpan, CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html#Invex_RepoUtils_Atom_Module_Helpers_ICopilotReviewHelper_WaitForCopilotReviewToComplete_System_Int32_System_String_System_String_System_TimeSpan_System_TimeSpan_System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete(System.Int32,System.String,System.String,System.TimeSpan,System.TimeSpan,System.Threading.CancellationToken)
+  name.vb: WaitForCopilotReviewToComplete(Integer, String, String, TimeSpan, TimeSpan, CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete(int, string, string, System.TimeSpan, System.TimeSpan, System.Threading.CancellationToken)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete(Integer, String, String, System.TimeSpan, System.TimeSpan, System.Threading.CancellationToken)
+  nameWithType: ICopilotReviewHelper.WaitForCopilotReviewToComplete(int, string, string, TimeSpan, TimeSpan, CancellationToken)
+  nameWithType.vb: ICopilotReviewHelper.WaitForCopilotReviewToComplete(Integer, String, String, TimeSpan, TimeSpan, CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete*
+  name: WaitForCopilotReviewToComplete
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html#Invex_RepoUtils_Atom_Module_Helpers_ICopilotReviewHelper_WaitForCopilotReviewToComplete_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.WaitForCopilotReviewToComplete
+  nameWithType: ICopilotReviewHelper.WaitForCopilotReviewToComplete
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper
+  name: IDocFxHelper
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper
+  nameWithType: IDocFxHelper
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs(System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.Threading.CancellationToken)
+  name: BuildDocFxDocs(IEnumerable<RootedPath>?, CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_BuildDocFxDocs_System_Collections_Generic_IEnumerable_Invex_FileSystem_RootedPath__System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs(System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.Threading.CancellationToken)
+  name.vb: BuildDocFxDocs(IEnumerable(Of RootedPath), CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs(System.Collections.Generic.IEnumerable<Invex.FileSystem.RootedPath>?, System.Threading.CancellationToken)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs(System.Collections.Generic.IEnumerable(Of Invex.FileSystem.RootedPath), System.Threading.CancellationToken)
+  nameWithType: IDocFxHelper.BuildDocFxDocs(IEnumerable<RootedPath>?, CancellationToken)
+  nameWithType.vb: IDocFxHelper.BuildDocFxDocs(IEnumerable(Of RootedPath), CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs*
+  name: BuildDocFxDocs
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_BuildDocFxDocs_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.BuildDocFxDocs
+  nameWithType: IDocFxHelper.BuildDocFxDocs
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.CopyDirectory(Invex.FileSystem.RootedPath,Invex.FileSystem.RootedPath)
+  name: CopyDirectory(RootedPath, RootedPath)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_CopyDirectory_Invex_FileSystem_RootedPath_Invex_FileSystem_RootedPath_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.CopyDirectory(Invex.FileSystem.RootedPath,Invex.FileSystem.RootedPath)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.CopyDirectory(Invex.FileSystem.RootedPath, Invex.FileSystem.RootedPath)
+  nameWithType: IDocFxHelper.CopyDirectory(RootedPath, RootedPath)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.CopyDirectory*
+  name: CopyDirectory
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_CopyDirectory_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.CopyDirectory
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.CopyDirectory
+  nameWithType: IDocFxHelper.CopyDirectory
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory(System.String)
+  name: ForceDeleteDirectory(string)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_ForceDeleteDirectory_System_String_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory(System.String)
+  name.vb: ForceDeleteDirectory(String)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory(string)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory(String)
+  nameWithType: IDocFxHelper.ForceDeleteDirectory(string)
+  nameWithType.vb: IDocFxHelper.ForceDeleteDirectory(String)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory*
+  name: ForceDeleteDirectory
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_ForceDeleteDirectory_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ForceDeleteDirectory
+  nameWithType: IDocFxHelper.ForceDeleteDirectory
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.GeneratedDocsArtifactName
+  name: GeneratedDocsArtifactName
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_GeneratedDocsArtifactName
+  commentId: F:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.GeneratedDocsArtifactName
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.GeneratedDocsArtifactName
+  nameWithType: IDocFxHelper.GeneratedDocsArtifactName
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub(System.String,System.String,System.Threading.CancellationToken)
+  name: PublishDocFxDocsToGithub(string, string, CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_PublishDocFxDocsToGithub_System_String_System_String_System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub(System.String,System.String,System.Threading.CancellationToken)
+  name.vb: PublishDocFxDocsToGithub(String, String, CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub(string, string, System.Threading.CancellationToken)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub(String, String, System.Threading.CancellationToken)
+  nameWithType: IDocFxHelper.PublishDocFxDocsToGithub(string, string, CancellationToken)
+  nameWithType.vb: IDocFxHelper.PublishDocFxDocsToGithub(String, String, CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub*
+  name: PublishDocFxDocsToGithub
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_PublishDocFxDocsToGithub_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.PublishDocFxDocsToGithub
+  nameWithType: IDocFxHelper.PublishDocFxDocsToGithub
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ServeDocFxDocs(System.Threading.CancellationToken)
+  name: ServeDocFxDocs(CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_ServeDocFxDocs_System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ServeDocFxDocs(System.Threading.CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ServeDocFxDocs(System.Threading.CancellationToken)
+  nameWithType: IDocFxHelper.ServeDocFxDocs(CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ServeDocFxDocs*
+  name: ServeDocFxDocs
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IDocFxHelper_ServeDocFxDocs_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ServeDocFxDocs
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.ServeDocFxDocs
+  nameWithType: IDocFxHelper.ServeDocFxDocs
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper
+  name: IGithubPrHelper
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper
+  nameWithType: IGithubPrHelper
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.GithubPullRequestNumber
+  name: GithubPullRequestNumber
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IGithubPrHelper_GithubPullRequestNumber
+  commentId: P:Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.GithubPullRequestNumber
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.GithubPullRequestNumber
+  nameWithType: IGithubPrHelper.GithubPullRequestNumber
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.GithubPullRequestNumber*
+  name: GithubPullRequestNumber
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IGithubPrHelper_GithubPullRequestNumber_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.GithubPullRequestNumber
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.GithubPullRequestNumber
+  nameWithType: IGithubPrHelper.GithubPullRequestNumber
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper
+  name: INugetPackageUnlistHelper
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper
+  nameWithType: INugetPackageUnlistHelper
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.FlatContainerResourceType
+  name: FlatContainerResourceType
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_FlatContainerResourceType
+  commentId: F:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.FlatContainerResourceType
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.FlatContainerResourceType
+  nameWithType: INugetPackageUnlistHelper.FlatContainerResourceType
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.MaxHttpAttempts
+  name: MaxHttpAttempts
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_MaxHttpAttempts
+  commentId: F:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.MaxHttpAttempts
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.MaxHttpAttempts
+  nameWithType: INugetPackageUnlistHelper.MaxHttpAttempts
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.PublishResourceType
+  name: PublishResourceType
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_PublishResourceType
+  commentId: F:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.PublishResourceType
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.PublishResourceType
+  nameWithType: INugetPackageUnlistHelper.PublishResourceType
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(Invex.SemanticVersion.SemVer,System.Collections.Generic.IEnumerable{Invex.SemanticVersion.SemVer})
+  name: SelectPrereleasesBelowVersion(SemVer, IEnumerable<SemVer>)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectPrereleasesBelowVersion_Invex_SemanticVersion_SemVer_System_Collections_Generic_IEnumerable_Invex_SemanticVersion_SemVer__
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(Invex.SemanticVersion.SemVer,System.Collections.Generic.IEnumerable{Invex.SemanticVersion.SemVer})
+  name.vb: SelectPrereleasesBelowVersion(SemVer, IEnumerable(Of SemVer))
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(Invex.SemanticVersion.SemVer, System.Collections.Generic.IEnumerable<Invex.SemanticVersion.SemVer>)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(Invex.SemanticVersion.SemVer, System.Collections.Generic.IEnumerable(Of Invex.SemanticVersion.SemVer))
+  nameWithType: INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(SemVer, IEnumerable<SemVer>)
+  nameWithType.vb: INugetPackageUnlistHelper.SelectPrereleasesBelowVersion(SemVer, IEnumerable(Of SemVer))
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion*
+  name: SelectPrereleasesBelowVersion
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectPrereleasesBelowVersion_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectPrereleasesBelowVersion
+  nameWithType: INugetPackageUnlistHelper.SelectPrereleasesBelowVersion
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases(Invex.SemanticVersion.SemVer,System.Collections.Generic.IEnumerable{Invex.SemanticVersion.SemVer})
+  name: SelectSupersededPrereleases(SemVer, IEnumerable<SemVer>)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectSupersededPrereleases_Invex_SemanticVersion_SemVer_System_Collections_Generic_IEnumerable_Invex_SemanticVersion_SemVer__
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases(Invex.SemanticVersion.SemVer,System.Collections.Generic.IEnumerable{Invex.SemanticVersion.SemVer})
+  name.vb: SelectSupersededPrereleases(SemVer, IEnumerable(Of SemVer))
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases(Invex.SemanticVersion.SemVer, System.Collections.Generic.IEnumerable<Invex.SemanticVersion.SemVer>)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases(Invex.SemanticVersion.SemVer, System.Collections.Generic.IEnumerable(Of Invex.SemanticVersion.SemVer))
+  nameWithType: INugetPackageUnlistHelper.SelectSupersededPrereleases(SemVer, IEnumerable<SemVer>)
+  nameWithType.vb: INugetPackageUnlistHelper.SelectSupersededPrereleases(SemVer, IEnumerable(Of SemVer))
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases*
+  name: SelectSupersededPrereleases
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_SelectSupersededPrereleases_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.SelectSupersededPrereleases
+  nameWithType: INugetPackageUnlistHelper.SelectSupersededPrereleases
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Invex.SemanticVersion.SemVer,System.Threading.CancellationToken)
+  name: UnlistPrereleasesBelowVersionForPackages(string, string, IEnumerable<string>, SemVer, CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistPrereleasesBelowVersionForPackages_System_String_System_String_System_Collections_Generic_IEnumerable_System_String__Invex_SemanticVersion_SemVer_System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Invex.SemanticVersion.SemVer,System.Threading.CancellationToken)
+  name.vb: UnlistPrereleasesBelowVersionForPackages(String, String, IEnumerable(Of String), SemVer, CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(string, string, System.Collections.Generic.IEnumerable<string>, Invex.SemanticVersion.SemVer, System.Threading.CancellationToken)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(String, String, System.Collections.Generic.IEnumerable(Of String), Invex.SemanticVersion.SemVer, System.Threading.CancellationToken)
+  nameWithType: INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(string, string, IEnumerable<string>, SemVer, CancellationToken)
+  nameWithType.vb: INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages(String, String, IEnumerable(Of String), SemVer, CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages*
+  name: UnlistPrereleasesBelowVersionForPackages
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistPrereleasesBelowVersionForPackages_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages
+  nameWithType: INugetPackageUnlistHelper.UnlistPrereleasesBelowVersionForPackages
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Invex.SemanticVersion.SemVer,System.Threading.CancellationToken)
+  name: UnlistSupersededPrereleasesForPackages(string, string, IEnumerable<string>, SemVer, CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistSupersededPrereleasesForPackages_System_String_System_String_System_Collections_Generic_IEnumerable_System_String__Invex_SemanticVersion_SemVer_System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Invex.SemanticVersion.SemVer,System.Threading.CancellationToken)
+  name.vb: UnlistSupersededPrereleasesForPackages(String, String, IEnumerable(Of String), SemVer, CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(string, string, System.Collections.Generic.IEnumerable<string>, Invex.SemanticVersion.SemVer, System.Threading.CancellationToken)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(String, String, System.Collections.Generic.IEnumerable(Of String), Invex.SemanticVersion.SemVer, System.Threading.CancellationToken)
+  nameWithType: INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(string, string, IEnumerable<string>, SemVer, CancellationToken)
+  nameWithType.vb: INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages(String, String, IEnumerable(Of String), SemVer, CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages*
+  name: UnlistSupersededPrereleasesForPackages
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html#Invex_RepoUtils_Atom_Module_Helpers_INugetPackageUnlistHelper_UnlistSupersededPrereleasesForPackages_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages
+  nameWithType: INugetPackageUnlistHelper.UnlistSupersededPrereleasesForPackages
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper
+  name: IPrBreakingChangeHelper
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper
+  nameWithType: IPrBreakingChangeHelper
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.FindLatestReleaseInfo(LibGit2Sharp.Repository,Invex.SemanticVersion.SemVer)
+  name: FindLatestReleaseInfo(Repository, SemVer)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IPrBreakingChangeHelper_FindLatestReleaseInfo_LibGit2Sharp_Repository_Invex_SemanticVersion_SemVer_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.FindLatestReleaseInfo(LibGit2Sharp.Repository,Invex.SemanticVersion.SemVer)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.FindLatestReleaseInfo(LibGit2Sharp.Repository, Invex.SemanticVersion.SemVer)
+  nameWithType: IPrBreakingChangeHelper.FindLatestReleaseInfo(Repository, SemVer)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.FindLatestReleaseInfo*
+  name: FindLatestReleaseInfo
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IPrBreakingChangeHelper_FindLatestReleaseInfo_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.FindLatestReleaseInfo
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.FindLatestReleaseInfo
+  nameWithType: IPrBreakingChangeHelper.FindLatestReleaseInfo
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck(Invex.SemanticVersion.SemVer,System.Int32,System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.String,System.Threading.CancellationToken)
+  name: PerformPrBreakingChangeCheck(SemVer, int, IEnumerable<RootedPath>, string, CancellationToken)
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IPrBreakingChangeHelper_PerformPrBreakingChangeCheck_Invex_SemanticVersion_SemVer_System_Int32_System_Collections_Generic_IEnumerable_Invex_FileSystem_RootedPath__System_String_System_Threading_CancellationToken_
+  commentId: M:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck(Invex.SemanticVersion.SemVer,System.Int32,System.Collections.Generic.IEnumerable{Invex.FileSystem.RootedPath},System.String,System.Threading.CancellationToken)
+  name.vb: PerformPrBreakingChangeCheck(SemVer, Integer, IEnumerable(Of RootedPath), String, CancellationToken)
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck(Invex.SemanticVersion.SemVer, int, System.Collections.Generic.IEnumerable<Invex.FileSystem.RootedPath>, string, System.Threading.CancellationToken)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck(Invex.SemanticVersion.SemVer, Integer, System.Collections.Generic.IEnumerable(Of Invex.FileSystem.RootedPath), String, System.Threading.CancellationToken)
+  nameWithType: IPrBreakingChangeHelper.PerformPrBreakingChangeCheck(SemVer, int, IEnumerable<RootedPath>, string, CancellationToken)
+  nameWithType.vb: IPrBreakingChangeHelper.PerformPrBreakingChangeCheck(SemVer, Integer, IEnumerable(Of RootedPath), String, CancellationToken)
+- uid: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck*
+  name: PerformPrBreakingChangeCheck
+  href: api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html#Invex_RepoUtils_Atom_Module_Helpers_IPrBreakingChangeHelper_PerformPrBreakingChangeCheck_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.PerformPrBreakingChangeCheck
+  nameWithType: IPrBreakingChangeHelper.PerformPrBreakingChangeCheck
+- uid: Invex.RepoUtils.Atom.Module.Model
+  name: Invex.RepoUtils.Atom.Module.Model
+  href: api/Invex.RepoUtils.Atom.Module.Model.html
+  commentId: N:Invex.RepoUtils.Atom.Module.Model
+  fullName: Invex.RepoUtils.Atom.Module.Model
+  nameWithType: Invex.RepoUtils.Atom.Module.Model
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges
+  name: BreakingChanges
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Model.BreakingChanges
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges
+  nameWithType: BreakingChanges
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.#ctor(System.Collections.Generic.IReadOnlyList{Invex.RepoUtils.Atom.Module.Model.Change},System.Collections.Generic.IReadOnlyList{Invex.RepoUtils.Atom.Module.Model.Change})
+  name: BreakingChanges(IReadOnlyList<Change>, IReadOnlyList<Change>)
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html#Invex_RepoUtils_Atom_Module_Model_BreakingChanges__ctor_System_Collections_Generic_IReadOnlyList_Invex_RepoUtils_Atom_Module_Model_Change__System_Collections_Generic_IReadOnlyList_Invex_RepoUtils_Atom_Module_Model_Change__
+  commentId: M:Invex.RepoUtils.Atom.Module.Model.BreakingChanges.#ctor(System.Collections.Generic.IReadOnlyList{Invex.RepoUtils.Atom.Module.Model.Change},System.Collections.Generic.IReadOnlyList{Invex.RepoUtils.Atom.Module.Model.Change})
+  name.vb: New(IReadOnlyList(Of Change), IReadOnlyList(Of Change))
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.BreakingChanges(System.Collections.Generic.IReadOnlyList<Invex.RepoUtils.Atom.Module.Model.Change>, System.Collections.Generic.IReadOnlyList<Invex.RepoUtils.Atom.Module.Model.Change>)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.New(System.Collections.Generic.IReadOnlyList(Of Invex.RepoUtils.Atom.Module.Model.Change), System.Collections.Generic.IReadOnlyList(Of Invex.RepoUtils.Atom.Module.Model.Change))
+  nameWithType: BreakingChanges.BreakingChanges(IReadOnlyList<Change>, IReadOnlyList<Change>)
+  nameWithType.vb: BreakingChanges.New(IReadOnlyList(Of Change), IReadOnlyList(Of Change))
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.#ctor*
+  name: BreakingChanges
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html#Invex_RepoUtils_Atom_Module_Model_BreakingChanges__ctor_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.BreakingChanges.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.BreakingChanges
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.New
+  nameWithType: BreakingChanges.BreakingChanges
+  nameWithType.vb: BreakingChanges.New
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MajorChanges
+  name: MajorChanges
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html#Invex_RepoUtils_Atom_Module_Model_BreakingChanges_MajorChanges
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MajorChanges
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MajorChanges
+  nameWithType: BreakingChanges.MajorChanges
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MajorChanges*
+  name: MajorChanges
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html#Invex_RepoUtils_Atom_Module_Model_BreakingChanges_MajorChanges_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MajorChanges
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MajorChanges
+  nameWithType: BreakingChanges.MajorChanges
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MinorChanges
+  name: MinorChanges
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html#Invex_RepoUtils_Atom_Module_Model_BreakingChanges_MinorChanges
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MinorChanges
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MinorChanges
+  nameWithType: BreakingChanges.MinorChanges
+- uid: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MinorChanges*
+  name: MinorChanges
+  href: api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html#Invex_RepoUtils_Atom_Module_Model_BreakingChanges_MinorChanges_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MinorChanges
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.BreakingChanges.MinorChanges
+  nameWithType: BreakingChanges.MinorChanges
+- uid: Invex.RepoUtils.Atom.Module.Model.Change
+  name: Change
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Model.Change
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change
+  nameWithType: Change
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.#ctor(Invex.FileSystem.RootedPath,System.Collections.Generic.List{LibGit2Sharp.Line},System.Collections.Generic.List{LibGit2Sharp.Line})
+  name: Change(RootedPath, List<Line>, List<Line>)
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change__ctor_Invex_FileSystem_RootedPath_System_Collections_Generic_List_LibGit2Sharp_Line__System_Collections_Generic_List_LibGit2Sharp_Line__
+  commentId: M:Invex.RepoUtils.Atom.Module.Model.Change.#ctor(Invex.FileSystem.RootedPath,System.Collections.Generic.List{LibGit2Sharp.Line},System.Collections.Generic.List{LibGit2Sharp.Line})
+  name.vb: New(RootedPath, List(Of Line), List(Of Line))
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.Change(Invex.FileSystem.RootedPath, System.Collections.Generic.List<LibGit2Sharp.Line>, System.Collections.Generic.List<LibGit2Sharp.Line>)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.Change.New(Invex.FileSystem.RootedPath, System.Collections.Generic.List(Of LibGit2Sharp.Line), System.Collections.Generic.List(Of LibGit2Sharp.Line))
+  nameWithType: Change.Change(RootedPath, List<Line>, List<Line>)
+  nameWithType.vb: Change.New(RootedPath, List(Of Line), List(Of Line))
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.#ctor*
+  name: Change
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change__ctor_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.Change.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.Change
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.Change.New
+  nameWithType: Change.Change
+  nameWithType.vb: Change.New
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.AddedLines
+  name: AddedLines
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change_AddedLines
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.Change.AddedLines
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.AddedLines
+  nameWithType: Change.AddedLines
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.AddedLines*
+  name: AddedLines
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change_AddedLines_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.Change.AddedLines
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.AddedLines
+  nameWithType: Change.AddedLines
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.DeletedLines
+  name: DeletedLines
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change_DeletedLines
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.Change.DeletedLines
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.DeletedLines
+  nameWithType: Change.DeletedLines
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.DeletedLines*
+  name: DeletedLines
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change_DeletedLines_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.Change.DeletedLines
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.DeletedLines
+  nameWithType: Change.DeletedLines
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.Path
+  name: Path
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change_Path
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.Change.Path
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.Path
+  nameWithType: Change.Path
+- uid: Invex.RepoUtils.Atom.Module.Model.Change.Path*
+  name: Path
+  href: api/Invex.RepoUtils.Atom.Module.Model.Change.html#Invex_RepoUtils_Atom_Module_Model_Change_Path_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.Change.Path
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.Change.Path
+  nameWithType: Change.Path
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo
+  name: ReleaseInfo
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo
+  nameWithType: ReleaseInfo
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.#ctor(System.String,Invex.SemanticVersion.SemVer)
+  name: ReleaseInfo(string, SemVer)
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html#Invex_RepoUtils_Atom_Module_Model_ReleaseInfo__ctor_System_String_Invex_SemanticVersion_SemVer_
+  commentId: M:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.#ctor(System.String,Invex.SemanticVersion.SemVer)
+  name.vb: New(String, SemVer)
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.ReleaseInfo(string, Invex.SemanticVersion.SemVer)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.New(String, Invex.SemanticVersion.SemVer)
+  nameWithType: ReleaseInfo.ReleaseInfo(string, SemVer)
+  nameWithType.vb: ReleaseInfo.New(String, SemVer)
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.#ctor*
+  name: ReleaseInfo
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html#Invex_RepoUtils_Atom_Module_Model_ReleaseInfo__ctor_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.ReleaseInfo
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.New
+  nameWithType: ReleaseInfo.ReleaseInfo
+  nameWithType.vb: ReleaseInfo.New
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.CommitHash
+  name: CommitHash
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html#Invex_RepoUtils_Atom_Module_Model_ReleaseInfo_CommitHash
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.CommitHash
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.CommitHash
+  nameWithType: ReleaseInfo.CommitHash
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.CommitHash*
+  name: CommitHash
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html#Invex_RepoUtils_Atom_Module_Model_ReleaseInfo_CommitHash_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.CommitHash
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.CommitHash
+  nameWithType: ReleaseInfo.CommitHash
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.Version
+  name: Version
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html#Invex_RepoUtils_Atom_Module_Model_ReleaseInfo_Version
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.Version
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.Version
+  nameWithType: ReleaseInfo.Version
+- uid: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.Version*
+  name: Version
+  href: api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html#Invex_RepoUtils_Atom_Module_Model_ReleaseInfo_Version_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.Version
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.Version
+  nameWithType: ReleaseInfo.Version
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome
+  name: UnlistOutcome
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Model.UnlistOutcome
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome
+  nameWithType: UnlistOutcome
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Failed
+  name: Failed
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.html#Invex_RepoUtils_Atom_Module_Model_UnlistOutcome_Failed
+  commentId: F:Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Failed
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Failed
+  nameWithType: UnlistOutcome.Failed
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Skipped
+  name: Skipped
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.html#Invex_RepoUtils_Atom_Module_Model_UnlistOutcome_Skipped
+  commentId: F:Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Skipped
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Skipped
+  nameWithType: UnlistOutcome.Skipped
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Unlisted
+  name: Unlisted
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.html#Invex_RepoUtils_Atom_Module_Model_UnlistOutcome_Unlisted
+  commentId: F:Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Unlisted
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.Unlisted
+  nameWithType: UnlistOutcome.Unlisted
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult
+  name: UnlistResult
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Model.UnlistResult
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult
+  nameWithType: UnlistResult
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.#ctor(System.String,Invex.SemanticVersion.SemVer,Invex.RepoUtils.Atom.Module.Model.UnlistOutcome,System.String)
+  name: UnlistResult(string, SemVer, UnlistOutcome, string?)
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult__ctor_System_String_Invex_SemanticVersion_SemVer_Invex_RepoUtils_Atom_Module_Model_UnlistOutcome_System_String_
+  commentId: M:Invex.RepoUtils.Atom.Module.Model.UnlistResult.#ctor(System.String,Invex.SemanticVersion.SemVer,Invex.RepoUtils.Atom.Module.Model.UnlistOutcome,System.String)
+  name.vb: New(String, SemVer, UnlistOutcome, String)
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.UnlistResult(string, Invex.SemanticVersion.SemVer, Invex.RepoUtils.Atom.Module.Model.UnlistOutcome, string?)
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.UnlistResult.New(String, Invex.SemanticVersion.SemVer, Invex.RepoUtils.Atom.Module.Model.UnlistOutcome, String)
+  nameWithType: UnlistResult.UnlistResult(string, SemVer, UnlistOutcome, string?)
+  nameWithType.vb: UnlistResult.New(String, SemVer, UnlistOutcome, String)
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.#ctor*
+  name: UnlistResult
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult__ctor_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.UnlistResult.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.UnlistResult
+  fullName.vb: Invex.RepoUtils.Atom.Module.Model.UnlistResult.New
+  nameWithType: UnlistResult.UnlistResult
+  nameWithType.vb: UnlistResult.New
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Message
+  name: Message
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_Message
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.UnlistResult.Message
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Message
+  nameWithType: UnlistResult.Message
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Message*
+  name: Message
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_Message_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.UnlistResult.Message
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Message
+  nameWithType: UnlistResult.Message
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Outcome
+  name: Outcome
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_Outcome
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.UnlistResult.Outcome
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Outcome
+  nameWithType: UnlistResult.Outcome
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Outcome*
+  name: Outcome
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_Outcome_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.UnlistResult.Outcome
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Outcome
+  nameWithType: UnlistResult.Outcome
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.PackageId
+  name: PackageId
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_PackageId
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.UnlistResult.PackageId
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.PackageId
+  nameWithType: UnlistResult.PackageId
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.PackageId*
+  name: PackageId
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_PackageId_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.UnlistResult.PackageId
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.PackageId
+  nameWithType: UnlistResult.PackageId
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Version
+  name: Version
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_Version
+  commentId: P:Invex.RepoUtils.Atom.Module.Model.UnlistResult.Version
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Version
+  nameWithType: UnlistResult.Version
+- uid: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Version*
+  name: Version
+  href: api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html#Invex_RepoUtils_Atom_Module_Model_UnlistResult_Version_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Model.UnlistResult.Version
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Model.UnlistResult.Version
+  nameWithType: UnlistResult.Version
+- uid: Invex.RepoUtils.Atom.Module.Targets
+  name: Invex.RepoUtils.Atom.Module.Targets
+  href: api/Invex.RepoUtils.Atom.Module.Targets.html
+  commentId: N:Invex.RepoUtils.Atom.Module.Targets
+  fullName: Invex.RepoUtils.Atom.Module.Targets
+  nameWithType: Invex.RepoUtils.Atom.Module.Targets
+- uid: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr
+  name: IApproveDependabotPr
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr
+  nameWithType: IApproveDependabotPr
+- uid: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.ApproveDependabotPr
+  name: ApproveDependabotPr
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html#Invex_RepoUtils_Atom_Module_Targets_IApproveDependabotPr_ApproveDependabotPr
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.ApproveDependabotPr
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.ApproveDependabotPr
+  nameWithType: IApproveDependabotPr.ApproveDependabotPr
+- uid: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.ApproveDependabotPr*
+  name: ApproveDependabotPr
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html#Invex_RepoUtils_Atom_Module_Targets_IApproveDependabotPr_ApproveDependabotPr_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.ApproveDependabotPr
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.ApproveDependabotPr
+  nameWithType: IApproveDependabotPr.ApproveDependabotPr
+- uid: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotActorName
+  name: DependabotActorName
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html#Invex_RepoUtils_Atom_Module_Targets_IApproveDependabotPr_DependabotActorName
+  commentId: F:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotActorName
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotActorName
+  nameWithType: IApproveDependabotPr.DependabotActorName
+- uid: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotEnableAutoMergePat
+  name: DependabotEnableAutoMergePat
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html#Invex_RepoUtils_Atom_Module_Targets_IApproveDependabotPr_DependabotEnableAutoMergePat
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotEnableAutoMergePat
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotEnableAutoMergePat
+  nameWithType: IApproveDependabotPr.DependabotEnableAutoMergePat
+- uid: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotEnableAutoMergePat*
+  name: DependabotEnableAutoMergePat
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html#Invex_RepoUtils_Atom_Module_Targets_IApproveDependabotPr_DependabotEnableAutoMergePat_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotEnableAutoMergePat
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.DependabotEnableAutoMergePat
+  nameWithType: IApproveDependabotPr.DependabotEnableAutoMergePat
+- uid: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges
+  name: ICheckPrForBreakingChanges
+  href: api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges
+  fullName: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges
+  nameWithType: ICheckPrForBreakingChanges
+- uid: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+  name: BreakingChangeFilesToCheck
+  href: api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html#Invex_RepoUtils_Atom_Module_Targets_ICheckPrForBreakingChanges_BreakingChangeFilesToCheck
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+  fullName: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+  nameWithType: ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+- uid: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.BreakingChangeFilesToCheck*
+  name: BreakingChangeFilesToCheck
+  href: api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html#Invex_RepoUtils_Atom_Module_Targets_ICheckPrForBreakingChanges_BreakingChangeFilesToCheck_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+  nameWithType: ICheckPrForBreakingChanges.BreakingChangeFilesToCheck
+- uid: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+  name: CheckPrForBreakingChanges
+  href: api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html#Invex_RepoUtils_Atom_Module_Targets_ICheckPrForBreakingChanges_CheckPrForBreakingChanges
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+  fullName: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+  nameWithType: ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+- uid: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.CheckPrForBreakingChanges*
+  name: CheckPrForBreakingChanges
+  href: api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html#Invex_RepoUtils_Atom_Module_Targets_ICheckPrForBreakingChanges_CheckPrForBreakingChanges_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+  nameWithType: ICheckPrForBreakingChanges.CheckPrForBreakingChanges
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview
+  name: IWaitForCopilotReview
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html
+  commentId: T:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview
+  nameWithType: IWaitForCopilotReview
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+  name: CopilotReviewPollIntervalSeconds
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewPollIntervalSeconds
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+  nameWithType: IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewPollIntervalSeconds*
+  name: CopilotReviewPollIntervalSeconds
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewPollIntervalSeconds_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+  nameWithType: IWaitForCopilotReview.CopilotReviewPollIntervalSeconds
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+  name: CopilotReviewTimeoutSeconds
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewTimeoutSeconds
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+  nameWithType: IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewTimeoutSeconds*
+  name: CopilotReviewTimeoutSeconds
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewTimeoutSeconds_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+  nameWithType: IWaitForCopilotReview.CopilotReviewTimeoutSeconds
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewToken
+  name: CopilotReviewToken
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewToken
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewToken
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewToken
+  nameWithType: IWaitForCopilotReview.CopilotReviewToken
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewToken*
+  name: CopilotReviewToken
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewToken_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewToken
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewToken
+  nameWithType: IWaitForCopilotReview.CopilotReviewToken
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewerLogin
+  name: CopilotReviewerLogin
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewerLogin
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewerLogin
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewerLogin
+  nameWithType: IWaitForCopilotReview.CopilotReviewerLogin
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewerLogin*
+  name: CopilotReviewerLogin
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_CopilotReviewerLogin_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewerLogin
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.CopilotReviewerLogin
+  nameWithType: IWaitForCopilotReview.CopilotReviewerLogin
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.WaitForCopilotReview
+  name: WaitForCopilotReview
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_WaitForCopilotReview
+  commentId: P:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.WaitForCopilotReview
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.WaitForCopilotReview
+  nameWithType: IWaitForCopilotReview.WaitForCopilotReview
+- uid: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.WaitForCopilotReview*
+  name: WaitForCopilotReview
+  href: api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html#Invex_RepoUtils_Atom_Module_Targets_IWaitForCopilotReview_WaitForCopilotReview_
+  commentId: Overload:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.WaitForCopilotReview
+  isSpec: "True"
+  fullName: Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.WaitForCopilotReview
+  nameWithType: IWaitForCopilotReview.WaitForCopilotReview
+- uid: Invex.RepoUtils.TestUtils
+  name: Invex.RepoUtils.TestUtils
+  href: api/Invex.RepoUtils.TestUtils.html
+  commentId: N:Invex.RepoUtils.TestUtils
+  fullName: Invex.RepoUtils.TestUtils
+  nameWithType: Invex.RepoUtils.TestUtils
+- uid: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil
+  name: PublicApiSurfaceTestUtil
+  href: api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html
+  commentId: T:Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil
+  fullName: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil
+  nameWithType: PublicApiSurfaceTestUtil
+- uid: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface(System.Reflection.Assembly)
+  name: GetPublicApiSurface(Assembly)
+  href: api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html#Invex_RepoUtils_TestUtils_PublicApiSurfaceTestUtil_GetPublicApiSurface_System_Reflection_Assembly_
+  commentId: M:Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface(System.Reflection.Assembly)
+  fullName: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface(System.Reflection.Assembly)
+  nameWithType: PublicApiSurfaceTestUtil.GetPublicApiSurface(Assembly)
+- uid: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface*
+  name: GetPublicApiSurface
+  href: api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html#Invex_RepoUtils_TestUtils_PublicApiSurfaceTestUtil_GetPublicApiSurface_
+  commentId: Overload:Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface
+  isSpec: "True"
+  fullName: Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface
+  nameWithType: PublicApiSurfaceTestUtil.GetPublicApiSurface
+- uid: index
+  name: index
+  href: index.html

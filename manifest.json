@@ -1,0 +1,526 @@
+{
+  "source_base_path": "/home/runner/work/dotnet-repo-utils/dotnet-repo-utils",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.yml\" sourcestartlinenumber=\"1\">Groups the GitHub-specific injection options that can be applied to a workflow target.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.yml\" sourcestartlinenumber=\"1\">Provides additional, GitHub-specific value injection options for build targets, extending the\nAtom framework's built-in injection options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.yml\" sourcestartlinenumber=\"1\">Provides functionality for analyzing the public API surface of the repository by diffing the\ntracked API definition files between two commits, and classifying the resulting changes as\neither major (removals) or minor (additions) breaking changes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.yml\" sourcestartlinenumber=\"1\">Provides functionality for waiting until GitHub Copilot has finished reviewing a pull request.\nGitHub does not currently expose a native way to block auto-merge on a Copilot review, so this\nhelper polls the pull request's review state until Copilot's review has landed (or a timeout\nelapses).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.yml\" sourcestartlinenumber=\"1\">Provides functionality for generating, serving, and publishing\n<a href=\"https://dotnet.github.io/docfx/\">DocFX</a> documentation for the repository.\nThe helper builds the static documentation site, can host it locally for previewing, and\npublishes the generated output to a project's <code>gh-pages</code> branch for GitHub Pages hosting.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.yml\" sourcestartlinenumber=\"1\">Exposes the GitHub pull request context that targets operating on a specific pull request require.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.yml\" sourcestartlinenumber=\"1\">Provides functionality for discovering and unlisting prerelease packages that have been\nsuperseded by a newly published version. Versions are discovered through the NuGet flat-container\nAPI and unlisted via the feed's HTTP <code>DELETE</code> endpoint, with a summary written to the Atom\nbuild report.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.yml\" sourcestartlinenumber=\"1\">Orchestrates the end-to-end breaking change check for a pull request: it locates the most recent\nrelease to use as a baseline, identifies breaking changes against it, validates that the version\nhas been bumped appropriately, and reports the result back to GitHub as a check run.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Helpers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Helpers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Model.BreakingChanges",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Model.BreakingChanges.yml\" sourcestartlinenumber=\"1\">Describes the breaking changes discovered when comparing the public API surface of two versions,\ngrouped by the severity of the version bump they require.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Model.Change.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Model.Change.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Model.Change",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Model.Change.yml\" sourcestartlinenumber=\"1\">Represents the set of line-level changes detected for a single file when diffing two commits.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Model.ReleaseInfo",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.yml\" sourcestartlinenumber=\"1\">Captures the identifying information of a previously published release that is used as the\nbaseline for breaking change comparisons.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Model.UnlistOutcome",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.yml\" sourcestartlinenumber=\"1\">Describes the outcome of attempting to unlist a single package version from a NuGet feed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Model.UnlistResult",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Model.UnlistResult.yml\" sourcestartlinenumber=\"1\">Captures the result of attempting to unlist a specific package version that was superseded by a\nnewly published version.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Model.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Model",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.yml\" sourcestartlinenumber=\"1\">Provides a build target that automatically enables auto-merge on pull requests opened by\nDependabot, allowing dependency update PRs to merge once their required checks pass.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.yml\" sourcestartlinenumber=\"1\">Provides a build target that checks a pull request for breaking changes to the public API surface\nand reports the result back to GitHub as a check run.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview",
+      "Summary": "<p sourcefile=\"api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.yml\" sourcestartlinenumber=\"1\">Provides a build target that blocks until GitHub Copilot has finished reviewing a pull request.\nThis fills the gap where GitHub cannot natively wait for a Copilot review before completing an\nauto-merge, allowing the target to be sequenced ahead of an auto-merge step.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.Atom.Module.Targets.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.Atom.Module.Targets",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.RepoUtils.TestUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.RepoUtils.TestUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.RepoUtils.TestUtils",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/atom-module/breaking-changes.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/atom-module/breaking-changes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/atom-module/dependabot.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/atom-module/dependabot.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/atom-module/helpers.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/atom-module/helpers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/atom-module/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/atom-module/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/atom-module/targets.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/atom-module/targets.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/contributing.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/contributing.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/public-api-analyzers/configuration.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/public-api-analyzers/configuration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/public-api-analyzers/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/public-api-analyzers/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/public-api-analyzers/rules.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/public-api-analyzers/rules.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/test-utils/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/test-utils/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/versioning.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/versioning.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
