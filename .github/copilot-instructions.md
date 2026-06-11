@@ -8,7 +8,7 @@ and maintaining .NET repositories. Keep changes focused and defer to the linked 
 | Project | Role |
 |---------|------|
 | `Invex.RepoUtils.PublicApiAnalyzers` | Roslyn analyzer enforcing `[PublicAPI]` annotation of the public API surface (`netstandard2.0`). |
-| `Invex.RepoUtils.TestUtils` | Test utilities for snapshot-testing an assembly's public API surface (`net10.0`). |
+| `Invex.RepoUtils.TestUtils` | Test utilities for snapshot-testing an assembly's public API surface (`netstandard2.0`, `net8.0`, `net9.0`, `net10.0`). |
 | `Invex.RepoUtils.Atom.Module` | [Atom](https://github.com/Invex-Games/atom) build module with reusable CI/CD targets/helpers (`net10.0`). |
 
 Sources live under `src/`, tests under `tests/`, the Atom build definition under `_atom/`, and the
