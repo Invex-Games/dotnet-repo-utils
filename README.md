@@ -43,7 +43,7 @@ consistent, well-versioned, and safe to release. It ships three complementary pi
 | Package                              | Description                                                                                | Target           |
 |--------------------------------------|--------------------------------------------------------------------------------------------|------------------|
 | `Invex.RepoUtils.PublicApiAnalyzers` | Roslyn analyzer that flags public members not annotated as part of the public API surface. | `netstandard2.0` |
-| `Invex.RepoUtils.TestUtils`         | Test utilities for snapshot-testing your assembly's public API surface.                    | `net10.0`        |
+| `Invex.RepoUtils.TestUtils`         | Test utilities for snapshot-testing your assembly's public API surface.                    | `netstandard2.0`, `net8.0`, `net9.0`, `net10.0` |
 | `Invex.RepoUtils.Atom.Module`        | Atom build module providing pack/test/release, breaking-change, and Dependabot CI targets. | `net10.0`        |
 
 ---
