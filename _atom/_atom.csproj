@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Invex.Atom.Module.GithubWorkflows" Version="3.1.0" />
-    <PackageReference Include="Invex.Atom.Module.GitVersion" Version="3.1.0" />
+    <PackageReference Include="Invex.Atom.Module.GithubWorkflows" Version="3.2.0" />
+    <PackageReference Include="Invex.Atom.Module.GitVersion" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>
