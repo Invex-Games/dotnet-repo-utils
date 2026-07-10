@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Invex.Atom.Module.GithubWorkflows" Version="3.3.0" />
-    <PackageReference Include="Invex.Atom.Module.Dotnet" Version="3.3.0" />
+    <PackageReference Include="Invex.Atom.Module.GithubWorkflows" Version="3.4.0" />
+    <PackageReference Include="Invex.Atom.Module.Dotnet" Version="3.4.0" />
     <PackageReference Include="LibGit2Sharp" Version="0.31.0" />
     <PackageReference Include="Octokit.GraphQL" Version="0.4.0-beta" />
   </ItemGroup>
