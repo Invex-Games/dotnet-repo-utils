@@ -32,16 +32,21 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
         var owner = Github.Variables.RepositoryOwner;
         Logger.LogDebug("Target repository owner: {Owner}", owner);
 
-        using var repo = new Repository(RootedFileSystem.AtomRootDirectory);
-
         // The tip of the current branch represents the state being proposed by the pull request.
-        var currentCommitHash = repo.Head.Tip.Sha;
+        var currentCommitHashResult = await ProcessRunner.RunAsync(new("git", "rev-parse HEAD")
+            {
+                WorkingDirectory = RootedFileSystem.AtomRootDirectory,
+                InvocationLogLevel = LogLevel.Debug,
+                OutputLogLevel = LogLevel.Debug,
+            },
+            cancellationToken);
+        var currentCommitHash = currentCommitHashResult.Output.Trim();
         Logger.LogDebug("Current commit hash: {CommitHash}", currentCommitHash);
 
         Logger.LogDebug("Current version: {Version}", currentVersion);
 
         // Find the most recent release prior to the current version to use as the comparison baseline.
-        var latestReleaseInfo = FindLatestReleaseInfo(repo, currentVersion);
+        var latestReleaseInfo = FindLatestReleaseInfo(currentVersion);
         Logger.LogDebug("Latest release info: {ReleaseInfo}", latestReleaseInfo);
 
         if (latestReleaseInfo is null)
@@ -164,31 +169,38 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
     /// Finds the most recent release tag that represents a version older than the current version, to
     /// be used as the baseline for breaking change analysis.
     /// </summary>
-    /// <param name="repo">The repository whose tags should be searched.</param>
     /// <param name="currentVersion">The current version; only releases older than this are considered.</param>
     /// <returns>
     /// The <see cref="ReleaseInfo"/> for the highest version that precedes <paramref name="currentVersion"/>,
     /// or <see langword="null"/> when no suitable release tag exists.
     /// </returns>
-    ReleaseInfo? FindLatestReleaseInfo(Repository repo, SemVer currentVersion)
+    ReleaseInfo? FindLatestReleaseInfo(SemVer currentVersion)
     {
         // Parse every tag of the form "v{semver}" into a version, discarding tags that do not follow
         // the convention or that are not strictly older than the current version.
-        var releaseVersions = repo
-            .Tags
-            .Select(x => new
+        var tagResult = ProcessRunner.Run(new("git", ["tag", "--list", "\"v*\""])
+        {
+            WorkingDirectory = RootedFileSystem.AtomRootDirectory,
+            InvocationLogLevel = LogLevel.Debug,
+            OutputLogLevel = LogLevel.Debug,
+        });
+
+        var releaseVersions = tagResult
+            .Output
+            .Split(["\r\n", "\n"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .Select(tag => new
             {
-                Tag = x,
-                Version = !x.FriendlyName.StartsWith('v')
+                Tag = tag,
+                Version = !tag.StartsWith('v')
                     ? null
-                    : !SemVer.TryParse(x.FriendlyName[1..], out var version)
+                    : !SemVer.TryParse(tag[1..], out var version)
                         ? null
                         : version,
             })
             .Where(x => x.Version is not null && x.Version < currentVersion)
             .Select(x => new
             {
-                Tag = x.Tag!,
+                x.Tag,
                 Version = x.Version!,
             })
             .ToList();
@@ -203,8 +215,18 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
         // The baseline is the newest of the eligible (older) releases.
         var version = releaseVersions.MaxBy(x => x.Version)!;
 
-        return new(version.Tag.Target.Sha, version.Version);
+        var commitResult = ProcessRunner.Run(new("git",
+            ["rev-parse", QuoteGitArgument($"{version.Tag}^{{commit}}")])
+        {
+            WorkingDirectory = RootedFileSystem.AtomRootDirectory,
+            InvocationLogLevel = LogLevel.Debug,
+            OutputLogLevel = LogLevel.Debug,
+        });
+
+        return new(commitResult.Output.Trim(), version.Version);
     }
+
+    private static string QuoteGitArgument(string argument) => $"\"{argument.Replace("\"", "\\\"")}\"";
 
     /// <summary>
     /// Creates a GitHub check run on the pull request's head commit reporting the outcome of the
