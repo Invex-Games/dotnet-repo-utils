@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Provides functionality for analyzing the public API surface of the repository by diffing the
-/// tracked API definition files between two commits, and classifying the resulting changes as
+/// tracked API definition files between two commits and classifying the resulting changes as
 /// either major (removals) or minor (additions) breaking changes.
 /// </summary>
 [PublicAPI]
@@ -48,60 +48,56 @@ public interface IApiSurfaceHelper : IBuildAccessor
 
         var targetFiles = FormatTargetFiles(filesToCheckArray);
 
-        // Open the repository at the Atom root and resolve both commits up front so we can fail fast
-        // if either side of the comparison is missing.
-        using var repo = new Repository(RootedFileSystem.AtomRootDirectory);
-        var oldCommit = repo.Lookup<Commit>(oldCommitHash);
+        ValidateCommit(oldCommitHash);
+        ValidateCommit(newCommitHash);
 
-        if (oldCommit?.IsMissing is not false)
-            throw new InvalidOperationException($"Commit {oldCommitHash} is missing.");
-
-        var newCommit = repo.Lookup<Commit>(newCommitHash);
-
-        if (newCommit?.IsMissing is not false)
-            throw new InvalidOperationException($"Commit {newCommitHash} is missing.");
-
-        // Produce a patch describing how the trees of the two commits differ.
-        var changes = repo.Diff.Compare<Patch>(oldCommit.Tree, newCommit.Tree);
-
-        // Nothing changed between the two commits, so there can be no breaking changes. This guard is
-        // evaluated before the logging below so we never dereference a null patch.
-        if (changes is null or { LinesAdded: 0, LinesDeleted: 0 })
-            return new([], []);
-
-        Logger.LogDebug("Changes: {@Changes}",
-            new
+        IReadOnlyList<Change> suspiciousChanges = targetFiles
+            .Select(targetFile =>
             {
-                changes.Content,
-                changes.LinesDeleted,
-                changes.LinesAdded,
-            });
+                var diffResult = ProcessRunner.Run(new("git",
+                [
+                    "diff",
+                    "--no-color",
+                    "--no-ext-diff",
+                    "--unified=0",
+                    QuoteGitArgument(oldCommitHash),
+                    QuoteGitArgument(newCommitHash),
+                    "--",
+                    QuoteGitArgument(targetFile),
+                ])
+                {
+                    WorkingDirectory = RootedFileSystem.AtomRootDirectory,
+                    InvocationLogLevel = LogLevel.Debug,
+                    OutputLogLevel = LogLevel.Debug,
+                });
 
-        // Restrict the diff to the API definition files we care about and only keep files where
-        // lines were removed since those are the candidates for breaking changes.
-        IReadOnlyList<Change> suspiciousChanges = changes
-            .Where(x => targetFiles.Contains(x.Path) && (x.LinesAdded > 0 || x.LinesDeleted > 0))
-            .Select(x => new Change(RootedFileSystem.AtomRootDirectory / x.Path, x.AddedLines, x.DeletedLines))
+                var (addedLines, deletedLines) = ParseDiff(diffResult.Output);
+
+                Logger.LogDebug("Changes for {TargetFile}: {Diff}", targetFile, diffResult.Output);
+
+                return new Change(RootedFileSystem.AtomRootDirectory / targetFile, addedLines, deletedLines);
+            })
+            .Where(x => x.AddedLines.Count > 0 || x.DeletedLines.Count > 0)
             .ToList();
 
         Logger.LogDebug("Suspicious changes: {@SuspiciousChanges}", suspiciousChanges);
 
-        // A change is treated as a major (i.e. removal) breaking change when one or more lines were
-        // deleted and none of those deletions are merely trailing/leading comma reformatting. A line
+        // A change is treated as a major (i.e., removal) breaking change when one or more lines were
+        // deleted, and none of those deletions are merely trailing/leading comma reformatting. A line
         // that only adds or removes a comma typically reflects list reordering rather than the removal
         // of an actual API member.
         var majorChanges = suspiciousChanges
             .Where(x => x.DeletedLines.Count > 0 &&
                         x
                             .DeletedLines
-                            .Select(l => l.Content.Trim())
+                            .Select(l => l.Trim())
                             .All(deletedLine => !deletedLine.StartsWith(',') && !deletedLine.EndsWith(',')))
             .ToList();
 
         Logger.LogDebug("Major changes: {@MajorChanges}", majorChanges);
 
         // Anything suspicious that is not a major change but still adds lines is considered a minor
-        // (i.e. additive) breaking change.
+        // (i.e., additive) breaking change.
         var minorChanges = suspiciousChanges
             .Except(majorChanges)
             .Where(x => x.AddedLines.Count > 0)
@@ -111,6 +107,58 @@ public interface IApiSurfaceHelper : IBuildAccessor
 
         return new(majorChanges, minorChanges);
     }
+
+    private void ValidateCommit(string commitHash)
+    {
+        var result = ProcessRunner.Run(new("git", ["cat-file", "-e", QuoteGitArgument($"{commitHash}^{{commit}}")])
+        {
+            WorkingDirectory = RootedFileSystem.AtomRootDirectory,
+            InvocationLogLevel = LogLevel.Debug,
+            OutputLogLevel = LogLevel.Debug,
+            ErrorLogLevel = LogLevel.Debug,
+            AllowFailedResult = true,
+        });
+
+        if (result.ExitCode is not 0)
+            throw new InvalidOperationException($"Commit {commitHash} is missing.");
+    }
+
+    private static (List<string> AddedLines, List<string> DeletedLines) ParseDiff(string diff)
+    {
+        var addedLines = new List<string>();
+        var deletedLines = new List<string>();
+        var isInHunk = false;
+
+        foreach (var line in diff.Split(["\r\n", "\n"], StringSplitOptions.None))
+        {
+            if (line.StartsWith("@@", StringComparison.Ordinal))
+            {
+                isInHunk = true;
+
+                continue;
+            }
+
+            if (line.StartsWith("diff --git ", StringComparison.Ordinal))
+                isInHunk = false;
+
+            switch (isInHunk)
+            {
+                case true when line.StartsWith('+'):
+                    addedLines.Add(line[1..]);
+
+                    break;
+                case true when line.StartsWith('-'):
+                    deletedLines.Add(line[1..]);
+
+                    break;
+            }
+        }
+
+        return (addedLines, deletedLines);
+    }
+
+    private static string QuoteGitArgument(string argument) =>
+        $"\"{argument.Replace("\"", "\\\"")}\"";
 
     /// <summary>
     /// Normalizes the supplied paths into repository-relative, forward-slash separated paths so they
