@@ -1,21 +1,21 @@
 namespace Invex.RepoUtils.Atom.Module.Helpers;
 
 /// <summary>
-/// Provides functionality for waiting until GitHub Copilot has finished reviewing a pull request.
-/// GitHub does not currently expose a native way to block auto-merge on a Copilot review, so this
-/// helper polls the pull request's review state until Copilot's review has landed (or a timeout
-/// elapses).
+///     Provides functionality for waiting until GitHub Copilot has finished reviewing a pull request.
+///     GitHub does not currently expose a native way to block auto-merge on a Copilot review, so this
+///     helper polls the pull request's review state until Copilot's review has landed (or a timeout
+///     elapses).
 /// </summary>
 [PublicAPI]
 public interface ICopilotReviewHelper : IBuildAccessor
 {
     /// <summary>
-    /// The default login of the GitHub Copilot pull request reviewer bot.
+    ///     The default login of the GitHub Copilot pull request reviewer bot.
     /// </summary>
     const string DefaultCopilotReviewerLogin = "Copilot";
 
     /// <summary>
-    /// Polls the supplied pull request until GitHub Copilot has finished reviewing it.
+    ///     Polls the supplied pull request until GitHub Copilot has finished reviewing it.
     /// </summary>
     /// <param name="pullRequestNumber">The number of the pull request to wait on.</param>
     /// <param name="githubToken">The GitHub token used to authenticate the GraphQL requests.</param>
@@ -24,17 +24,17 @@ public interface ICopilotReviewHelper : IBuildAccessor
     /// <param name="pollInterval">The delay between successive polls of the pull request state.</param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <returns>
-    /// <see langword="true"/> when Copilot has finished reviewing the pull request; <see langword="false"/>
-    /// when Copilot was never requested as a reviewer and therefore there was nothing to wait for.
+    ///     <see langword="true" /> when Copilot has finished reviewing the pull request; <see langword="false" />
+    ///     when Copilot was never requested as a reviewer and therefore there was nothing to wait for.
     /// </returns>
     /// <exception cref="StepFailedException">
-    /// Thrown when Copilot does not finish reviewing within <paramref name="timeout"/>.
+    ///     Thrown when Copilot does not finish reviewing within <paramref name="timeout" />.
     /// </exception>
     /// <remarks>
-    /// While Copilot is reviewing it remains a pending review request on the pull request. Once it is
-    /// done it is removed from the pending review requests and a review authored by the Copilot bot
-    /// appears. The method therefore considers the review complete when Copilot is no longer pending
-    /// and a review from it exists.
+    ///     While Copilot is reviewing it remains a pending review request on the pull request. Once it is
+    ///     done it is removed from the pending review requests and a review authored by the Copilot bot
+    ///     appears. The method therefore considers the review complete when Copilot is no longer pending
+    ///     and a review from it exists.
     /// </remarks>
     async Task<bool> WaitForCopilotReviewToComplete(
         int pullRequestNumber,
@@ -103,7 +103,7 @@ public interface ICopilotReviewHelper : IBuildAccessor
     }
 
     /// <summary>
-    /// Queries the current Copilot review state of a pull request.
+    ///     Queries the current Copilot review state of a pull request.
     /// </summary>
     /// <param name="connection">The authenticated GraphQL connection to use.</param>
     /// <param name="repository">The name of the repository the pull request belongs to.</param>
@@ -112,8 +112,8 @@ public interface ICopilotReviewHelper : IBuildAccessor
     /// <param name="copilotReviewerLogin">The login of the Copilot reviewer bot to match against.</param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <returns>
-    /// A tuple describing whether Copilot is currently a pending review request and whether a review
-    /// authored by Copilot already exists.
+    ///     A tuple describing whether Copilot is currently a pending review request and whether a review
+    ///     authored by Copilot already exists.
     /// </returns>
     /// <exception cref="StepFailedException">Thrown when the pull request cannot be resolved.</exception>
     private async Task<(bool IsPending, bool HasReview)> QueryCopilotReviewState(
@@ -161,37 +161,33 @@ public interface ICopilotReviewHelper : IBuildAccessor
         // GitHub Copilot's reviewer bot surfaces with a login such as "copilot-pull-request-reviewer"
         // (the "Copilot" shown in the UI is only the display name), so match on a case-insensitive
         // substring rather than an exact login to remain robust across these representations.
-        var isPending = result
-            .PendingReviewerLogins
-            .Any(login => IsCopilotLogin(login, copilotReviewerLogin));
+        var isPending = result.PendingReviewerLogins.Any(login => IsCopilotLogin(login, copilotReviewerLogin));
 
-        var hasReview = result
-            .ReviewAuthorLogins
-            .Any(login => IsCopilotLogin(login, copilotReviewerLogin));
+        var hasReview = result.ReviewAuthorLogins.Any(login => IsCopilotLogin(login, copilotReviewerLogin));
 
         return (isPending, hasReview);
 
-        static bool IsCopilotLogin(string? login, string copilotReviewerLogin) =>
-            login is not null &&
-            (login.Contains(copilotReviewerLogin, StringComparison.OrdinalIgnoreCase) ||
-             copilotReviewerLogin.Contains(login, StringComparison.OrdinalIgnoreCase));
+        static bool IsCopilotLogin(string? login, string copilotReviewerLogin)
+        {
+            return login is not null &&
+                   (login.Contains(copilotReviewerLogin, StringComparison.OrdinalIgnoreCase) ||
+                    copilotReviewerLogin.Contains(login, StringComparison.OrdinalIgnoreCase));
+        }
     }
 
     /// <summary>
-    /// The projected GraphQL result describing the review state of a pull request.
+    ///     The projected GraphQL result describing the review state of a pull request.
     /// </summary>
     private sealed class ReviewState
     {
         /// <summary>
-        /// The logins of the reviewers that still have a pending review request on the pull request.
+        ///     The logins of the reviewers that still have a pending review request on the pull request.
         /// </summary>
         public required List<string?> PendingReviewerLogins { get; init; }
 
         /// <summary>
-        /// The logins of the authors of the reviews that have already been submitted.
+        ///     The logins of the authors of the reviews that have already been submitted.
         /// </summary>
         public required List<string> ReviewAuthorLogins { get; init; }
     }
 }
-
-

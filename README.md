@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.txt)
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![Build](https://github.com/Invex-Games/dotnet-repo-utils/actions/workflows/Build.yml/badge.svg)](https://github.com/Invex-Games/dotnet-repo-utils/actions/workflows/Build.yml)
 
 `Invex.RepoUtils` bundles the tooling the Invex team uses to keep its .NET repositories
 consistent, well-versioned, and safe to release. It ships three complementary pieces:
@@ -32,6 +33,7 @@ consistent, well-versioned, and safe to release. It ships three complementary pi
     - [Usage](#usage-1)
 - [Repository structure](#repository-structure)
 - [Building & testing](#building--testing)
+- [CI/CD workflows](#cicd-workflows)
 - [Versioning](#versioning)
 - [Contributing](#contributing)
 - [License](#license)
@@ -44,7 +46,7 @@ consistent, well-versioned, and safe to release. It ships three complementary pi
 |--------------------------------------|--------------------------------------------------------------------------------------------|------------------|
 | `Invex.RepoUtils.PublicApiAnalyzers` | Roslyn analyzer that flags public members not annotated as part of the public API surface. | `netstandard2.0` |
 | `Invex.RepoUtils.TestUtils`         | Test utilities for snapshot-testing your assembly's public API surface.                    | `netstandard2.0`, `net8.0`, `net9.0`, `net10.0` |
-| `Invex.RepoUtils.Atom.Module`        | Atom build module providing pack/test/release, breaking-change, and Dependabot CI targets. | `net10.0`        |
+| `Invex.RepoUtils.Atom.Module`        | Atom build module providing pack/test/release, documentation, breaking-change, and Dependabot CI targets. | `net8.0`, `net9.0`, `net10.0` |
 
 ---
 
@@ -62,6 +64,10 @@ dotnet add package Invex.RepoUtils.PublicApiAnalyzers
 
 The package is shipped as a development dependency (analyzer only) — it contributes no runtime
 assemblies to your output.
+
+The analyzer recognizes `PublicAPI` and `PublicAPIAttribute` by name. The attribute itself is not
+included in this package; add [JetBrains.Annotations](https://www.nuget.org/packages/JetBrains.Annotations)
+or define an equivalent attribute in your project.
 
 ### Rules
 
@@ -144,11 +150,16 @@ public Task PublicApiSurface()
 }
 ```
 
+The utility includes public types, properties, fields, and methods, while excluding non-public
+members, special-name methods such as accessors and operators, and compiler-generated members.
+Commit the resulting `*.verified.txt` file so API changes are visible in review and can be checked
+for breaking changes in CI. For NUnit projects, `Verify.NUnit` is the recommended integration.
+
 ---
 
 ## Invex.RepoUtils.Atom.Module
 
-An [Atom](https://github.com/DecSM/atom) build module that contributes reusable, opinionated
+An [Atom](https://github.com/Invex-Games/atom) build module that contributes reusable, opinionated
 CI/CD building blocks. Add the interfaces you need to your Atom `IBuild` definition and wire the
 provided `Target`s into your workflows.
 
@@ -204,7 +215,10 @@ internal interface IBuild :
 ```
 
 See [`_atom/IBuild.cs`](_atom/IBuild.cs) for the full build definition used by this repository,
-including the `Validate`, `Build`, and Dependabot auto-merge workflows.
+including the `Validate`, `Build`, `Cleanup Prereleases`, and Dependabot auto-merge workflows.
+The module also exposes targets for packing, testing, NuGet publishing, release creation,
+prerelease cleanup, DocFX generation/publication, breaking-change checks, and waiting for Copilot
+review.
 
 ---
 
@@ -222,6 +236,7 @@ including the `Validate`, `Build`, and Dependabot auto-merge workflows.
 │   ├── Invex.RepoUtils.PublicApiAnalyzers.Tests/
 │   └── Invex.RepoUtils.TestUtils.Tests/
 ├── Directory.Build.props                    # Shared build settings
+├── global.json                              # Required .NET SDK (10.0.0+, latest major roll-forward)
 ├── GitVersion.yml                           # Versioning configuration
 └── Invex.RepoUtils.slnx                     # Solution
 ```
@@ -230,17 +245,53 @@ including the `Validate`, `Build`, and Dependabot auto-merge workflows.
 
 ## Building & testing
 
-The repository targets **.NET 10** and uses C# 14, with `TreatWarningsAsErrors` enabled.
+The repository requires the .NET 10 SDK (see `global.json`) and uses C# 14, nullable reference types,
+implicit usings, generated XML documentation, and `TreatWarningsAsErrors`.
 
 ```shell
-# Restore & build the whole solution
+# Restore and build the whole solution
 dotnet build Invex.RepoUtils.slnx
 
-# Run the analyzer test suite
-dotnet test
+# Run all tests for every target framework
+dotnet test Invex.RepoUtils.slnx
+
+# Run one framework when iterating locally
+dotnet test Invex.RepoUtils.slnx --framework net10.0
 ```
 
-The analyzer is validated across .NET 8, 9, and 10 reference assemblies in CI.
+Tests target .NET 8, .NET 9, and .NET 10. CI runs the test matrix for all three frameworks and also
+packs the three NuGet projects.
+
+### Documentation
+
+The documentation site is built with DocFX. From the repository's Atom build definition:
+
+```shell
+dotnet run --project _atom/_atom.csproj -- BuildDocs
+dotnet run --project _atom/_atom.csproj -- ServeDocs
+```
+
+See [`docs/`](docs/) and [`docs/contributing.md`](docs/contributing.md) for the complete
+contributor guidance.
+
+## CI/CD workflows
+
+Workflow files under [`.github/workflows/`](.github/workflows/) are generated from
+[`_atom/IBuild.cs`](_atom/IBuild.cs); do not edit them by hand. Regenerate them after changing
+workflow definitions, targets, triggers, options, or injected parameters/secrets:
+
+```shell
+atom gen
+# or
+dotnet run --project _atom/_atom.csproj -- gen
+```
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `Validate` | Pull requests into `main` or manual dispatch | Build, pack, test on .NET 8/9/10, check breaking changes, and wait for Copilot review |
+| `Build` | Pushes to `main`, `feature/**`, or `patch/**`; releases; manual dispatch | Pack, test, publish to NuGet, create stable GitHub releases, and publish DocFX documentation |
+| `Cleanup Prereleases` | Manual dispatch with a stable-version input | Unlist prerelease packages below the supplied version |
+| `Dependabot Enable auto-merge` | Dependabot pull requests into `main` | Approve and enable auto-merge using the configured secret |
 
 ---
 

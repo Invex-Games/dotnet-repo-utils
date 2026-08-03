@@ -122,10 +122,12 @@ public class IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzer : Diagn
         if (tree != null &&
             optionsProvider
                 .GetOptions(tree)
-                .TryGetValue("dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes", out var treeValues))
+                .TryGetValue("dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes",
+                    out var treeValues))
             return ParseAndCache(treeValues, cache);
 
-        optionsProvider.GlobalOptions.TryGetValue("dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes",
+        optionsProvider.GlobalOptions.TryGetValue(
+            "dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes",
             out var globalValues);
 
         return ParseAndCache(globalValues ?? string.Empty, cache);
@@ -141,22 +143,22 @@ public class IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzer : Diagn
                 builder.Add("PublicAPI");
                 builder.Add("PublicAPIAttribute");
 
-                if (!string.IsNullOrWhiteSpace(v))
+                if (string.IsNullOrWhiteSpace(v))
+                    return builder.ToImmutable();
+
+                var parts = v.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var part in parts)
                 {
-                    var parts = v.Split([','], StringSplitOptions.RemoveEmptyEntries);
+                    var trimmed = part.Trim();
 
-                    foreach (var part in parts)
-                    {
-                        var trimmed = part.Trim();
+                    if (string.IsNullOrWhiteSpace(trimmed))
+                        continue;
 
-                        if (string.IsNullOrWhiteSpace(trimmed))
-                            continue;
+                    builder.Add(trimmed);
 
-                        builder.Add(trimmed);
-
-                        if (!trimmed.EndsWith("Attribute", StringComparison.Ordinal))
-                            builder.Add(trimmed + "Attribute");
-                    }
+                    if (!trimmed.EndsWith("Attribute", StringComparison.Ordinal))
+                        builder.Add(trimmed + "Attribute");
                 }
 
                 return builder.ToImmutable();

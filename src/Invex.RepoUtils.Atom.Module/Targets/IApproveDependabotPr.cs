@@ -1,31 +1,31 @@
 namespace Invex.RepoUtils.Atom.Module.Targets;
 
 /// <summary>
-/// Provides a build target that automatically enables auto-merge on pull requests opened by
-/// Dependabot, allowing dependency update PRs to merge once their required checks pass.
+///     Provides a build target that automatically enables auto-merge on pull requests opened by
+///     Dependabot, allowing dependency update PRs to merge once their required checks pass.
 /// </summary>
 [PublicAPI]
 public interface IApproveDependabotPr : IGithubHelper, IGithubPrHelper
 {
     /// <summary>
-    /// The GitHub actor name used by Dependabot. Only pull requests opened by this actor are eligible
-    /// for auto-merge.
+    ///     The GitHub actor name used by Dependabot. Only pull requests opened by this actor are eligible
+    ///     for auto-merge.
     /// </summary>
     const string DependabotActorName = "dependabot[bot]";
 
     /// <summary>
-    /// A GitHub personal access token with the permissions required to enable auto-merge on pull
-    /// requests. A dedicated PAT is required because the default workflow token cannot trigger the
-    /// downstream workflows needed to complete an auto-merge.
+    ///     A GitHub personal access token with the permissions required to enable auto-merge on pull
+    ///     requests. A dedicated PAT is required because the default workflow token cannot trigger the
+    ///     downstream workflows needed to complete an auto-merge.
     /// </summary>
     [SecretDefinition("dependabot-enable-auto-merge-pat",
         "A GitHub PAT with permissions to enable auto-merge on pull requests.")]
     string? DependabotEnableAutoMergePat => GetParam(() => DependabotEnableAutoMergePat);
 
     /// <summary>
-    /// Enables auto-merge on the target Dependabot pull request. The target validates that the pull
-    /// request was opened by Dependabot before resolving the pull request and issuing the GraphQL
-    /// mutation to enable auto-merge using the merge strategy.
+    ///     Enables auto-merge on the target Dependabot pull request. The target validates that the pull
+    ///     request was opened by Dependabot before resolving the pull request and issuing the GraphQL
+    ///     mutation to enable auto-merge using the merge strategy.
     /// </summary>
     Target ApproveDependabotPr =>
         t => t
@@ -36,7 +36,8 @@ public interface IApproveDependabotPr : IGithubHelper, IGithubPrHelper
                 var owner = Github.Variables.RepositoryOwner;
 
                 // The repository variable is "owner/name"; keep only the repository name.
-                var repo = Github.Variables
+                var repo = Github
+                    .Variables
                     .Repository
                     .Split('/')
                     .Last();

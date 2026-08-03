@@ -1,7 +1,7 @@
 namespace Invex.RepoUtils.Atom.Module.Model;
 
 /// <summary>
-/// Represents the set of line-level changes detected for a single file when diffing two commits.
+///     Represents the set of line-level changes detected for a single file when diffing two commits.
 /// </summary>
 /// <param name="Path">The absolute, rooted path of the file that was changed.</param>
 /// <param name="AddedLines">The content of lines that were added to the file in the newer commit.</param>

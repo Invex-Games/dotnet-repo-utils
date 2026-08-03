@@ -22,18 +22,6 @@ internal interface IBuild : IWorkflowBuildDefinition,
     ICheckPrForBreakingChanges,
     IWaitForCopilotReview
 {
-    [ParamDefinition("test-framework", "Test framework to use for unit tests")]
-    string TestFramework => GetParam(() => TestFramework, "net10.0");
-
-    [ParamDefinition("nuget-push-feed", "The Nuget feed to push to.")]
-    string NugetFeed => GetParam(() => NugetFeed, "https://api.nuget.org/v3/index.json");
-
-    [SecretDefinition("nuget-push-api-key", "The API key to use to push to Nuget.")]
-    string NugetApiKey => GetParam(() => NugetApiKey)!;
-
-    [ParamDefinition("prerelease-cleanup-below-version", "Unlist all prerelease packages below this stable version.")]
-    string PrereleaseCleanupBelowVersion => GetParam(() => PrereleaseCleanupBelowVersion)!;
-
     static readonly string[] ProjectsToPack =
     [
         Projects.Invex_RepoUtils_Atom_Module.Name,
@@ -55,18 +43,17 @@ internal interface IBuild : IWorkflowBuildDefinition,
         WorkflowLabels.Dotnet.Framework.Net_10_0,
     ];
 
-    IEnumerable<RootedPath> ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =>
-        RootedFileSystem
-            .Directory
-            .GetFiles(RootedFileSystem.AtomRootDirectory / "tests", "*.verified.txt", SearchOption.AllDirectories)
-            .Select(RootedFileSystem.CreateRootedPath);
+    [ParamDefinition("test-framework", "Test framework to use for unit tests")]
+    string TestFramework => GetParam(() => TestFramework, "net10.0");
 
-    IReadOnlyList<IBuildOption> IBuildDefinition.Options =>
-    [
-        BuildOptions.GitVersion.ProvideBuildId,
-        BuildOptions.GitVersion.ProvideBuildVersion,
-        BuildOptions.Steps.SetupDotnet.Dotnet100X(),
-    ];
+    [ParamDefinition("nuget-push-feed", "The Nuget feed to push to.")]
+    string NugetFeed => GetParam(() => NugetFeed, "https://api.nuget.org/v3/index.json");
+
+    [SecretDefinition("nuget-push-api-key", "The API key to use to push to Nuget.")]
+    string NugetApiKey => GetParam(() => NugetApiKey)!;
+
+    [ParamDefinition("prerelease-cleanup-below-version", "Unlist all prerelease packages below this stable version.")]
+    string PrereleaseCleanupBelowVersion => GetParam(() => PrereleaseCleanupBelowVersion)!;
 
     Target PackProjects =>
         t => t
@@ -204,6 +191,19 @@ internal interface IBuild : IWorkflowBuildDefinition,
             .DependsOn(nameof(SetupBuildInfo))
             .Executes(cancellationToken =>
                 PublishDocFxDocsToGithub(GithubToken, GeneratedDocsArtifactName, cancellationToken));
+
+    IEnumerable<RootedPath> ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =>
+        RootedFileSystem
+            .Directory
+            .GetFiles(RootedFileSystem.AtomRootDirectory / "tests", "*.verified.txt", SearchOption.AllDirectories)
+            .Select(RootedFileSystem.CreateRootedPath);
+
+    IReadOnlyList<IBuildOption> IBuildDefinition.Options =>
+    [
+        BuildOptions.GitVersion.ProvideBuildId,
+        BuildOptions.GitVersion.ProvideBuildVersion,
+        BuildOptions.Steps.SetupDotnet.Dotnet100X(),
+    ];
 
     IReadOnlyList<WorkflowDefinition> IWorkflowBuildDefinition.Workflows =>
     [

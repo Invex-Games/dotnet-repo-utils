@@ -63,5 +63,3 @@ public class SelectPrereleasesBelowVersionTests
         result.ShouldBeEmpty();
     }
 }
-
-

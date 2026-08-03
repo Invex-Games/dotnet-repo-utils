@@ -1,4 +1,6 @@
-using Verifier = Invex.RepoUtils.PublicApiAnalyzers.Tests.ExtendedAnalyzerVerifier<Invex.RepoUtils.PublicApiAnalyzers.IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzer>;
+using Verifier =
+    Invex.RepoUtils.PublicApiAnalyzers.Tests.ExtendedAnalyzerVerifier<Invex.RepoUtils.PublicApiAnalyzers.
+        IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzer>;
 
 namespace Invex.RepoUtils.PublicApiAnalyzers.Tests;
 
