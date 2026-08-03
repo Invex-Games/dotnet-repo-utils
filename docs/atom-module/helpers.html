@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Helpers | Dotnet Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Helpers | Dotnet Repo Utils ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/atom-module/helpers.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Dotnet Repo Utils">
+            Dotnet Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="helpers">Helpers</h1>
+
+<p>Helper interfaces provide the shared logic consumed by the <a href="targets.html">targets</a>. They can also be used directly in custom build definitions.</p>
+<h2 id="iapisurfacehelper">IApiSurfaceHelper</h2>
+<p>Diffs API definition files between two commits and classifies the resulting changes.</p>
+<h3 id="interface">Interface</h3>
+<pre><code class="lang-csharp">public interface IApiSurfaceHelper : IBuildAccessor
+</code></pre>
+<h3 id="methods">Methods</h3>
+<h4 id="identifybreakingchanges"><code>IdentifyBreakingChanges</code></h4>
+<pre><code class="lang-csharp">BreakingChanges IdentifyBreakingChanges(
+    SemVer oldVersion,
+    string oldCommitHash,
+    SemVer newVersion,
+    string newCommitHash,
+    params IEnumerable&lt;RootedPath&gt; filesToCheck)
+</code></pre>
+<p>Compares the contents of the supplied files between two commits and determines which changes constitute breaking changes:</p>
+<ul>
+<li><strong>Major changes</strong> — Lines were deleted from API definition files (API removals).</li>
+<li><strong>Minor changes</strong> — Lines were added to API definition files (API additions) without removals.</li>
+</ul>
+<p>The helper normalizes paths to repository-relative forward-slash form for comparison with Git diff output. Comma-only changes (reformatting) are excluded from major changes.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>oldVersion</code></td>
+<td>The semantic version associated with the baseline commit.</td>
+</tr>
+<tr>
+<td><code>oldCommitHash</code></td>
+<td>The SHA of the baseline commit to compare from.</td>
+</tr>
+<tr>
+<td><code>newVersion</code></td>
+<td>The semantic version associated with the new commit.</td>
+</tr>
+<tr>
+<td><code>newCommitHash</code></td>
+<td>The SHA of the commit to compare to.</td>
+</tr>
+<tr>
+<td><code>filesToCheck</code></td>
+<td>The API definition files whose changes should be analyzed.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong> A <code>BreakingChanges</code> instance with <code>MajorChanges</code> and <code>MinorChanges</code> lists.</p>
+<hr>
+<h2 id="igithubprhelper">IGithubPrHelper</h2>
+<p>Exposes the GitHub pull request context that PR-scoped targets require.</p>
+<h3 id="interface-1">Interface</h3>
+<pre><code class="lang-csharp">public interface IGithubPrHelper : IBuildAccessor
+</code></pre>
+<h3 id="members">Members</h3>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GithubPullRequestNumber</code></td>
+<td><code>int</code></td>
+<td>The number of the pull request being operated on. Injected from the GitHub Actions event payload.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="inugetpackageunlisthelper">INugetPackageUnlistHelper</h2>
+<p>Discovers and unlists prerelease packages that have been superseded by a newly published version.</p>
+<h3 id="interface-2">Interface</h3>
+<pre><code class="lang-csharp">public interface INugetPackageUnlistHelper : IReportsHelper
+</code></pre>
+<h3 id="methods-1">Methods</h3>
+<h4 id="selectsupersededprereleases"><code>SelectSupersededPrereleases</code></h4>
+<pre><code class="lang-csharp">static IReadOnlyList&lt;SemVer&gt; SelectSupersededPrereleases(
+    SemVer currentVersion,
+    IEnumerable&lt;SemVer&gt; publishedVersions)
+</code></pre>
+<p>Selects the published versions superseded by <code>currentVersion</code>: every version that shares the same
+<code>SemVer.Prefix</code> (core <code>MAJOR.MINOR.PATCH</code>), is a prerelease, and has lower SemVer precedence than the
+current version. Results are returned in ascending precedence order.</p>
+<ul>
+<li>A <strong>stable</strong> <code>currentVersion</code> matches <strong>all</strong> prereleases of the same core version (for example,
+<code>1.1.0</code> selects <code>1.1.0-alpha.1</code>, <code>1.1.0-beta.2</code>, <code>1.1.0-rc.1</code>).</li>
+<li>A <strong>prerelease</strong> <code>currentVersion</code> matches only <strong>earlier</strong> prereleases of the same core version (for
+example, <code>1.1.0-rc.2</code> selects <code>1.1.0-beta.1</code> and <code>1.1.0-rc.1</code>, but not <code>1.1.0-rc.3</code> or <code>1.1.0</code>).</li>
+<li>Versions of a different core (<code>1.0.1-rc.1</code>), equal/higher versions, and the current version itself are
+never selected.</li>
+</ul>
+<h4 id="selectprereleasesbelowversion"><code>SelectPrereleasesBelowVersion</code></h4>
+<pre><code class="lang-csharp">static IReadOnlyList&lt;SemVer&gt; SelectPrereleasesBelowVersion(
+    SemVer version,
+    IEnumerable&lt;SemVer&gt; publishedVersions)
+</code></pre>
+<p>Selects every published <strong>prerelease</strong> whose SemVer precedence is strictly below <code>version</code>, in
+ascending precedence order. Stable versions and prereleases at or above the given version are never
+selected. For example, a <code>version</code> of <code>2.0.0</code> selects every prerelease below <code>2.0.0</code> (such as
+<code>1.5.0-rc.1</code> and <code>2.0.0-rc.1</code>) while leaving all stable versions and every prerelease at or above
+<code>2.0.0</code> untouched. This is intended for cleaning up obsolete prerelease packages left behind once a
+newer stable version has shipped.</p>
+<h4 id="unlistsupersededprereleasesforpackages"><code>UnlistSupersededPrereleasesForPackages</code></h4>
+<pre><code class="lang-csharp">Task&lt;IReadOnlyList&lt;UnlistResult&gt;&gt; UnlistSupersededPrereleasesForPackages(
+    string feedUrl,
+    string apiKey,
+    IEnumerable&lt;string&gt; packageIds,
+    SemVer currentVersion,
+    CancellationToken cancellationToken)
+</code></pre>
+<p>Unlists every superseded prerelease for the supplied package ids and writes a summary to the Atom
+build report:</p>
+<ol>
+<li>Reads the feed's service index and resolves the <code>PackageBaseAddress/3.0.0</code> (flat container) and
+<code>PackagePublish/2.0.0</code> resources. When either is missing, the work is skipped and reported.</li>
+<li>For each package, reads the published versions from the flat-container API and selects the
+superseded prereleases via <code>SelectSupersededPrereleases</code>.</li>
+<li>Unlists each selected version with an HTTP <code>DELETE</code> (authenticated with the <code>X-NuGet-ApiKey</code>
+header). Transient failures are retried with exponential backoff; a <code>404</code> is treated as
+already-unlisted and skipped.</li>
+<li>Adds a <code>TableReportData</code> summary (or a <code>TextReportData</code> note when nothing was unlisted) to the
+build report.</li>
+</ol>
+<p><strong>Throws:</strong> <code>StepFailedException</code> when one or more versions could not be unlisted after retries.</p>
+<h4 id="unlistprereleasesbelowversionforpackages"><code>UnlistPrereleasesBelowVersionForPackages</code></h4>
+<pre><code class="lang-csharp">Task&lt;IReadOnlyList&lt;UnlistResult&gt;&gt; UnlistPrereleasesBelowVersionForPackages(
+    string feedUrl,
+    string apiKey,
+    IEnumerable&lt;string&gt; packageIds,
+    SemVer version,
+    CancellationToken cancellationToken)
+</code></pre>
+<p>Unlists every prerelease whose SemVer precedence is strictly below <code>version</code> (typically a stable
+version) for the supplied package ids, writing the same kind of build-report summary as
+<code>UnlistSupersededPrereleasesForPackages</code>. It uses the same feed-resource discovery, retry/backoff, and
+reporting pipeline but selects versions with <code>SelectPrereleasesBelowVersion</code>. This is intended for a
+<strong>manually-triggered</strong> cleanup of old prerelease packages rather than the automatic per-publish
+supersedence cleanup.</p>
+<p><strong>Throws:</strong> <code>StepFailedException</code> when one or more versions could not be unlisted after retries.</p>
+<h3 id="usage">Usage</h3>
+<p>The module does not ship a ready-made target for this helper — wire it into your own target so it
+runs after your package-publish target:</p>
+<pre><code class="lang-csharp">internal interface IBuild : INugetPackageUnlistHelper, ISetupBuildInfo /* , ... */
+{
+    Target UnlistSupersededPrereleases =&gt;
+        t =&gt; t
+            .DescribedAs(&quot;Unlists prerelease packages superseded by the just-published version.&quot;)
+            .RequiresParam(nameof(NugetFeed), nameof(NugetApiKey))
+            .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildVersion))
+            .DependsOn(nameof(PushToNuget))
+            .Executes(cancellationToken =&gt;
+                UnlistSupersededPrereleasesForPackages(
+                    NugetFeed,
+                    NugetApiKey,
+                    ProjectsToPack,
+                    BuildVersion,
+                    cancellationToken));
+}
+</code></pre>
+<p>For one-off housekeeping, wire <code>UnlistPrereleasesBelowVersionForPackages</code> into a manually-triggered
+(<code>workflow_dispatch</code>) target to bulk-unlist old prereleases below a given stable version:</p>
+<pre><code class="lang-csharp">internal interface IBuild : INugetPackageUnlistHelper /* , ... */
+{
+    [ParamDefinition(&quot;prerelease-cleanup-below-version&quot;,
+        &quot;Unlist all prerelease packages below this stable version.&quot;)]
+    string PrereleaseCleanupBelowVersion =&gt; GetParam(() =&gt; PrereleaseCleanupBelowVersion)!;
+
+    Target CleanupOldPrereleases =&gt;
+        t =&gt; t
+            .DescribedAs(&quot;Unlists all prerelease packages below the configured stable version.&quot;)
+            .RequiresParam(nameof(NugetFeed), nameof(NugetApiKey), nameof(PrereleaseCleanupBelowVersion))
+            .Executes(cancellationToken =&gt;
+                UnlistPrereleasesBelowVersionForPackages(
+                    NugetFeed,
+                    NugetApiKey,
+                    ProjectsToPack,
+                    SemVer.Parse(PrereleaseCleanupBelowVersion),
+                    cancellationToken));
+}
+</code></pre>
+<hr>
+<h2 id="iprbreakingchangehelper">IPrBreakingChangeHelper</h2>
+<p>Orchestrates the full PR breaking-change check against the latest release baseline.</p>
+<h3 id="interface-3">Interface</h3>
+<pre><code class="lang-csharp">public interface IPrBreakingChangeHelper : IApiSurfaceHelper
+</code></pre>
+<h3 id="methods-2">Methods</h3>
+<h4 id="performprbreakingchangecheck"><code>PerformPrBreakingChangeCheck</code></h4>
+<pre><code class="lang-csharp">Task PerformPrBreakingChangeCheck(
+    SemVer currentVersion,
+    int pullRequestNumber,
+    IEnumerable&lt;RootedPath&gt; filesToCheck,
+    string githubToken,
+    CancellationToken cancellationToken)
+</code></pre>
+<p>Runs the complete breaking change analysis:</p>
+<ol>
+<li>Finds the most recent release tag (<code>v{semver}</code>) as the baseline.</li>
+<li>Identifies breaking changes between the baseline and the current commit.</li>
+<li>Validates that the version has been bumped appropriately.</li>
+<li>Creates a GitHub check run with a <code>success</code> or <code>failure</code> conclusion.</li>
+</ol>
+<h4 id="findlatestreleaseinfo"><code>FindLatestReleaseInfo</code></h4>
+<pre><code class="lang-csharp">ReleaseInfo? FindLatestReleaseInfo(Repository repo, SemVer currentVersion)
+</code></pre>
+<p>Finds the most recent release tag that represents a version older than the current version. Parses tags of the form <code>v{semver}</code> and returns the highest version that precedes the current one.</p>
+<hr>
+<h2 id="idocfxhelper">IDocFxHelper</h2>
+<p>Generates, serves, and publishes <a href="https://dotnet.github.io/docfx/">DocFX</a> documentation for the repository.</p>
+<h3 id="interface-4">Interface</h3>
+<pre><code class="lang-csharp">public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
+</code></pre>
+<h3 id="members-1">Members</h3>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GeneratedDocsArtifactName</code></td>
+<td><code>const string</code></td>
+<td>Name of the artifact and output sub-directory containing the generated DocFX site (<code>&quot;GeneratedDocs&quot;</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods-3">Methods</h3>
+<h4 id="builddocfxdocs"><code>BuildDocFxDocs</code></h4>
+<pre><code class="lang-csharp">Task BuildDocFxDocs(
+    IEnumerable&lt;RootedPath&gt;? projectsToPrebuild = null,
+    CancellationToken cancellationToken = default)
+</code></pre>
+<p>Builds the DocFX site and copies the generated output into the publish directory under <code>GeneratedDocsArtifactName</code>.</p>
+<ol>
+<li>Optionally builds the supplied <code>projectsToPrebuild</code> in <code>Release</code> configuration so API metadata and XML docs are current.</li>
+<li>On .NET 10+, runs the tool directly via <code>dotnet tool exec docfx</code>. On earlier runtimes, the DocFX global tool is updated/installed and then invoked via <code>dotnet docfx</code>.</li>
+<li>The site is generated into the <code>_site</code> directory beneath the Atom root, then copied to the publish directory.</li>
+</ol>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>projectsToPrebuild</code></td>
+<td>Projects to build in <code>Release</code> before running DocFX. When <code>null</code>, no projects are pre-built.</td>
+</tr>
+<tr>
+<td><code>cancellationToken</code></td>
+<td>A token used to cancel the operation.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="servedocfxdocs"><code>ServeDocFxDocs</code></h4>
+<pre><code class="lang-csharp">Task ServeDocFxDocs(CancellationToken cancellationToken = default)
+</code></pre>
+<p>Serves the generated <code>_site</code> directory locally at <code>http://localhost:8080</code> for previewing until cancelled. Run <code>BuildDocFxDocs</code> first so the site exists. Cancellation is handled gracefully and shuts the server down without surfacing an error.</p>
+<h4 id="publishdocfxdocstogithub"><code>PublishDocFxDocsToGithub</code></h4>
+<pre><code class="lang-csharp">Task PublishDocFxDocsToGithub(
+    string githubToken,
+    string generatedDocsArtifactName,
+    CancellationToken cancellationToken = default)
+</code></pre>
+<p>Publishes a previously generated site to the repository's <code>gh-pages</code> branch for GitHub Pages hosting:</p>
+<ol>
+<li>Resolves the generated site artifact under the artifacts directory.</li>
+<li>Creates a fresh orphan <code>gh-pages</code> branch in a temporary directory and commits the generated files.</li>
+<li>Force-pushes to the <code>origin</code> remote, injecting the GitHub token as an <code>x-access-token</code> credential for HTTPS remotes.</li>
+</ol>
+<p>The temporary checkout is always removed once the operation completes, even on failure.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>githubToken</code></td>
+<td>The GitHub token used to authenticate the push.</td>
+</tr>
+<tr>
+<td><code>generatedDocsArtifactName</code></td>
+<td>The name of the artifact containing the generated site (typically <code>GeneratedDocsArtifactName</code>).</td>
+</tr>
+<tr>
+<td><code>cancellationToken</code></td>
+<td>A token used to cancel the operation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Throws:</strong> <code>StepFailedException</code> when the generated site artifact does not exist, or when the origin remote URL cannot be determined.</p>
+<hr>
+<h2 id="icopilotreviewhelper">ICopilotReviewHelper</h2>
+<p>Waits until GitHub Copilot has finished reviewing a pull request. GitHub does not expose a native way to block auto-merge on a Copilot review, so this helper polls the pull request's review state until Copilot's review has landed.</p>
+<h3 id="interface-5">Interface</h3>
+<pre><code class="lang-csharp">public interface ICopilotReviewHelper : IBuildAccessor
+</code></pre>
+<h3 id="members-2">Members</h3>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DefaultCopilotReviewerLogin</code></td>
+<td><code>const string</code></td>
+<td>The default login of the GitHub Copilot reviewer bot (<code>&quot;Copilot&quot;</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="methods-4">Methods</h3>
+<h4 id="waitforcopilotreviewtocomplete"><code>WaitForCopilotReviewToComplete</code></h4>
+<pre><code class="lang-csharp">Task&lt;bool&gt; WaitForCopilotReviewToComplete(
+    int pullRequestNumber,
+    string githubToken,
+    string copilotReviewerLogin,
+    TimeSpan timeout,
+    TimeSpan pollInterval,
+    CancellationToken cancellationToken)
+</code></pre>
+<p>Polls the pull request via GitHub's GraphQL API until Copilot has finished reviewing:</p>
+<ol>
+<li>While Copilot is reviewing it remains a <strong>pending review request</strong> on the pull request.</li>
+<li>Once done it is removed from the pending review requests and a <strong>review</strong> authored by the Copilot bot appears.</li>
+<li>The review is considered complete when Copilot is no longer pending and a review from it exists.</li>
+</ol>
+<p>Returns <code>true</code> when Copilot finished reviewing, or <code>false</code> when Copilot was never requested as a reviewer (nothing to wait for).</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pullRequestNumber</code></td>
+<td>The number of the pull request to wait on.</td>
+</tr>
+<tr>
+<td><code>githubToken</code></td>
+<td>The GitHub token used to authenticate the GraphQL requests.</td>
+</tr>
+<tr>
+<td><code>copilotReviewerLogin</code></td>
+<td>The login of the Copilot reviewer bot to match against.</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>The maximum amount of time to wait for Copilot to finish reviewing.</td>
+</tr>
+<tr>
+<td><code>pollInterval</code></td>
+<td>The delay between successive polls of the pull request state.</td>
+</tr>
+<tr>
+<td><code>cancellationToken</code></td>
+<td>A token used to cancel the operation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Throws:</strong> <code>StepFailedException</code> when Copilot does not finish reviewing within <code>timeout</code>, or when the pull request cannot be resolved.</p>
+<hr>
+<h2 id="extension-injectionoptionsextensions">Extension: InjectionOptionsExtensions</h2>
+<p>Provides GitHub-specific value injection options for build targets.</p>
+<h3 id="usage-1">Usage</h3>
+<p>Access via <code>BuildOptions.Inject.Github</code>:</p>
+<pre><code class="lang-csharp">// Inject the pull request number from the GitHub event payload
+BuildOptions.Inject.Github.PullRequestNumber
+
+// Inject the Dependabot auto-merge PAT secret
+BuildOptions.Inject.Github.DependabotEnableAutoMergePat
+</code></pre>
+<p>These are convenience wrappers that read values from the GitHub Actions event context and wire them as target parameters.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/atom-module/helpers.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Dotnet Repo Utils: A collection of utilities for dotnet projects.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

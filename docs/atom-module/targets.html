@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Targets | Dotnet Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Targets | Dotnet Repo Utils ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/atom-module/targets.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../logo.svg" alt="Dotnet Repo Utils">
+            Dotnet Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="targets">Targets</h1>
+
+<p>The Atom module provides the following build targets that can be mixed into your <code>IBuild</code> definition.</p>
+<h2 id="iapprovedependabotpr">IApproveDependabotPr</h2>
+<p>Automatically enables auto-merge on pull requests opened by <code>dependabot[bot]</code>.</p>
+<h3 id="interface">Interface</h3>
+<pre><code class="lang-csharp">public interface IApproveDependabotPr : IGithubHelper, IGithubPrHelper
+</code></pre>
+<h3 id="target">Target</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Required Parameters</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ApproveDependabotPr</code></td>
+<td><code>GithubPullRequestNumber</code>, <code>DependabotEnableAutoMergePat</code></td>
+<td>Enables auto-merge on the target Dependabot pull request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="behaviour">Behaviour</h3>
+<ol>
+<li>Validates that the pull request was opened by <code>dependabot[bot]</code>.</li>
+<li>Authenticates using a dedicated PAT (the default workflow token cannot trigger downstream workflows).</li>
+<li>Resolves the pull request node ID via GitHub's GraphQL API.</li>
+<li>Issues the <code>EnablePullRequestAutoMerge</code> mutation with the <strong>Merge</strong> strategy.</li>
+</ol>
+<h3 id="configuration">Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DependabotActorName</code></td>
+<td><code>const string</code></td>
+<td>The GitHub actor name used by Dependabot (<code>&quot;dependabot[bot]&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>DependabotEnableAutoMergePat</code></td>
+<td><code>string?</code></td>
+<td>A GitHub PAT with permissions to enable auto-merge. Defined as a secret.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="workflow-example">Workflow Example</h3>
+<pre><code class="lang-csharp">new(&quot;Dependabot Enable auto-merge&quot;)
+{
+    Triggers = [WorkflowTriggers.PullIntoMain],
+    Targets =
+    [
+        new(nameof(ApproveDependabotPr))
+        {
+            Options =
+            [
+                BuildOptions.Inject.Github.PullRequestNumber,
+                BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
+                BuildOptions.Target.RunIfWorkflowCondition(
+                    TextExpressions.Github.GithubActor.EqualToString(&quot;dependabot[bot]&quot;)),
+            ],
+        },
+    ],
+    Types = [WorkflowTypes.Github.Action],
+}
+</code></pre>
+<hr>
+<h2 id="icheckprforbreakingchanges">ICheckPrForBreakingChanges</h2>
+<p>Detects public API breaking changes in a pull request and reports the result as a GitHub check run.</p>
+<h3 id="interface-1">Interface</h3>
+<pre><code class="lang-csharp">public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBuildInfo, IGithubHelper, IGithubPrHelper
+</code></pre>
+<h3 id="target-1">Target</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Required Parameters</th>
+<th>Consumed Variables</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CheckPrForBreakingChanges</code></td>
+<td><code>GithubToken</code>, <code>GithubPullRequestNumber</code></td>
+<td><code>BuildVersion</code> (from <code>SetupBuildInfo</code>)</td>
+<td>Runs the breaking change analysis and publishes a GitHub check run.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-1">Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BreakingChangeFilesToCheck</code></td>
+<td><code>IEnumerable&lt;RootedPath&gt;</code></td>
+<td>The API definition files to analyze. Defaults to empty (check disabled).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="workflow-example-1">Workflow Example</h3>
+<pre><code class="lang-csharp">new(nameof(CheckPrForBreakingChanges))
+{
+    Options =
+    [
+        BuildOptions.Target.SuppressArtifactPublishing,
+        BuildOptions.Inject.Secret(nameof(GithubToken)),
+        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+        {
+            IdTokens = PermissionsLevel.Write,
+            Contents = PermissionsLevel.Write,
+            PullRequests = PermissionsLevel.Write,
+            Checks = PermissionsLevel.Write,
+        })),
+        BuildOptions.Inject.Github.PullRequestNumber,
+        BuildOptions.Target.RunIfWorkflowCondition(
+            TextExpressions.Github.GithubEventName.EqualToString(&quot;pull_request&quot;)),
+    ],
+}
+</code></pre>
+<p>See <a href="breaking-changes.html">Breaking Change Detection</a> for details on how the analysis works.</p>
+<hr>
+<h2 id="iwaitforcopilotreview">IWaitForCopilotReview</h2>
+<p>Blocks until GitHub Copilot has finished reviewing a pull request. This fills the gap where GitHub cannot natively wait for a Copilot review before completing an auto-merge, allowing the target to be sequenced ahead of an auto-merge step.</p>
+<h3 id="interface-2">Interface</h3>
+<pre><code class="lang-csharp">public interface IWaitForCopilotReview : ICopilotReviewHelper, IGithubHelper, IGithubPrHelper
+</code></pre>
+<h3 id="target-2">Target</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Required Parameters</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WaitForCopilotReview</code></td>
+<td><code>GithubPullRequestNumber</code></td>
+<td>Waits until Copilot has finished reviewing the target pull request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="behaviour-1">Behaviour</h3>
+<ol>
+<li>Polls the pull request's review state via GitHub's GraphQL API.</li>
+<li><strong>Succeeds immediately</strong> when Copilot was not requested as a reviewer (nothing to wait for).</li>
+<li>Considers the review complete once Copilot is no longer a pending review request and a Copilot review exists.</li>
+<li><strong>Fails</strong> when Copilot does not finish reviewing within the configured timeout.</li>
+</ol>
+<h3 id="configuration-2">Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CopilotReviewerLogin</code></td>
+<td><code>string</code></td>
+<td>The login of the Copilot reviewer bot to wait for. Defaults to <code>&quot;Copilot&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>CopilotReviewTimeoutSeconds</code></td>
+<td><code>int</code></td>
+<td>Maximum time, in seconds, to wait before failing. Defaults to <code>600</code>.</td>
+</tr>
+<tr>
+<td><code>CopilotReviewPollIntervalSeconds</code></td>
+<td><code>int</code></td>
+<td>Delay, in seconds, between polls. Defaults to <code>15</code>.</td>
+</tr>
+<tr>
+<td><code>CopilotReviewToken</code></td>
+<td><code>string?</code></td>
+<td>Optional PAT used to read the review state; falls back to <code>GithubToken</code>. Defined as a secret.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="workflow-example-2">Workflow Example</h3>
+<pre><code class="lang-csharp">new(nameof(WaitForCopilotReview))
+{
+    Options =
+    [
+        BuildOptions.Target.SuppressArtifactPublishing,
+        BuildOptions.Inject.Secret(nameof(GithubToken)),
+        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+        {
+            PullRequests = PermissionsLevel.Read,
+        })),
+        BuildOptions.Inject.Github.PullRequestNumber,
+    ],
+}
+</code></pre>
+<p>Sequence this target ahead of an auto-merge step (e.g. <code>ApproveDependabotPr</code>) so the merge only proceeds once Copilot's review has landed.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/atom-module/targets.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Dotnet Repo Utils: A collection of utilities for dotnet projects.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
