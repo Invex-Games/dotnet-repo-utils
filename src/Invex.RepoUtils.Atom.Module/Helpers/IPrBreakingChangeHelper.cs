@@ -1,16 +1,16 @@
 ﻿namespace Invex.RepoUtils.Atom.Module.Helpers;
 
 /// <summary>
-/// Orchestrates the end-to-end breaking change check for a pull request: it locates the most recent
-/// release to use as a baseline, identifies breaking changes against it, validates that the version
-/// has been bumped appropriately, and reports the result back to GitHub as a check run.
+///     Orchestrates the end-to-end breaking change check for a pull request: it locates the most recent
+///     release to use as a baseline, identifies breaking changes against it, validates that the version
+///     has been bumped appropriately, and reports the result back to GitHub as a check run.
 /// </summary>
 [PublicAPI]
 public interface IPrBreakingChangeHelper : IApiSurfaceHelper
 {
     /// <summary>
-    /// Runs the complete breaking change analysis for a pull request and publishes a GitHub check run
-    /// summarizing the outcome.
+    ///     Runs the complete breaking change analysis for a pull request and publishes a GitHub check run
+    ///     summarizing the outcome.
     /// </summary>
     /// <param name="currentVersion">The semantic version produced for the current pull request.</param>
     /// <param name="pullRequestNumber">The number of the pull request being checked.</param>
@@ -18,9 +18,9 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
     /// <param name="githubToken">The GitHub token used to authenticate the check run creation.</param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <remarks>
-    /// When no previous release can be found, the check is skipped as there is no baseline to compare
-    /// against. Otherwise a check run is created with a <c>success</c> conclusion when the version has
-    /// been bumped to cover the detected changes, or <c>failure</c> when a required bump is missing.
+    ///     When no previous release can be found, the check is skipped as there is no baseline to compare
+    ///     against. Otherwise a check run is created with a <c>success</c> conclusion when the version has
+    ///     been bumped to cover the detected changes, or <c>failure</c> when a required bump is missing.
     /// </remarks>
     async Task PerformPrBreakingChangeCheck(
         SemVer currentVersion,
@@ -40,6 +40,7 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
                 OutputLogLevel = LogLevel.Debug,
             },
             cancellationToken);
+
         var currentCommitHash = currentCommitHashResult.Output.Trim();
         Logger.LogDebug("Current commit hash: {CommitHash}", currentCommitHash);
 
@@ -166,13 +167,13 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
     }
 
     /// <summary>
-    /// Finds the most recent release tag that represents a version older than the current version, to
-    /// be used as the baseline for breaking change analysis.
+    ///     Finds the most recent release tag that represents a version older than the current version, to
+    ///     be used as the baseline for breaking change analysis.
     /// </summary>
     /// <param name="currentVersion">The current version; only releases older than this are considered.</param>
     /// <returns>
-    /// The <see cref="ReleaseInfo"/> for the highest version that precedes <paramref name="currentVersion"/>,
-    /// or <see langword="null"/> when no suitable release tag exists.
+    ///     The <see cref="ReleaseInfo" /> for the highest version that precedes <paramref name="currentVersion" />,
+    ///     or <see langword="null" /> when no suitable release tag exists.
     /// </returns>
     ReleaseInfo? FindLatestReleaseInfo(SemVer currentVersion)
     {
@@ -215,8 +216,7 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
         // The baseline is the newest of the eligible (older) releases.
         var version = releaseVersions.MaxBy(x => x.Version)!;
 
-        var commitResult = ProcessRunner.Run(new("git",
-            ["rev-parse", QuoteGitArgument($"{version.Tag}^{{commit}}")])
+        var commitResult = ProcessRunner.Run(new("git", ["rev-parse", QuoteGitArgument($"{version.Tag}^{{commit}}")])
         {
             WorkingDirectory = RootedFileSystem.AtomRootDirectory,
             InvocationLogLevel = LogLevel.Debug,
@@ -226,11 +226,12 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
         return new(commitResult.Output.Trim(), version.Version);
     }
 
-    private static string QuoteGitArgument(string argument) => $"\"{argument.Replace("\"", "\\\"")}\"";
+    private static string QuoteGitArgument(string argument) =>
+        $"\"{argument.Replace("\"", "\\\"")}\"";
 
     /// <summary>
-    /// Creates a GitHub check run on the pull request's head commit reporting the outcome of the
-    /// breaking change analysis.
+    ///     Creates a GitHub check run on the pull request's head commit reporting the outcome of the
+    ///     breaking change analysis.
     /// </summary>
     /// <param name="pullRequestNumber">The number of the pull request to attach the check to.</param>
     /// <param name="owner">The owner (user or organization) of the target repository.</param>
@@ -239,7 +240,7 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
     /// <param name="githubToken">The GitHub token used to authenticate the GraphQL requests.</param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <exception cref="StepFailedException">
-    /// Thrown when the repository, the pull request, or the resulting check run cannot be resolved/created.
+    ///     Thrown when the repository, the pull request, or the resulting check run cannot be resolved/created.
     /// </exception>
     private async Task AddCheckStatus(
         int pullRequestNumber,
@@ -291,7 +292,6 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
 
         if (prQueryResult.Id.Value is null)
             throw new StepFailedException("Could not find pull request.");
-
 
         // Create the completed check run with the appropriate conclusion and summary output.
         var checkRunMutation = new Mutation()

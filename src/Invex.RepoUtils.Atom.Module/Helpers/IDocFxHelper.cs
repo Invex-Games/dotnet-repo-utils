@@ -3,36 +3,36 @@ using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 namespace Invex.RepoUtils.Atom.Module.Helpers;
 
 /// <summary>
-/// Provides functionality for generating, serving, and publishing
-/// <see href="https://dotnet.github.io/docfx/">DocFX</see> documentation for the repository.
-/// The helper builds the static documentation site, can host it locally for previewing, and
-/// publishes the generated output to a project's <c>gh-pages</c> branch for GitHub Pages hosting.
+///     Provides functionality for generating, serving, and publishing
+///     <see href="https://dotnet.github.io/docfx/">DocFX</see> documentation for the repository.
+///     The helper builds the static documentation site, can host it locally for previewing, and
+///     publishes the generated output to a project's <c>gh-pages</c> branch for GitHub Pages hosting.
 /// </summary>
 [PublicAPI]
 public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
 {
     /// <summary>
-    /// The name of the build artifact (and corresponding output sub-directory) that contains the
-    /// generated DocFX site. Used both as the destination folder under the publish directory and as
-    /// the artifact name resolved under the artifacts directory when publishing.
+    ///     The name of the build artifact (and corresponding output sub-directory) that contains the
+    ///     generated DocFX site. Used both as the destination folder under the publish directory and as
+    ///     the artifact name resolved under the artifacts directory when publishing.
     /// </summary>
     const string GeneratedDocsArtifactName = "GeneratedDocs";
 
     /// <summary>
-    /// Builds the DocFX documentation site and copies the generated output into the publish
-    /// directory under <see cref="GeneratedDocsArtifactName"/>.
+    ///     Builds the DocFX documentation site and copies the generated output into the publish
+    ///     directory under <see cref="GeneratedDocsArtifactName" />.
     /// </summary>
     /// <param name="projectsToPrebuild">
-    /// An optional collection of projects to build in <c>Release</c> configuration before running
-    /// DocFX. This ensures any metadata DocFX extracts from the compiled assemblies and XML
-    /// documentation is up to date. When <see langword="null"/>, no projects are pre-built.
+    ///     An optional collection of projects to build in <c>Release</c> configuration before running
+    ///     DocFX. This ensures any metadata DocFX extracts from the compiled assemblies and XML
+    ///     documentation is up to date. When <see langword="null" />, no projects are pre-built.
     /// </param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <remarks>
-    /// On .NET 10 or newer the tool is executed directly via <c>dotnet tool exec docfx</c>. On
-    /// earlier runtimes the DocFX global tool is updated/installed first and then invoked via
-    /// <c>dotnet docfx</c>. The site is generated into the <c>_site</c> directory beneath the Atom
-    /// root before being copied to the publish directory.
+    ///     On .NET 10 or newer the tool is executed directly via <c>dotnet tool exec docfx</c>. On
+    ///     earlier runtimes the DocFX global tool is updated/installed first and then invoked via
+    ///     <c>dotnet docfx</c>. The site is generated into the <c>_site</c> directory beneath the Atom
+    ///     root before being copied to the publish directory.
     /// </remarks>
     async Task BuildDocFxDocs(
         IEnumerable<RootedPath>? projectsToPrebuild = null,
@@ -85,16 +85,16 @@ public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
     }
 
     /// <summary>
-    /// Serves the generated DocFX site locally for previewing, hosting it at
-    /// <c>http://localhost:8080</c> until the operation is cancelled.
+    ///     Serves the generated DocFX site locally for previewing, hosting it at
+    ///     <c>http://localhost:8080</c> until the operation is cancelled.
     /// </summary>
     /// <param name="cancellationToken">
-    /// A token used to stop the local server. Cancellation is handled gracefully and results in the
-    /// server shutting down without surfacing an error.
+    ///     A token used to stop the local server. Cancellation is handled gracefully and results in the
+    ///     server shutting down without surfacing an error.
     /// </param>
     /// <remarks>
-    /// This serves the contents of the <c>_site</c> directory beneath the Atom root, so
-    /// <see cref="BuildDocFxDocs"/> should be run beforehand to ensure the site exists.
+    ///     This serves the contents of the <c>_site</c> directory beneath the Atom root, so
+    ///     <see cref="BuildDocFxDocs" /> should be run beforehand to ensure the site exists.
     /// </remarks>
     async Task ServeDocFxDocs(CancellationToken cancellationToken = default)
     {
@@ -103,8 +103,8 @@ public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
 
         try
         {
-            await ProcessRunner.RunAsync(
-                new("dotnet", $"tool exec docfx -- serve {RootedFileSystem.AtomRootDirectory / "_site"} --port 8080"),
+            await ProcessRunner.RunAsync(new("dotnet",
+                    $"tool exec docfx -- serve {RootedFileSystem.AtomRootDirectory / "_site"} --port 8080"),
                 cancellationToken);
         }
         catch (TaskCanceledException)
@@ -114,26 +114,26 @@ public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
     }
 
     /// <summary>
-    /// Publishes a previously generated DocFX site to the repository's <c>gh-pages</c> branch,
-    /// making it available via GitHub Pages.
+    ///     Publishes a previously generated DocFX site to the repository's <c>gh-pages</c> branch,
+    ///     making it available via GitHub Pages.
     /// </summary>
     /// <param name="githubToken">
-    /// The GitHub token used to authenticate the push. When the remote uses HTTPS, the token is
-    /// injected into the remote URL as an <c>x-access-token</c> credential.
+    ///     The GitHub token used to authenticate the push. When the remote uses HTTPS, the token is
+    ///     injected into the remote URL as an <c>x-access-token</c> credential.
     /// </param>
     /// <param name="generatedDocsArtifactName">
-    /// The name of the artifact (under the artifacts directory) that contains the generated site to
-    /// publish, typically <see cref="GeneratedDocsArtifactName"/>.
+    ///     The name of the artifact (under the artifacts directory) that contains the generated site to
+    ///     publish, typically <see cref="GeneratedDocsArtifactName" />.
     /// </param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <remarks>
-    /// The site is published by creating a fresh orphan <c>gh-pages</c> branch in a temporary
-    /// directory, committing the generated files, and force-pushing to the origin remote. The
-    /// temporary checkout is always removed once the operation completes, even on failure.
+    ///     The site is published by creating a fresh orphan <c>gh-pages</c> branch in a temporary
+    ///     directory, committing the generated files, and force-pushing to the origin remote. The
+    ///     temporary checkout is always removed once the operation completes, even on failure.
     /// </remarks>
     /// <exception cref="StepFailedException">
-    /// Thrown when the generated site artifact does not exist, or when the origin remote URL cannot
-    /// be determined.
+    ///     Thrown when the generated site artifact does not exist, or when the origin remote URL cannot
+    ///     be determined.
     /// </exception>
     async Task PublishDocFxDocsToGithub(
         string githubToken,

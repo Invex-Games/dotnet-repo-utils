@@ -1,29 +1,29 @@
 ﻿namespace Invex.RepoUtils.Atom.Module.Helpers;
 
 /// <summary>
-/// Provides functionality for analyzing the public API surface of the repository by diffing the
-/// tracked API definition files between two commits and classifying the resulting changes as
-/// either major (removals) or minor (additions) breaking changes.
+///     Provides functionality for analyzing the public API surface of the repository by diffing the
+///     tracked API definition files between two commits and classifying the resulting changes as
+///     either major (removals) or minor (additions) breaking changes.
 /// </summary>
 [PublicAPI]
 public interface IApiSurfaceHelper : IBuildAccessor
 {
     /// <summary>
-    /// Compares the contents of the supplied files between two commits and determines which changes
-    /// constitute breaking changes to the public API surface.
+    ///     Compares the contents of the supplied files between two commits and determines which changes
+    ///     constitute breaking changes to the public API surface.
     /// </summary>
-    /// <param name="oldVersion">The semantic version associated with <paramref name="oldCommitHash"/> (used for logging).</param>
+    /// <param name="oldVersion">The semantic version associated with <paramref name="oldCommitHash" /> (used for logging).</param>
     /// <param name="oldCommitHash">The SHA of the baseline commit to compare from.</param>
-    /// <param name="newVersion">The semantic version associated with <paramref name="newCommitHash"/> (used for logging).</param>
+    /// <param name="newVersion">The semantic version associated with <paramref name="newCommitHash" /> (used for logging).</param>
     /// <param name="newCommitHash">The SHA of the commit to compare to.</param>
     /// <param name="filesToCheck">The API definition files whose changes should be analyzed.</param>
     /// <returns>
-    /// A <see cref="BreakingChanges"/> instance describing the major and minor breaking changes that
-    /// were detected. When no relevant changes exist, the returned lists are empty.
+    ///     A <see cref="BreakingChanges" /> instance describing the major and minor breaking changes that
+    ///     were detected. When no relevant changes exist, the returned lists are empty.
     /// </returns>
     /// <exception cref="InvalidOperationException">
-    /// Thrown when either <paramref name="oldCommitHash"/> or <paramref name="newCommitHash"/> cannot
-    /// be resolved to a commit in the repository.
+    ///     Thrown when either <paramref name="oldCommitHash" /> or <paramref name="newCommitHash" /> cannot
+    ///     be resolved to a commit in the repository.
     /// </exception>
     BreakingChanges IdentifyBreakingChanges(
         SemVer oldVersion,
@@ -161,8 +161,8 @@ public interface IApiSurfaceHelper : IBuildAccessor
         $"\"{argument.Replace("\"", "\\\"")}\"";
 
     /// <summary>
-    /// Normalizes the supplied paths into repository-relative, forward-slash separated paths so they
-    /// can be matched against the paths reported by the Git diff.
+    ///     Normalizes the supplied paths into repository-relative, forward-slash separated paths so they
+    ///     can be matched against the paths reported by the Git diff.
     /// </summary>
     /// <param name="filesToCheck">The paths to normalize.</param>
     /// <returns>A set of normalized, repository-relative file paths.</returns>
