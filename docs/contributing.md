@@ -91,7 +91,7 @@ public class MyNewFeature
 4. Open a pull request into `main`.
 5. The **Validate** workflow will run automatically, which includes:
    - Build verification
-   - Test matrix (net8.0, net9.0, net10.0)
+   - Tests (net10.0)
    - Breaking change analysis
 6. Address any review feedback.
 

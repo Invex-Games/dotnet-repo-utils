@@ -45,8 +45,8 @@ consistent, well-versioned, and safe to release. It ships three complementary pi
 | Package                              | Description                                                                                | Target           |
 |--------------------------------------|--------------------------------------------------------------------------------------------|------------------|
 | `Invex.RepoUtils.PublicApiAnalyzers` | Roslyn analyzer that flags public members not annotated as part of the public API surface. | `netstandard2.0` |
-| `Invex.RepoUtils.TestUtils`         | Test utilities for snapshot-testing your assembly's public API surface.                    | `netstandard2.0`, `net8.0`, `net9.0`, `net10.0` |
-| `Invex.RepoUtils.Atom.Module`        | Atom build module providing pack/test/release, documentation, breaking-change, and Dependabot CI targets. | `net8.0`, `net9.0`, `net10.0` |
+| `Invex.RepoUtils.TestUtils`         | Test utilities for snapshot-testing your assembly's public API surface.                    | `netstandard2.0`, `net10.0` |
+| `Invex.RepoUtils.Atom.Module`        | Atom build module providing pack/test/release, documentation, breaking-change, and Dependabot CI targets. | `net10.0` |
 
 ---
 
@@ -259,7 +259,7 @@ dotnet test Invex.RepoUtils.slnx
 dotnet test Invex.RepoUtils.slnx --framework net10.0
 ```
 
-Tests target .NET 8, .NET 9, and .NET 10. CI runs the test matrix for all three frameworks and also
+Tests target .NET 10. CI runs the tests on .NET 10 and also
 packs the three NuGet projects.
 
 ### Documentation
@@ -288,7 +288,7 @@ dotnet run --project _atom/_atom.csproj -- gen
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| `Validate` | Pull requests into `main` or manual dispatch | Build, pack, test on .NET 8/9/10, check breaking changes, and wait for Copilot review |
+| `Validate` | Pull requests into `main` or manual dispatch | Build, pack, test on .NET 10, check breaking changes, and wait for Copilot review |
 | `Build` | Pushes to `main`, `feature/**`, or `patch/**`; releases; manual dispatch | Pack, test, publish to NuGet, create stable GitHub releases, and publish DocFX documentation |
 | `Cleanup Prereleases` | Manual dispatch with a stable-version input | Unlist prerelease packages below the supplied version |
 | `Dependabot Enable auto-merge` | Dependabot pull requests into `main` | Approve and enable auto-merge using the configured secret |
