@@ -5,7 +5,8 @@ This guide walks you through adding Invex.RepoUtils packages to your .NET projec
 ## Prerequisites
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- A .NET project targeting `net10.0`
+- A .NET project. The analyzer and TestUtils work with any framework that supports `netstandard2.0`
+  (including .NET 8 and 9); the Atom module needs `net10.0`
 
 ## Installation
 
