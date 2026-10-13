@@ -1,6 +1,6 @@
 # Dependabot Auto-Merge
 
-The Atom module provides a target that automatically enables auto-merge on pull requests opened by Dependabot, allowing dependency updates to merge once their required checks pass.
+The Atom module provides a target that automatically enables auto-merge on pull requests opened by Dependabot, allowing dependency updates to merge once their required checks pass. Use it when you want dependency updates to land without manual merging.
 
 ## Overview
 
@@ -118,3 +118,9 @@ This generates a Dependabot configuration that groups all NuGet dependency updat
 - The target **only** enables auto-merge when the actor is `dependabot[bot]` — it will throw a `StepFailedException` for any other actor.
 - Consider using a [GitHub App](https://docs.github.com/en/apps) instead of a PAT for production environments to avoid tying secrets to individual user accounts.
 
+## See also
+
+- [Targets](targets.md#iapprovedependabotpr)
+- [Wait for Copilot review](targets.md#iwaitforcopilotreview)
+- <xref:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr>
+- <xref:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions>
