@@ -30,7 +30,7 @@ The repository uses the following branch strategy with GitVersion:
 | `main` | `rc` | Minor | 4000–4999 |
 | `patch/**` | `rc` | Patch | 5000–5999 |
 | `dev` / `develop` | `preview` | Minor | 3000–3999 |
-| `feat/**` / `feature/**` / `fix/**` / `chore/**` / `improvement/**` / `refactor/**` | `beta.{type}-{name}` | Minor | 2000–2999 |
+| `feat/**` / `feature/**` / `features/**` / `fix/**` / `chore/**` / `improvement/**` / `refactor/**` | `beta.{type}-{name}` | Minor | 2000–2999 |
 | Any other branch | `alpha.{name}` | None | 1000–1999 |
 | `pr/**` / `pull/**` / `pull-requests/**` | `pr` | Inherit | 0–999 |
 | Tagged releases | — | — | 6000 (highest) |
