@@ -1,6 +1,6 @@
 # Versioning
 
-Versions in this repository are derived automatically by [GitVersion](https://gitversion.net/) using [Conventional Commits](https://www.conventionalcommits.org/).
+Versions of the Invex.RepoUtils packages are derived automatically by [GitVersion](https://gitversion.net/) using [Conventional Commits](https://www.conventionalcommits.org/). Read this page before choosing a commit prefix or cutting a release.
 
 ## Commit Message Prefixes
 
@@ -15,7 +15,7 @@ The commit message prefix drives the version bump:
 
 Scoped prefixes are also supported:
 
-```
+```text
 feat(analyzer): add support for record types
 fix(atom-module): handle missing release tags gracefully
 breaking(test-utils): change return type of GetPublicApiSurface
@@ -30,8 +30,9 @@ The repository uses the following branch strategy with GitVersion:
 | `main` | `rc` | Minor | 4000–4999 |
 | `patch/**` | `rc` | Patch | 5000–5999 |
 | `dev` / `develop` | `preview` | Minor | 3000–3999 |
-| `feat/**` / `fix/**` / `chore/**` | `beta.{type}-{name}` | Minor | 2000–2999 |
-| `pr/**` | `pr` | Inherit | 0–999 |
+| `feat/**` / `feature/**` / `features/**` / `fix/**` / `chore/**` / `improvement/**` / `refactor/**` | `beta.{type}-{name}` | Minor | 2000–2999 |
+| Any other branch | `alpha.{name}` | None | 1000–1999 |
+| `pr/**` / `pull/**` / `pull-requests/**` | `pr` | Inherit | 0–999 |
 | Tagged releases | — | — | 6000 (highest) |
 
 ## Version Format
@@ -46,7 +47,7 @@ The repository uses the following branch strategy with GitVersion:
 1. Merge your PR into `main` with an appropriate conventional commit prefix.
 2. GitVersion calculates the new version automatically.
 3. The **Build** workflow creates a NuGet package with the computed version.
-4. To publish a stable release, create a GitHub Release with a `v{semver}` tag (e.g., `v2.1.0`).
+4. To publish a stable release, create a GitHub Release with a `v{semver}` tag (e.g., `v2.1.0`). The same tags are the baseline for the [breaking change check](atom-module/breaking-changes.md).
 5. The release event triggers the Build workflow, which publishes to NuGet and attaches packages to the GitHub Release.
 
 ## Examples
@@ -65,3 +66,7 @@ git commit -m "breaking: rename PublicAPI attribute to PublicApiAttribute"
 git commit -m "semver-none: update CI workflow"
 ```
 
+## See also
+
+- [Contributing](contributing.md)
+- [Breaking Change Detection](atom-module/breaking-changes.md)
