@@ -4,8 +4,8 @@ This guide walks you through adding Invex.RepoUtils packages to your .NET projec
 
 ## Prerequisites
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) (or .NET 8/9 for the Atom module)
-- A .NET project targeting `net8.0`, `net9.0`, or `net10.0`
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- A .NET project targeting `net10.0`
 
 ## Installation
 
