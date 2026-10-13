@@ -1,6 +1,6 @@
 # Helpers
 
-Helper interfaces provide the shared logic consumed by the [targets](targets.md). They can also be used directly in custom build definitions.
+Helper interfaces provide the shared logic consumed by the [targets](targets.md). Use them directly when you need the same behavior from your own targets, such as publishing documentation or unlisting prereleases, for which the module ships no ready-made target.
 
 ## IApiSurfaceHelper
 
@@ -239,10 +239,10 @@ Runs the complete breaking change analysis:
 #### `FindLatestReleaseInfo`
 
 ```csharp
-ReleaseInfo? FindLatestReleaseInfo(Repository repo, SemVer currentVersion)
+ReleaseInfo? FindLatestReleaseInfo(SemVer currentVersion)
 ```
 
-Finds the most recent release tag that represents a version older than the current version. Parses tags of the form `v{semver}` and returns the highest version that precedes the current one.
+Finds the most recent release tag that represents a version older than the current version. Lists the repository's Git tags of the form `v{semver}` and returns the highest version that precedes the current one, or `null` when there is none.
 
 ---
 
@@ -393,3 +393,13 @@ BuildOptions.Inject.Github.DependabotEnableAutoMergePat
 
 These are convenience wrappers that read values from the GitHub Actions event context and wire them as target parameters.
 
+## See also
+
+- [Targets](targets.md)
+- [Breaking Change Detection](breaking-changes.md)
+- <xref:Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper>
+- <xref:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper>
+- <xref:Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper>
+- <xref:Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper>
+- <xref:Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper>
+- <xref:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions>

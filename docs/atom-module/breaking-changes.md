@@ -1,10 +1,10 @@
 # Breaking Change Detection
 
-The Atom module includes a comprehensive breaking change detection system that compares your public API surface across versions and enforces appropriate version bumps.
+The Atom module includes a breaking change detection system that compares your public API surface with the latest release and enforces an appropriate version bump. Read this page to understand what the `CheckPrForBreakingChanges` check reports and why it passes or fails.
 
 ## How It Works
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────┐
 │                    PR is opened / updated                     │
 └──────────────────────────┬──────────────────────────────────┘
@@ -99,9 +99,9 @@ The check run posts a detailed markdown summary to the pull request:
 
 ## Integration with Versioning
 
-This system works hand-in-hand with [GitVersion](../versioning.md). Use conventional commit prefixes to trigger the appropriate version bump:
+This system works hand-in-hand with GitVersion (see [Versioning](../versioning.md)). Use conventional commit prefixes to trigger the appropriate version bump:
 
-```
+```text
 # For major breaking changes
 breaking: remove deprecated MyService.OldMethod API
 
@@ -109,3 +109,10 @@ breaking: remove deprecated MyService.OldMethod API
 feat: add new MyService.NewMethod to public API
 ```
 
+## See also
+
+- [Targets](targets.md#icheckprforbreakingchanges)
+- [Test Utilities](../test-utils/index.md)
+- [Versioning](../versioning.md)
+- <xref:Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper>
+- <xref:Invex.RepoUtils.Atom.Module.Model.BreakingChanges>

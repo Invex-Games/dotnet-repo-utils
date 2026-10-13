@@ -1,6 +1,6 @@
 # Configuration
 
-The Public API Analyzers package is configurable through `.editorconfig` entries, allowing you to customize which attributes satisfy the rule and adjust severity levels.
+The Public API Analyzers package is configurable through `.editorconfig` entries. Use this page when the default `[PublicAPI]` attribute is not the only marker you want to accept, or when you need a different severity for some files or projects.
 
 ## Valid Attributes
 
@@ -9,20 +9,22 @@ By default the analyzer accepts `PublicAPI` / `PublicAPIAttribute`. You can exte
 ```ini
 # .editorconfig
 [*.cs]
-dotnet_code_quality.DecSm_Analyzers_ValidPublicApiAttributes = Experimental, MyCompanyApi
+dotnet_code_quality.Invex_RepoUtils_PublicApiAnalyzers_ValidPublicApiAttributes = Experimental, MyCompanyApi
 ```
 
 With this configuration, the following attributes would all satisfy the rule:
 
 - `[PublicAPI]` / `[PublicAPIAttribute]` (always valid)
-- `[Experimental]` / `[ExperimentalAttribute]`
+- `[Experimental(...)]` / `[ExperimentalAttribute(...)]`
 - `[MyCompanyApi]` / `[MyCompanyApiAttribute]`
 
 ### Example
 
 ```csharp
+using System.Diagnostics.CodeAnalysis;
+
 // With the configuration above, this is valid:
-[Experimental]
+[Experimental("MYLIB001")]
 public class PreviewFeature { }
 
 // And so is this:
@@ -84,3 +86,7 @@ Or remove the analyzer from specific projects:
 </ItemGroup>
 ```
 
+## See also
+
+- [Rules](rules.md)
+- [Public API Analyzers](index.md)
