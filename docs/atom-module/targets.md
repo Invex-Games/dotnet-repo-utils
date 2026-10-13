@@ -1,6 +1,6 @@
 # Targets
 
-The Atom module provides the following build targets that can be mixed into your `IBuild` definition.
+The Atom module provides the following build targets that can be mixed into your `IBuild` definition. Each target is an interface: inherit it, supply its parameters, and reference the target from a workflow.
 
 ## IApproveDependabotPr
 
@@ -77,7 +77,7 @@ public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBui
 
 | Member | Type | Description |
 |--------|------|-------------|
-| `BreakingChangeFilesToCheck` | `IEnumerable<RootedPath>` | The API definition files to analyze. Defaults to empty (check disabled). |
+| `BreakingChangeFilesToCheck` | `IEnumerable<RootedPath>` | The API definition files to analyze. Defaults to empty, so nothing is checked until you override it. |
 
 ### Workflow Example
 
@@ -158,7 +158,11 @@ new(nameof(WaitForCopilotReview))
 
 Sequence this target ahead of an auto-merge step (e.g. `ApproveDependabotPr`) so the merge only proceeds once Copilot's review has landed.
 
+## See also
 
-
-
-
+- [Helpers](helpers.md)
+- [Breaking Change Detection](breaking-changes.md)
+- [Dependabot Auto-Merge](dependabot.md)
+- <xref:Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr>
+- <xref:Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges>
+- <xref:Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview>

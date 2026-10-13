@@ -1,4 +1,6 @@
-# Analyzer Rules
+# Rules
+
+This page describes each diagnostic reported by `Invex.RepoUtils.PublicApiAnalyzers`: when it fires, how to fix it and how to suppress it. The package currently ships one rule.
 
 ## IPAA0001: Public member should be annotated with [PublicAPI]
 
@@ -112,3 +114,7 @@ Or change the severity in `.editorconfig`:
 dotnet_diagnostic.IPAA0001.severity = none
 ```
 
+## See also
+
+- [Configuration](configuration.md)
+- [Public API Analyzers](index.md)
