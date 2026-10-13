@@ -1,3 +1,5 @@
+- name: Introduction
+  href: introduction.md
 - name: Getting Started
   href: getting-started.md
 - name: Public API Analyzers
@@ -24,4 +26,3 @@
   href: contributing.md
 - name: Versioning
   href: versioning.md
-
