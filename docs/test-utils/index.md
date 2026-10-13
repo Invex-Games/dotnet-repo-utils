@@ -1,6 +1,6 @@
-# Invex.RepoUtils.TestUtils
+# Test Utilities
 
-A test utility library that makes it easy to snapshot-test the public API surface of your assemblies. It uses reflection to extract all public types and their members, serialises the result to JSON, and pairs well with [Verify](https://github.com/VerifyTests/Verify) for approval-based testing.
+`Invex.RepoUtils.TestUtils` is a test utility library that makes it easy to snapshot-test the public API surface of your assemblies. It uses reflection to extract all public types and their members, serialises the result to JSON, and pairs well with [Verify](https://github.com/VerifyTests/Verify) for approval-based testing.
 
 ## Overview
 
@@ -18,13 +18,16 @@ any framework that supports `netstandard2.0`, including .NET 8 and 9.
 ## Dependencies
 
 - [JetBrains.Annotations](https://www.nuget.org/packages/JetBrains.Annotations) — for `[PublicAPI]` attribute
-- [Verify.NUnit](https://www.nuget.org/packages/Verify.NUnit) — for snapshot testing integration
+- [System.Text.Json](https://www.nuget.org/packages/System.Text.Json) — on `netstandard2.0` only, for serialization
+
+The package does not depend on a snapshot library. Add one to your test project; the examples use
+[Verify.NUnit](https://www.nuget.org/packages/Verify.NUnit).
 
 ## Usage
 
 ### Basic API Surface Snapshot
 
-Call `PublicApiSurfaceTestUtil.GetPublicApiSurface` with the assembly you want to inspect. The returned JSON string can be verified with your preferred snapshot testing library:
+Call <xref:Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.GetPublicApiSurface(System.Reflection.Assembly)> with the assembly you want to inspect. The returned JSON string can be verified with your preferred snapshot testing library; with Verify, `VerifyJson` stores it as formatted JSON:
 
 ```csharp
 using Invex.RepoUtils.TestUtils;
@@ -33,30 +36,32 @@ using Invex.RepoUtils.TestUtils;
 public class ApiSurfaceTests
 {
     [Test]
-    public Task PublicApiSurface()
-    {
-        var surface = PublicApiSurfaceTestUtil.GetPublicApiSurface(typeof(MyLibraryType).Assembly);
-        return Verify(surface);
-    }
+    public Task VerifyPublicApiSurface() =>
+        VerifyJson(PublicApiSurfaceTestUtil.GetPublicApiSurface(typeof(MyLibraryType).Assembly));
 }
 ```
 
 ### What Gets Captured
 
-The utility inspects the target assembly and extracts:
+The utility inspects the target assembly with reflection and records:
 
-| Member Type | Captured Information |
-|-------------|---------------------|
-| **Types** | Fully-qualified name |
-| **Properties** | Name, property type |
-| **Fields** | Name, field type |
-| **Methods** | Name, return type, parameters (name + type) |
+| Item | Captured information |
+|------|---------------------|
+| **Types** | Full name of every top-level public type (`Type.IsPublic`), sorted by name |
+| **Members** | Name of every public instance and static field, property and method declared on the type, sorted by name |
+
+Only names are recorded: member types, return types and parameters are not part of the snapshot, so a signature
+change that keeps the member name does not change the output.
 
 The following are **excluded**:
 
-- Non-public types and members
-- Special-name methods (property accessors, event accessors, operators)
-- Compiler-generated members
+- Non-public types and members, and nested types
+- Inherited members (only members declared on the type itself are listed)
+- Special-name methods (property and event accessors, operators); the property or field itself is still listed
+
+> [!NOTE]
+> Public members the compiler generates are included. Records, for example, contribute `<Clone>$`, `Deconstruct`,
+> `Equals`, `GetHashCode` and `ToString`, and enums contribute `value__`.
 
 ### Output Format
 
@@ -67,8 +72,8 @@ The output is a JSON array of types, each containing its public members:
   {
     "Name": "MyNamespace.MyClass",
     "Members": [
-      { "Name": "Value", "Type": "System.String" },
-      { "Name": "Execute", "ReturnType": "System.Void", "Parameters": [] }
+      { "Name": "Execute" },
+      { "Name": "Value" }
     ]
   }
 ]
@@ -105,3 +110,8 @@ The recommended workflow is:
 </Project>
 ```
 
+## See also
+
+- [Public API Analyzers](../public-api-analyzers/index.md)
+- [Breaking Change Detection](../atom-module/breaking-changes.md)
+- <xref:Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil>
