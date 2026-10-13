@@ -139,7 +139,7 @@ dotnet run --project _atom/_atom.csproj -- gen
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
 | **Validate** | Pull requests into `main` or manual dispatch | Build, pack, test on .NET 8/9/10, check breaking changes, and wait for Copilot review |
-| **Build** | Pushes to `main`, `feature/**` or `patch/**`; releases; manual dispatch | Pack, test, publish to NuGet, unlist superseded prereleases, and (for stable versions) create GitHub releases and publish DocFX documentation |
+| **Build** | Pushes to `main`, `feature/**` or `patch/**`; releases; manual dispatch | Pack, test, publish to NuGet, unlist superseded prereleases, and (for stable versions) upload packages to the published GitHub release and publish DocFX documentation |
 | **Cleanup Prereleases** | Manual dispatch with a stable-version input | Unlist prerelease packages below the supplied version |
 | **Dependabot Enable auto-merge** | Pull requests into `main` from `dependabot[bot]` | Enable auto-merge using the configured PAT secret |
 

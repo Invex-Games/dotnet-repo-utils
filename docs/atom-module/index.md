@@ -56,7 +56,7 @@ internal interface IBuild :
 | <xref:Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions> | Extension | Adds `BuildOptions.Inject.Github.PullRequestNumber` and `BuildOptions.Inject.Github.DependabotEnableAutoMergePat`. |
 
 > [!NOTE]
-> Packing, testing, NuGet publishing and GitHub release creation are not targets of this module. Repositories
+> Packing, testing, NuGet publishing and uploading packages to a GitHub release are not targets of this module. Repositories
 > define those targets themselves using Atom's own `Invex.Atom.Module.Dotnet` and `Invex.Atom.Module.GithubWorkflows`
 > helpers, as this repository's [`_atom/IBuild.cs`](https://github.com/Invex-Games/dotnet-repo-utils/blob/main/_atom/IBuild.cs) does.
 
