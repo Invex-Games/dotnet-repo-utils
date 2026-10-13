@@ -22,12 +22,12 @@
       {
         "files": [
           "toc.yml",
-          "index.md",
-          "README.md"
+          "index.md"
         ]
       },
       {
         "files": [
+          "api/toc.yml",
           "api/**.yml",
           "api/index.md"
         ]
@@ -42,20 +42,19 @@
     "resource": [
       {
         "files": [
-          "images/**"
+          "images/**",
+          "LICENSE.txt"
         ]
       }
     ],
     "output": "_site",
-    "globalMetadataFiles": [],
-    "fileMetadataFiles": [],
     "globalMetadata": {
-      "_appTitle": "Dotnet Repo Utils",
-      "_appName": "Dotnet Repo Utils",
-      "_appFooter": "Dotnet Repo Utils: A collection of utilities for dotnet projects.",
+      "_appTitle": "Invex .NET Repo Utils",
+      "_appName": "Invex .NET Repo Utils",
+      "_appLogoPath": "images/icon.png",
+      "_appFooter": "Invex .NET Repo Utils · MIT License · Invex Games",
       "_enableSearch": true,
       "_disableContribution": false,
-      "_disableToc": false,
       "_gitContribute": {
         "repo": "https://github.com/Invex-Games/dotnet-repo-utils",
         "branch": "main"
@@ -65,10 +64,8 @@
       "default",
       "modern"
     ],
-    "postProcessors": [],
-    "keepFileLink": false,
-    "disableGitFeatures": false
+    "theme": [
+      "docfx-theme"
+    ]
   }
 }
-
-
