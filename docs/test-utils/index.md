@@ -13,7 +13,7 @@ dotnet add package Invex.RepoUtils.TestUtils
 ```
 
 The package targets `netstandard2.0` and `net10.0`, so it works in test projects on `net10.0` and on
-any framework that supports `netstandard2.0`, including .NET 8 and 9.
+any other framework that supports `netstandard2.0`.
 
 ## Dependencies
 
