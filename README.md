@@ -3,7 +3,7 @@
 [![Build](https://github.com/Invex-Games/dotnet-repo-utils/actions/workflows/Build.yml/badge.svg)](https://github.com/Invex-Games/dotnet-repo-utils/actions/workflows/Build.yml)
 [![NuGet](https://img.shields.io/nuget/v/Invex.RepoUtils.PublicApiAnalyzers.svg)](https://www.nuget.org/packages/Invex.RepoUtils.PublicApiAnalyzers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Invex-Games/dotnet-repo-utils/blob/main/LICENSE.txt)
-[![.NET](https://img.shields.io/badge/.NET-Standard%202.0%20%7C%208.0%20%7C%209.0%20%7C%2010.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![.NET](https://img.shields.io/badge/.NET-10.0%20%7C%20Standard%202.0-512BD4.svg)](https://dotnet.microsoft.com/)
 
 `Invex.RepoUtils` bundles the tooling the Invex team uses to keep its .NET repositories consistent,
 well-versioned and safe to release: a Roslyn analyzer that makes every public API exposure deliberate,

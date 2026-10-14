@@ -36,8 +36,10 @@ public class IPAA0001_PublicMemberShouldBeAnnotatedWithPublicAPIAnalyzer : Diagn
         Description);
 
     // Keep in mind: you have to list your rules here.
+    /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get; } = [Rule];
 
+    /// <inheritdoc />
     public override void Initialize(AnalysisContext context)
     {
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
