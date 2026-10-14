@@ -5,8 +5,8 @@
       "src": [
         {
           "files": [
-            "src/Invex.RepoUtils.Atom.Module/Invex.RepoUtils.Atom.Module.csproj",
-            "src/Invex.RepoUtils.TestUtils/Invex.RepoUtils.TestUtils.csproj"
+            "src/Invex.RepoUtils.Atom.Module/bin/Release/net10.0/Invex.RepoUtils.Atom.Module.dll",
+            "src/Invex.RepoUtils.TestUtils/bin/Release/net10.0/Invex.RepoUtils.TestUtils.dll"
           ]
         }
       ],
