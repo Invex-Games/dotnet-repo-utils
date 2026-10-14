@@ -38,6 +38,10 @@ public static class InjectionOptionsExtensions
             field ??= BuildOptions.Inject.Param(nameof(IGithubPrHelper.GithubPullRequestNumber),
                 TextExpressions.Github.GithubEvent["number"]);
 
+        /// <summary>
+        ///     Injects the <c>dependabot-enable-auto-merge-pat</c> secret as the
+        ///     <see cref="IApproveDependabotPr.DependabotEnableAutoMergePat" /> parameter for the target.
+        /// </summary>
         public IBuildOption DependabotEnableAutoMergePat =>
             field ??= BuildOptions.Inject.Secret(nameof(IApproveDependabotPr.DependabotEnableAutoMergePat));
     }
