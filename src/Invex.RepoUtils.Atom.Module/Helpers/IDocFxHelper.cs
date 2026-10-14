@@ -98,7 +98,7 @@ public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
     /// </remarks>
     async Task ServeDocFxDocs(CancellationToken cancellationToken = default)
     {
-        Logger.LogInformation("Serving DocFX site at http://localhost:8080/README.html");
+        Logger.LogInformation("Serving DocFX site at http://localhost:8080/");
         Logger.LogInformation("Press Ctrl+C to stop the server.");
 
         try
