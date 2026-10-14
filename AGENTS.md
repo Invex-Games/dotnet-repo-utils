@@ -37,8 +37,8 @@ jb cleanupcode Invex.RepoUtils.slnx --include="**.cs" --toolset-path="C:\Program
   Visual Studio BuildTools MSBuild, avoiding `MSB4236` workload-resolution errors.
 - Cleanup honors `.editorconfig` and shared `*.DotSettings`; no additional flags are needed.
 - Global usings live in each project's `_usings.cs`; add shared usings there, not per-file.
-- `GenerateDocumentationFile` is enabled. Add accurate XML documentation to every public type and
-  member even though `CS1591` is suppressed.
+- `GenerateDocumentationFile` is enabled and `CS1591` is enforced for shipped `src/` projects (only
+  test and `_atom` projects suppress it), so add accurate XML documentation to every public type and member.
 
 ## Atom workflows and generated files
 
@@ -81,6 +81,23 @@ between `_atom/` and `.github/workflows/` means `atom gen` is missing.
 - The public API snapshot (for example,
   `tests/Invex.RepoUtils.Atom.Module.Tests/PublicApiTests.VerifyPublicApiSurface.verified.txt`)
   changes whenever the public API changes; review such diffs deliberately.
+
+## Documentation
+
+Docs follow the shared Invex documentation standard used by every Invex library:
+
+- **README.md** is also the NuGet readme. Keep the fixed section order (title, badges, pitch, Packages, Features,
+  Installation, Quick start, Usage, Documentation, Development, License) and use absolute links only
+  (`https://github.com/Invex-Games/dotnet-repo-utils/blob/main/...` or the docs site), so they work on nuget.org.
+- **DocFX site** (`docfx.json`, `toc.yml`, `index.md`, `docs/`, `api/index.md`), published to
+  https://invex-games.github.io/dotnet-repo-utils/. `docs/introduction.md` and `docs/getting-started.md` come first; every page
+  opens with one to three sentences on what it covers and ends with a "See also" or "Next steps" list. Link API
+  types with `<xref:Namespace.Type>`, not file paths.
+- **`api/index.md`** is the only hand-written file under `api/`; everything else there is generated. Put per-type
+  detail in XML docs, not in hand-written API pages.
+- **XML docs are enforced.** `CS1591` is not suppressed for shipped projects, so every public type and member needs
+  `<summary>`, plus `<param>`, `<typeparam>`, `<returns>` and `<exception>` where they apply, `<remarks>` for
+  non-obvious behaviour, and `<see cref>`/`<paramref>`/`<see langword>` for references.
 
 ## Change checklist
 
