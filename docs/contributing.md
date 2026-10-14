@@ -8,7 +8,6 @@ test it, how CI works and what a pull request needs. Contributions are welcome.
 ### Prerequisites
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 10.0.0 or later, rolling forward to the latest major)
-- The .NET 8 and .NET 9 runtimes, to run the full test matrix locally
 - Git
 - A C# IDE (Rider, VS Code with C# Dev Kit, or Visual Studio)
 
@@ -32,7 +31,7 @@ dotnet test Invex.RepoUtils.slnx
 dotnet test Invex.RepoUtils.slnx --framework net10.0
 ```
 
-Tests target .NET 8, .NET 9 and .NET 10. CI runs the test matrix for all three frameworks and also packs the
+Tests target .NET 10. CI runs the tests and also packs the
 three NuGet projects.
 
 ### Building the documentation
@@ -100,7 +99,7 @@ public class MyNewFeature
 ### 3. Testing
 
 - Add or update tests for any code changes, including analyzer changes.
-- The analyzer tests run across .NET 8, 9 and 10 reference assemblies.
+- The analyzer tests run against .NET 10 reference assemblies.
 - Use [Verify](https://github.com/VerifyTests/Verify) for snapshot tests where appropriate. Public API changes
   update the `PublicApiTests.VerifyPublicApiSurface.verified.txt` snapshots, which feed the breaking-change check.
 - Ensure `dotnet build` and `dotnet test` pass before opening a PR.
@@ -117,7 +116,7 @@ public class MyNewFeature
 2. Make your changes following the guidelines above.
 3. Ensure `dotnet build` and `dotnet test` pass locally.
 4. Open a pull request into `main`.
-5. The **Validate** workflow runs automatically: build and pack, the test matrix (net8.0, net9.0, net10.0),
+5. The **Validate** workflow runs automatically: build and pack, the tests on net10.0,
    the breaking-change check, and a wait for GitHub Copilot's review.
 6. Address any review feedback.
 
@@ -138,7 +137,7 @@ dotnet run --project _atom/_atom.csproj -- gen
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| **Validate** | Pull requests into `main` or manual dispatch | Build, pack, test on .NET 8/9/10, check breaking changes, and wait for Copilot review |
+| **Validate** | Pull requests into `main` or manual dispatch | Build, pack, test on .NET 10, check breaking changes, and wait for Copilot review |
 | **Build** | Pushes to `main`, `feature/**` or `patch/**`; releases; manual dispatch | Pack, test, publish to NuGet, unlist superseded prereleases, and (for stable versions) upload packages to the published GitHub release and publish DocFX documentation |
 | **Cleanup Prereleases** | Manual dispatch with a stable-version input | Unlist prerelease packages below the supplied version |
 | **Dependabot Enable auto-merge** | Pull requests into `main` from `dependabot[bot]` | Enable auto-merge using the configured PAT secret |
