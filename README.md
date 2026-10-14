@@ -15,8 +15,8 @@ build module that turns those snapshots into CI checks and automates PR and pack
 | Package | What it does | Targets |
 |---------|--------------|---------|
 | [`Invex.RepoUtils.PublicApiAnalyzers`](https://www.nuget.org/packages/Invex.RepoUtils.PublicApiAnalyzers) | Roslyn analyzer that flags public members not annotated as part of the public API surface. | `netstandard2.0` |
-| [`Invex.RepoUtils.TestUtils`](https://www.nuget.org/packages/Invex.RepoUtils.TestUtils) | Test utilities for snapshot-testing your assembly's public API surface. | `netstandard2.0`, `net8.0`, `net9.0`, `net10.0` |
-| [`Invex.RepoUtils.Atom.Module`](https://www.nuget.org/packages/Invex.RepoUtils.Atom.Module) | Atom build module with breaking-change, Dependabot, Copilot-review, DocFX and NuGet-cleanup building blocks. | `net8.0`, `net9.0`, `net10.0` |
+| [`Invex.RepoUtils.TestUtils`](https://www.nuget.org/packages/Invex.RepoUtils.TestUtils) | Test utilities for snapshot-testing your assembly's public API surface. | `netstandard2.0`, `net10.0` |
+| [`Invex.RepoUtils.Atom.Module`](https://www.nuget.org/packages/Invex.RepoUtils.Atom.Module) | Atom build module with breaking-change, Dependabot, Copilot-review, DocFX and NuGet-cleanup building blocks. | `net10.0` |
 
 ## Features
 

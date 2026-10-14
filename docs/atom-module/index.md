@@ -17,7 +17,7 @@ This module provides:
 dotnet add package Invex.RepoUtils.Atom.Module
 ```
 
-The package targets `net8.0`, `net9.0`, and `net10.0`.
+The package targets `net10.0`.
 
 ## Quick Start
 
