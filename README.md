@@ -142,7 +142,7 @@ Full documentation: [https://invex-games.github.io/dotnet-repo-utils/](https://i
 
 ## Development
 
-The repository requires the .NET 10 SDK (see `global.json`).
+The repository requires the .NET 11 SDK (see `global.json`).
 
 ```shell
 dotnet build Invex.RepoUtils.slnx
