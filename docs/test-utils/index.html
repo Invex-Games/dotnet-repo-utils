@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Test Utilities | Invex .NET Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Test Utilities | Invex .NET Repo Utils ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/test-utils/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon.png" alt="Invex .NET Repo Utils">
+            Invex .NET Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="test-utilities">Test Utilities</h1>
+
+<p><code>Invex.RepoUtils.TestUtils</code> is a test utility library that makes it easy to snapshot-test the public API surface of your assemblies. It uses reflection to extract all public types and their members, serialises the result to JSON, and pairs well with <a href="https://github.com/VerifyTests/Verify">Verify</a> for approval-based testing.</p>
+<h2 id="overview">Overview</h2>
+<p>When combined with the <a href="../public-api-analyzers/index.html">PublicApiAnalyzers</a> package, <code>TestUtils</code> provides a safety net that catches unintentional public API changes during code review. Any modification to your public surface will cause a snapshot diff, making breaking changes immediately visible in pull requests.</p>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-shell">dotnet add package Invex.RepoUtils.TestUtils
+</code></pre>
+<p>The package targets <code>netstandard2.0</code> and <code>net10.0</code>, so it works in test projects on <code>net10.0</code> and on
+any other framework that supports <code>netstandard2.0</code>.</p>
+<h2 id="dependencies">Dependencies</h2>
+<ul>
+<li><a href="https://www.nuget.org/packages/JetBrains.Annotations">JetBrains.Annotations</a> — for <code>[PublicAPI]</code> attribute</li>
+<li><a href="https://www.nuget.org/packages/System.Text.Json">System.Text.Json</a> — on <code>netstandard2.0</code> only, for serialization</li>
+</ul>
+<p>The package does not depend on a snapshot library. Add one to your test project; the examples use
+<a href="https://www.nuget.org/packages/Verify.NUnit">Verify.NUnit</a>.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="basic-api-surface-snapshot">Basic API Surface Snapshot</h3>
+<p>Call <a class="xref" href="../../api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html#Invex_RepoUtils_TestUtils_PublicApiSurfaceTestUtil_GetPublicApiSurface_System_Reflection_Assembly_">GetPublicApiSurface(Assembly)</a> with the assembly you want to inspect. The returned JSON string can be verified with your preferred snapshot testing library; with Verify, <code>VerifyJson</code> stores it as formatted JSON:</p>
+<pre><code class="lang-csharp">using Invex.RepoUtils.TestUtils;
+
+[TestFixture]
+public class ApiSurfaceTests
+{
+    [Test]
+    public Task VerifyPublicApiSurface() =&gt;
+        VerifyJson(PublicApiSurfaceTestUtil.GetPublicApiSurface(typeof(MyLibraryType).Assembly));
+}
+</code></pre>
+<h3 id="what-gets-captured">What Gets Captured</h3>
+<p>The utility inspects the target assembly with reflection and records:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Captured information</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Types</strong></td>
+<td>Full name of every top-level public type (<code>Type.IsPublic</code>), sorted by name</td>
+</tr>
+<tr>
+<td><strong>Members</strong></td>
+<td>Name of every public instance and static field, property and method declared on the type, sorted by name</td>
+</tr>
+</tbody>
+</table>
+<p>Only names are recorded: member types, return types and parameters are not part of the snapshot, so a signature
+change that keeps the member name does not change the output.</p>
+<p>The following are <strong>excluded</strong>:</p>
+<ul>
+<li>Non-public types and members, and nested types</li>
+<li>Inherited members (only members declared on the type itself are listed)</li>
+<li>Special-name methods (property and event accessors, operators); the property or field itself is still listed</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Public members the compiler generates are included. Records, for example, contribute <code>&lt;Clone&gt;$</code>, <code>Deconstruct</code>,
+<code>Equals</code>, <code>GetHashCode</code> and <code>ToString</code>, and enums contribute <code>value__</code>.</p>
+</div>
+<h3 id="output-format">Output Format</h3>
+<p>The output is a JSON array of types, each containing its public members:</p>
+<pre><code class="lang-json">[
+  {
+    &quot;Name&quot;: &quot;MyNamespace.MyClass&quot;,
+    &quot;Members&quot;: [
+      { &quot;Name&quot;: &quot;Execute&quot; },
+      { &quot;Name&quot;: &quot;Value&quot; }
+    ]
+  }
+]
+</code></pre>
+<h3 id="workflow-integration">Workflow Integration</h3>
+<p>The recommended workflow is:</p>
+<ol>
+<li><strong>Write a test</strong> that snapshots your public API surface.</li>
+<li><strong>Commit the <code>.verified.txt</code> file</strong> alongside your test code.</li>
+<li><strong>On PR</strong>, any changes to the public API will cause the snapshot to differ.</li>
+<li><strong>Review the diff</strong> — if the change is intentional, accept the new snapshot.</li>
+<li><strong>The <a href="../atom-module/breaking-changes.html">breaking change check</a></strong> uses these snapshot files to determine if a version bump is required.</li>
+</ol>
+<h3 id="example-test-project-setup">Example Test Project Setup</h3>
+<pre><code class="lang-xml">&lt;Project Sdk=&quot;Microsoft.NET.Sdk&quot;&gt;
+  &lt;PropertyGroup&gt;
+    &lt;!-- netstandard2.0 or net10.0 (and anything that can consume them) is supported --&gt;
+    &lt;TargetFramework&gt;net10.0&lt;/TargetFramework&gt;
+  &lt;/PropertyGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include=&quot;Invex.RepoUtils.TestUtils&quot; Version=&quot;*&quot; /&gt;
+    &lt;PackageReference Include=&quot;NUnit&quot; Version=&quot;*&quot; /&gt;
+    &lt;PackageReference Include=&quot;Verify.NUnit&quot; Version=&quot;*&quot; /&gt;
+  &lt;/ItemGroup&gt;
+
+  &lt;ItemGroup&gt;
+    &lt;ProjectReference Include=&quot;..\MyLibrary\MyLibrary.csproj&quot; /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+</code></pre>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../public-api-analyzers/index.html">Public API Analyzers</a></li>
+<li><a href="../atom-module/breaking-changes.html">Breaking Change Detection</a></li>
+<li><a class="xref" href="../../api/Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html">PublicApiSurfaceTestUtil</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/test-utils/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex .NET Repo Utils · MIT License · Invex Games
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

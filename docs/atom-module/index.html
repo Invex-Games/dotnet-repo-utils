@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Atom Build Module | Invex .NET Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Atom Build Module | Invex .NET Repo Utils ">
+      
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      <meta name="docfx:rel" content="../../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/atom-module/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../images/icon.png" alt="Invex .NET Repo Utils">
+            Invex .NET Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="atom-build-module">Atom Build Module</h1>
+
+<p><code>Invex.RepoUtils.Atom.Module</code> is an <a href="https://github.com/Invex-Games/atom">Atom</a> build module that contributes reusable, opinionated CI/CD building blocks for .NET repositories. Add the interfaces you need to your Atom <code>IBuild</code> definition and wire the provided targets into your workflows. Use it when your repository builds with Atom and runs on GitHub Actions.</p>
+<h2 id="overview">Overview</h2>
+<p>This module provides:</p>
+<ul>
+<li><strong>Targets</strong> — Ready-to-use build targets that perform specific CI/CD actions (e.g., approve Dependabot PRs, check for breaking changes).</li>
+<li><strong>Helpers</strong> — Shared logic interfaces that the targets consume (e.g., API surface diffing, GitHub PR context).</li>
+<li><strong>Models</strong> — Data types representing breaking changes, releases, and diffs.</li>
+<li><strong>Extensions</strong> — Injection options for wiring GitHub-specific values into workflows.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-shell">dotnet add package Invex.RepoUtils.Atom.Module
+</code></pre>
+<p>The package targets <code>net10.0</code>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<p>Add the desired interfaces to your Atom build definition:</p>
+<pre><code class="lang-csharp">[BuildDefinition]
+[GenerateEntryPoint]
+internal interface IBuild :
+    IWorkflowBuildDefinition,
+    IApproveDependabotPr,
+    ICheckPrForBreakingChanges
+{
+    // Point the breaking-change check at your public API definition files.
+    IEnumerable&lt;RootedPath&gt; ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =&gt;
+        RootedFileSystem
+            .Directory
+            .GetFiles(RootedFileSystem.AtomRootDirectory / &quot;tests&quot;, &quot;*.verified.txt&quot;, SearchOption.AllDirectories)
+            .Select(RootedFileSystem.CreateRootedPath);
+}
+</code></pre>
+<h2 id="whats-in-the-box">What's in the box</h2>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Kind</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html">ICheckPrForBreakingChanges</a></td>
+<td>Target</td>
+<td>Detects public API breaking changes in a PR and reports the result as a GitHub check run.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html">IApproveDependabotPr</a></td>
+<td>Target</td>
+<td>Enables auto-merge on pull requests opened by <code>dependabot[bot]</code>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html">IWaitForCopilotReview</a></td>
+<td>Target</td>
+<td>Blocks until GitHub Copilot has finished reviewing a PR (e.g. before enabling auto-merge).</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html">IApiSurfaceHelper</a></td>
+<td>Helper</td>
+<td>Diffs API definition files between two commits and classifies major/minor changes.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html">IPrBreakingChangeHelper</a></td>
+<td>Helper</td>
+<td>Orchestrates the full PR breaking-change check against the latest release baseline.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html">IGithubPrHelper</a></td>
+<td>Helper</td>
+<td>Surfaces the GitHub pull-request number parameter for PR-scoped targets.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html">ICopilotReviewHelper</a></td>
+<td>Helper</td>
+<td>Polls a pull request until GitHub Copilot has finished reviewing it, failing on timeout.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html">IDocFxHelper</a></td>
+<td>Helper</td>
+<td>Builds, serves and publishes DocFX documentation to the <code>gh-pages</code> branch.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html">INugetPackageUnlistHelper</a></td>
+<td>Helper</td>
+<td>Unlists superseded prereleases (or all prereleases below a stable version) via the NuGet API, with a build-report summary.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../../api/Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.html">InjectionOptionsExtensions</a></td>
+<td>Extension</td>
+<td>Adds <code>BuildOptions.Inject.Github.PullRequestNumber</code> and <code>BuildOptions.Inject.Github.DependabotEnableAutoMergePat</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Packing, testing, NuGet publishing and uploading packages to a GitHub release are not targets of this module. Repositories
+define those targets themselves using Atom's own <code>Invex.Atom.Module.Dotnet</code> and <code>Invex.Atom.Module.GitHubWorkflows</code>
+helpers, as this repository's <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/_atom/IBuild.cs"><code>_atom/IBuild.cs</code></a> does.</p>
+</div>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="targets.html">Targets</a> — available build targets</li>
+<li><a href="helpers.html">Helpers</a> — helper interfaces for custom builds</li>
+<li><a href="breaking-changes.html">Breaking Change Detection</a> — how the API surface check works</li>
+<li><a href="dependabot.html">Dependabot Auto-Merge</a> — automated dependency update merging</li>
+<li><a href="../../api/index.html">API Reference</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/atom-module/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex .NET Repo Utils · MIT License · Invex Games
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

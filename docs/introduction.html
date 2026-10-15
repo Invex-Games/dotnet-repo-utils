@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Introduction | Invex .NET Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Introduction | Invex .NET Repo Utils ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/introduction.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="Invex .NET Repo Utils">
+            Invex .NET Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="introduction">Introduction</h1>
+
+<p>Invex.RepoUtils is the shared tooling the Invex team uses to keep the public API of its .NET libraries
+deliberate and its version numbers honest. This page explains what the three packages do, how they fit
+together, and when they are (and are not) a good fit for your repository.</p>
+<h2 id="what-it-is">What it is</h2>
+<p>Three packages that each solve one part of the same problem, &quot;a public API change should never ship by
+accident&quot;:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Role in the chain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Invex.RepoUtils.PublicApiAnalyzers</code></td>
+<td><strong>Declare.</strong> At compile time, every effectively-public member must be marked as intentional API.</td>
+</tr>
+<tr>
+<td><code>Invex.RepoUtils.TestUtils</code></td>
+<td><strong>Record.</strong> A test snapshots the assembly's public surface, so any change shows up as a diff.</td>
+</tr>
+<tr>
+<td><code>Invex.RepoUtils.Atom.Module</code></td>
+<td><strong>Enforce.</strong> In CI, the snapshot diff since the last release decides whether the version bump is big enough.</td>
+</tr>
+</tbody>
+</table>
+<p>The Atom module also carries the repository chores that every Invex library shares: enabling auto-merge on
+Dependabot pull requests, waiting for GitHub Copilot's review, publishing DocFX sites to GitHub Pages and
+unlisting superseded prerelease packages from NuGet.</p>
+<h2 id="when-to-use-it">When to use it</h2>
+<ul>
+<li>You publish NuGet libraries and want public API changes to be visible and reviewable in every pull request.</li>
+<li>You version with SemVer and want CI to refuse a release that removes API without a major bump.</li>
+<li>You already build with <a href="https://github.com/Invex-Games/atom">Atom</a>, or are willing to, and want ready-made
+targets instead of hand-written GitHub Actions YAML.</li>
+</ul>
+<p>The packages are independent: the analyzer and the test utility work in any repository and with any test
+framework, and only the CI pieces need Atom.</p>
+<h3 id="when-not-to-use-it">When not to use it</h3>
+<ul>
+<li><strong>Applications and internal tools.</strong> If nothing consumes your assembly as a library, annotating its public
+surface adds noise without protecting anyone.</li>
+<li><strong>Exact binary-compatibility checks.</strong> The snapshot records type names and member names, not signatures, and
+the breaking-change check is line-based. For signature-level compatibility, use the .NET SDK's package
+validation (<code>EnablePackageValidation</code>) or a dedicated API-compat tool alongside it.</li>
+<li><strong>CI systems other than GitHub Actions.</strong> The Atom targets talk to the GitHub API (check runs, pull requests,
+GraphQL auto-merge) and assume GitHub-hosted repositories.</li>
+</ul>
+<h2 id="key-concepts-at-a-glance">Key concepts at a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Effectively public</strong></td>
+<td>Public all the way up the containing-type chain. Only these members are reported by <code>IPAA0001</code>.</td>
+</tr>
+<tr>
+<td><strong>Valid attribute</strong></td>
+<td><code>[PublicAPI]</code> by default; more names can be added in <code>.editorconfig</code>. Annotating a type covers its members.</td>
+</tr>
+<tr>
+<td><strong>API surface snapshot</strong></td>
+<td>JSON listing each top-level public type with its public member names, committed as a <code>*.verified.txt</code> file.</td>
+</tr>
+<tr>
+<td><strong>API definition files</strong></td>
+<td>The text files the breaking-change check diffs; usually those snapshots.</td>
+</tr>
+<tr>
+<td><strong>Baseline release</strong></td>
+<td>The most recent <code>v{semver}</code> Git tag older than the current build version.</td>
+</tr>
+<tr>
+<td><strong>Major / minor change</strong></td>
+<td>A line removed from (major) or added to (minor) an API definition file since the baseline.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="design-principles">Design principles</h2>
+<ul>
+<li><strong>Exposure is a decision.</strong> Making something public should require an explicit, reviewable act, not just the
+<code>public</code> keyword.</li>
+<li><strong>Fail early, at the cheapest point.</strong> The analyzer catches unintended exposure while you type; the snapshot
+catches it in the test run; the CI check catches the versioning mistake before merge.</li>
+<li><strong>Plain text as the contract.</strong> Snapshots are ordinary files in the repository, so reviewers see API changes in
+the normal diff and tools need nothing more than <code>git diff</code>.</li>
+<li><strong>Composable building blocks.</strong> Each Atom target and helper is an interface you mix into your build definition;
+take the ones you need and call the helpers from your own targets.</li>
+<li><strong>Few false positives.</strong> The analyzer ignores constructors, accessors, overrides and compiler-generated members
+so that warnings point at real decisions.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="getting-started.html">Getting Started</a></li>
+<li><a href="public-api-analyzers/index.html">Public API Analyzers</a></li>
+<li><a href="test-utils/index.html">Test Utilities</a></li>
+<li><a href="atom-module/index.html">Atom Build Module</a></li>
+<li><a href="../api/index.html">API Reference</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/introduction.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex .NET Repo Utils · MIT License · Invex Games
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
