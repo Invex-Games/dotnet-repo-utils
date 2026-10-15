@@ -9,7 +9,7 @@ namespace Invex.RepoUtils.Atom.Module.Helpers;
 ///     publishes the generated output to a project's <c>gh-pages</c> branch for GitHub Pages hosting.
 /// </summary>
 [PublicAPI]
-public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
+public interface IDocFxHelper : IDotnetCliHelper, IGitHubHelper, ISetupBuildInfo
 {
     /// <summary>
     ///     The name of the build artifact (and corresponding output sub-directory) that contains the
