@@ -9,7 +9,7 @@ Automatically enables auto-merge on pull requests opened by `dependabot[bot]`.
 ### Interface
 
 ```csharp
-public interface IApproveDependabotPr : IGithubHelper, IGithubPrHelper
+public interface IApproveDependabotPr : IGitHubHelper, IGithubPrHelper
 ```
 
 ### Target
@@ -47,11 +47,11 @@ new("Dependabot Enable auto-merge")
                 BuildOptions.Inject.Github.PullRequestNumber,
                 BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                 BuildOptions.Target.RunIfWorkflowCondition(
-                    TextExpressions.Github.GithubActor.EqualToString("dependabot[bot]")),
+                    TextExpressions.GitHub.GitHubActor.EqualToString("dependabot[bot]")),
             ],
         },
     ],
-    Types = [WorkflowTypes.Github.Action],
+    Types = [WorkflowTypes.GitHub.Action],
 }
 ```
 
@@ -64,14 +64,14 @@ Detects public API breaking changes in a pull request and reports the result as 
 ### Interface
 
 ```csharp
-public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBuildInfo, IGithubHelper, IGithubPrHelper
+public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBuildInfo, IGitHubHelper, IGithubPrHelper
 ```
 
 ### Target
 
 | Name | Required Parameters | Consumed Variables | Description |
 |------|-------------------|-------------------|-------------|
-| `CheckPrForBreakingChanges` | `GithubToken`, `GithubPullRequestNumber` | `BuildVersion` (from `SetupBuildInfo`) | Runs the breaking change analysis and publishes a GitHub check run. |
+| `CheckPrForBreakingChanges` | `GitHubToken`, `GithubPullRequestNumber` | `BuildVersion` (from `SetupBuildInfo`) | Runs the breaking change analysis and publishes a GitHub check run. |
 
 ### Configuration
 
@@ -87,8 +87,8 @@ new(nameof(CheckPrForBreakingChanges))
     Options =
     [
         BuildOptions.Target.SuppressArtifactPublishing,
-        BuildOptions.Inject.Secret(nameof(GithubToken)),
-        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+        BuildOptions.GitHub.TokenPermissions.Set(new Permissions.Exact(new()
         {
             IdTokens = PermissionsLevel.Write,
             Contents = PermissionsLevel.Write,
@@ -97,7 +97,7 @@ new(nameof(CheckPrForBreakingChanges))
         })),
         BuildOptions.Inject.Github.PullRequestNumber,
         BuildOptions.Target.RunIfWorkflowCondition(
-            TextExpressions.Github.GithubEventName.EqualToString("pull_request")),
+            TextExpressions.GitHub.GitHubEventName.EqualToString("pull_request")),
     ],
 }
 ```
@@ -113,7 +113,7 @@ Blocks until GitHub Copilot has finished reviewing a pull request. This fills th
 ### Interface
 
 ```csharp
-public interface IWaitForCopilotReview : ICopilotReviewHelper, IGithubHelper, IGithubPrHelper
+public interface IWaitForCopilotReview : ICopilotReviewHelper, IGitHubHelper, IGithubPrHelper
 ```
 
 ### Target
@@ -136,7 +136,7 @@ public interface IWaitForCopilotReview : ICopilotReviewHelper, IGithubHelper, IG
 | `CopilotReviewerLogin` | `string` | The login of the Copilot reviewer bot to wait for. Defaults to `"Copilot"`. |
 | `CopilotReviewTimeoutSeconds` | `int` | Maximum time, in seconds, to wait before failing. Defaults to `600`. |
 | `CopilotReviewPollIntervalSeconds` | `int` | Delay, in seconds, between polls. Defaults to `15`. |
-| `CopilotReviewToken` | `string?` | Optional PAT used to read the review state; falls back to `GithubToken`. Defined as a secret. |
+| `CopilotReviewToken` | `string?` | Optional PAT used to read the review state; falls back to `GitHubToken`. Defined as a secret. |
 
 ### Workflow Example
 
@@ -146,8 +146,8 @@ new(nameof(WaitForCopilotReview))
     Options =
     [
         BuildOptions.Target.SuppressArtifactPublishing,
-        BuildOptions.Inject.Secret(nameof(GithubToken)),
-        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+        BuildOptions.GitHub.TokenPermissions.Set(new Permissions.Exact(new()
         {
             PullRequests = PermissionsLevel.Read,
         })),
