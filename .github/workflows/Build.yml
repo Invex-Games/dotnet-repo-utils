@@ -30,6 +30,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
+
       - name: SetupBuildInfo
         id: SetupBuildInfo
         run: dotnet run --project _atom/_atom.csproj -- SetupBuildInfo --skip --headless
@@ -47,6 +52,11 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
+
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
 
       - name: PackProjects
         id: PackProjects
@@ -86,6 +96,11 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
+
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
 
       - name: TestProjects
         id: TestProjects
@@ -127,6 +142,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
+
       - name: Retrieve Invex.RepoUtils.Atom.Module
         uses: actions/download-artifact@v8
         with:
@@ -167,6 +187,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
+
       - name: UnlistSupersededPrereleases
         id: UnlistSupersededPrereleases
         run: dotnet run --project _atom/_atom.csproj -- UnlistSupersededPrereleases --skip --headless
@@ -191,6 +216,11 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
+
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
 
       - name: Retrieve Invex.RepoUtils.Atom.Module
         uses: actions/download-artifact@v8
@@ -232,6 +262,11 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
+
       - name: BuildDocs
         id: BuildDocs
         run: dotnet run --project _atom/_atom.csproj -- BuildDocs --skip --headless
@@ -259,6 +294,11 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
+
+      - name: Setup .NET 11.0.100-rc.2.26504.105
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 11.0.100-rc.2.26504.105
 
       - name: Retrieve GeneratedDocs
         uses: actions/download-artifact@v8

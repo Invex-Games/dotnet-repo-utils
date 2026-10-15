@@ -16,8 +16,8 @@ DocFX site under `docs/`. The solution is `Invex.RepoUtils.slnx`.
 
 ## Build, test & cleanup
 
-The .NET 10 SDK is required by `global.json`; test projects target
-`net10.0`. C# `LangVersion 14`, `ImplicitUsings`, and `Nullable` are enabled, and
+The .NET 11 SDK (currently RC2) is required by `global.json`; test projects target
+`net10.0`. C# `LangVersion 15`, `ImplicitUsings`, and `Nullable` are enabled, and
 `TreatWarningsAsErrors` is on.
 
 ```shell
