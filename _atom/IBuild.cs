@@ -10,13 +10,13 @@ namespace Atom;
 [GenerateEntryPoint]
 [GenerateSolutionModel]
 internal interface IBuild : IWorkflowBuildDefinition,
-    IGithubWorkflows,
+    IGitHubWorkflows,
     IGitVersion,
     IDotnetPackHelper,
     IDotnetTestHelper,
     INugetHelper,
     INugetPackageUnlistHelper,
-    IGithubReleaseHelper,
+    IGitHubReleaseHelper,
     IDocFxHelper,
     IApproveDependabotPr,
     ICheckPrForBreakingChanges,
@@ -156,7 +156,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
     Target PushToRelease =>
         d => d
             .DescribedAs("Pushes the packages to the release feed.")
-            .RequiresParam(nameof(GithubToken))
+            .RequiresParam(nameof(GitHubToken))
             .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildVersion))
             .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildId))
             .ConsumesArtifacts(nameof(PackProjects), ProjectsToPack)
@@ -187,11 +187,11 @@ internal interface IBuild : IWorkflowBuildDefinition,
     Target PublishDocs =>
         t => t
             .DescribedAs("Publishes the DocFX documentation to Github Pages.")
-            .RequiresParam(nameof(GithubToken))
+            .RequiresParam(nameof(GitHubToken))
             .ConsumesArtifact(nameof(BuildDocs), GeneratedDocsArtifactName)
             .DependsOn(nameof(SetupBuildInfo))
             .Executes(cancellationToken =>
-                PublishDocFxDocsToGithub(GithubToken, GeneratedDocsArtifactName, cancellationToken));
+                PublishDocFxDocsToGithub(GitHubToken, GeneratedDocsArtifactName, cancellationToken));
 
     IEnumerable<RootedPath> ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =>
         RootedFileSystem
@@ -237,8 +237,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     Options =
                     [
                         BuildOptions.Target.SuppressArtifactPublishing,
-                        BuildOptions.Inject.Secret(nameof(GithubToken)),
-                        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+                        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+                        BuildOptions.GitHub.TokenPermissions.Set(new Permissions.Exact(new()
                         {
                             IdTokens = PermissionsLevel.Write,
                             Contents = PermissionsLevel.Write,
@@ -247,19 +247,19 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         })),
                         BuildOptions.Inject.Github.PullRequestNumber,
                         BuildOptions.Target.RunIfWorkflowCondition(
-                            TextExpressions.Github.GithubEventName.EqualToString("pull_request")),
+                            TextExpressions.GitHub.GitHubEventName.EqualToString("pull_request")),
                     ],
                 },
                 new(nameof(WaitForCopilotReview))
                 {
                     Options =
                     [
-                        BuildOptions.Inject.Secret(nameof(GithubToken)),
+                        BuildOptions.Inject.Secret(nameof(GitHubToken)),
                         BuildOptions.Inject.Github.PullRequestNumber,
                     ],
                 },
             ],
-            Types = [WorkflowTypes.Github.Action],
+            Types = [WorkflowTypes.GitHub.Action],
         },
         new("Build")
         {
@@ -270,7 +270,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                 {
                     IncludedBranches = ["main", "feature/**", "patch/**"],
                 },
-                new GithubTrigger(new On.Release([On.Release.ReleaseType.released])),
+                new GitHubTrigger(new On.Release([On.Release.ReleaseType.released])),
             ],
             Targets =
             [
@@ -298,8 +298,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
                 {
                     Options =
                     [
-                        BuildOptions.Inject.Secret(nameof(GithubToken)),
-                        new GithubTokenPermissionsOption(new Permissions.Exact(new()
+                        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+                        new GitHubTokenPermissionsOption(new Permissions.Exact(new()
                         {
                             Contents = PermissionsLevel.Write,
                         })),
@@ -314,8 +314,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
                 {
                     Options =
                     [
-                        BuildOptions.Inject.Secret(nameof(GithubToken)),
-                        new GithubTokenPermissionsOption(new Permissions.Exact(new()
+                        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+                        new GitHubTokenPermissionsOption(new Permissions.Exact(new()
                         {
                             Contents = PermissionsLevel.Write,
                         })),
@@ -327,7 +327,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     ],
                 },
             ],
-            Types = [WorkflowTypes.Github.Action],
+            Types = [WorkflowTypes.GitHub.Action],
         },
         new("Dependabot Enable auto-merge")
         {
@@ -341,11 +341,11 @@ internal interface IBuild : IWorkflowBuildDefinition,
                         BuildOptions.Inject.Github.PullRequestNumber,
                         BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                         BuildOptions.Target.RunIfWorkflowCondition(
-                            TextExpressions.Github.GithubActor.EqualToString("dependabot[bot]")),
+                            TextExpressions.GitHub.GitHubActor.EqualToString("dependabot[bot]")),
                     ],
                 },
             ],
-            Types = [WorkflowTypes.Github.Action],
+            Types = [WorkflowTypes.GitHub.Action],
         },
         new("Cleanup Prereleases")
         {
@@ -365,16 +365,16 @@ internal interface IBuild : IWorkflowBuildDefinition,
                     ],
                 },
             ],
-            Types = [WorkflowTypes.Github.Action],
+            Types = [WorkflowTypes.GitHub.Action],
         },
-        WorkflowPresets.Github.Dependabot(new()
+        WorkflowPresets.GitHub.Dependabot(new()
         {
             Registries = new Dictionary<string, DependabotRegistry>
             {
                 ["nuget"] = new()
                 {
                     Type = RegistryType.NugetFeed,
-                    Url = WorkflowLabels.Github.Dependabot.NugetUrl,
+                    Url = WorkflowLabels.GitHub.Dependabot.NugetUrl,
                 },
             },
             Updates =
@@ -382,7 +382,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
                 new()
                 {
                     Directory = "/",
-                    PackageEcosystem = WorkflowLabels.Github.Dependabot.NugetEcosystem,
+                    PackageEcosystem = WorkflowLabels.GitHub.Dependabot.NugetEcosystem,
                     Registries = new DependabotRegistries.Named("nuget"),
                     Groups = new Dictionary<string, DependabotGroup>
                     {
