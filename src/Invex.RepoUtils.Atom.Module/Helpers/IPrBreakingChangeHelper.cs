@@ -29,7 +29,7 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
         string githubToken,
         CancellationToken cancellationToken)
     {
-        var owner = Github.Variables.RepositoryOwner;
+        var owner = GitHub.Variables.RepositoryOwner;
         Logger.LogDebug("Target repository owner: {Owner}", owner);
 
         // The tip of the current branch represents the state being proposed by the pull request.
@@ -251,7 +251,7 @@ public interface IPrBreakingChangeHelper : IApiSurfaceHelper
         CancellationToken cancellationToken)
     {
         // The repository variable is in "owner/name" form; we only need the repository name here.
-        var repository = Github
+        var repository = GitHub
             .Variables
             .Repository
             .Split('/')

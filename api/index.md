@@ -82,8 +82,8 @@ internal interface IBuild : IWorkflowBuildDefinition, ICheckPrForBreakingChanges
                 {
                     Options =
                     [
-                        BuildOptions.Inject.Secret(nameof(GithubToken)),
-                        BuildOptions.Github.TokenPermissions.Set(new Permissions.Exact(new()
+                        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+                        BuildOptions.GitHub.TokenPermissions.Set(new Permissions.Exact(new()
                         {
                             IdTokens = PermissionsLevel.Write,
                             Contents = PermissionsLevel.Write,
@@ -94,7 +94,7 @@ internal interface IBuild : IWorkflowBuildDefinition, ICheckPrForBreakingChanges
                     ],
                 },
             ],
-            Types = [WorkflowTypes.Github.Action],
+            Types = [WorkflowTypes.GitHub.Action],
         },
     ];
 }

@@ -253,7 +253,7 @@ Generates, serves, and publishes [DocFX](https://dotnet.github.io/docfx/) docume
 ### Interface
 
 ```csharp
-public interface IDocFxHelper : IDotnetCliHelper, IGithubHelper, ISetupBuildInfo
+public interface IDocFxHelper : IDotnetCliHelper, IGitHubHelper, ISetupBuildInfo
 ```
 
 ### Members

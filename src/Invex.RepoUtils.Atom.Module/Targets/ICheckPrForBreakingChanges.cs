@@ -5,7 +5,7 @@
 ///     and reports the result back to GitHub as a check run.
 /// </summary>
 [PublicAPI]
-public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBuildInfo, IGithubHelper, IGithubPrHelper
+public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBuildInfo, IGitHubHelper, IGithubPrHelper
 {
     /// <summary>
     ///     The set of API definition files whose changes should be analyzed for breaking changes.
@@ -20,11 +20,11 @@ public interface ICheckPrForBreakingChanges : IPrBreakingChangeHelper, ISetupBui
     /// </summary>
     Target CheckPrForBreakingChanges =>
         t => t
-            .RequiresParam(nameof(GithubToken), nameof(GithubPullRequestNumber))
+            .RequiresParam(nameof(GitHubToken), nameof(GithubPullRequestNumber))
             .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildVersion))
             .Executes(async cancellationToken => await PerformPrBreakingChangeCheck(BuildVersion,
                 GithubPullRequestNumber,
                 BreakingChangeFilesToCheck,
-                GithubToken,
+                GitHubToken,
                 cancellationToken));
 }

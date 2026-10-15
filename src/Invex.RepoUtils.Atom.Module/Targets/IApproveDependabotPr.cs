@@ -5,7 +5,7 @@ namespace Invex.RepoUtils.Atom.Module.Targets;
 ///     Dependabot, allowing dependency update PRs to merge once their required checks pass.
 /// </summary>
 [PublicAPI]
-public interface IApproveDependabotPr : IGithubHelper, IGithubPrHelper
+public interface IApproveDependabotPr : IGitHubHelper, IGithubPrHelper
 {
     /// <summary>
     ///     The GitHub actor name used by Dependabot. Only pull requests opened by this actor are eligible
@@ -32,11 +32,11 @@ public interface IApproveDependabotPr : IGithubHelper, IGithubPrHelper
             .RequiresParam(nameof(GithubPullRequestNumber), nameof(DependabotEnableAutoMergePat))
             .Executes(async cancellationToken =>
             {
-                var actor = Github.Variables.Actor;
-                var owner = Github.Variables.RepositoryOwner;
+                var actor = GitHub.Variables.Actor;
+                var owner = GitHub.Variables.RepositoryOwner;
 
                 // The repository variable is "owner/name"; keep only the repository name.
-                var repo = Github
+                var repo = GitHub
                     .Variables
                     .Repository
                     .Split('/')
