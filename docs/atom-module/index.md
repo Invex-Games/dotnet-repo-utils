@@ -57,7 +57,7 @@ internal interface IBuild :
 
 > [!NOTE]
 > Packing, testing, NuGet publishing and uploading packages to a GitHub release are not targets of this module. Repositories
-> define those targets themselves using Atom's own `Invex.Atom.Module.Dotnet` and `Invex.Atom.Module.GithubWorkflows`
+> define those targets themselves using Atom's own `Invex.Atom.Module.Dotnet` and `Invex.Atom.Module.GitHubWorkflows`
 > helpers, as this repository's [`_atom/IBuild.cs`](https://github.com/Invex-Games/dotnet-repo-utils/blob/main/_atom/IBuild.cs) does.
 
 ## See also

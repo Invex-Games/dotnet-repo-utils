@@ -62,11 +62,11 @@ new("Dependabot Enable auto-merge")
                 BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                 // Only run when the actor is dependabot[bot]
                 BuildOptions.Target.RunIfWorkflowCondition(
-                    TextExpressions.Github.GithubActor.EqualToString("dependabot[bot]")),
+                    TextExpressions.GitHub.GitHubActor.EqualToString("dependabot[bot]")),
             ],
         },
     ],
-    Types = [WorkflowTypes.Github.Action],
+    Types = [WorkflowTypes.GitHub.Action],
 }
 ```
 
@@ -75,14 +75,14 @@ new("Dependabot Enable auto-merge")
 You can also use the Atom Dependabot workflow preset to generate your `dependabot.yml`:
 
 ```csharp
-WorkflowPresets.Github.Dependabot(new()
+WorkflowPresets.GitHub.Dependabot(new()
 {
     Registries = new Dictionary<string, DependabotRegistry>
     {
         ["nuget"] = new()
         {
             Type = RegistryType.NugetFeed,
-            Url = WorkflowLabels.Github.Dependabot.NugetUrl,
+            Url = WorkflowLabels.GitHub.Dependabot.NugetUrl,
         },
     },
     Updates =
@@ -90,7 +90,7 @@ WorkflowPresets.Github.Dependabot(new()
         new()
         {
             Directory = "/",
-            PackageEcosystem = WorkflowLabels.Github.Dependabot.NugetEcosystem,
+            PackageEcosystem = WorkflowLabels.GitHub.Dependabot.NugetEcosystem,
             Registries = new DependabotRegistries.Named("nuget"),
             Groups = new Dictionary<string, DependabotGroup>
             {
