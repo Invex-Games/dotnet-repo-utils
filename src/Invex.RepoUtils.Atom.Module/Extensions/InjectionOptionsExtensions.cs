@@ -36,7 +36,7 @@ public static class InjectionOptionsExtensions
         /// </summary>
         public IBuildOption PullRequestNumber =>
             field ??= BuildOptions.Inject.Param(nameof(IGithubPrHelper.GithubPullRequestNumber),
-                TextExpressions.GitHub.GitHubEvent["number"]);
+                Tex.GitHub.Event["number"]);
 
         /// <summary>
         ///     Injects the <c>dependabot-enable-auto-merge-pat</c> secret as the
