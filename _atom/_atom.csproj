@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Invex.Atom.Module.GitHubWorkflows" Version="4.2.0" />
-    <PackageReference Include="Invex.Atom.Module.GitVersion" Version="4.2.0" />
+    <PackageReference Include="Invex.Atom.Module.GitHubWorkflows" Version="5.0.0-rc.5" />
+    <PackageReference Include="Invex.Atom.Module.GitVersion" Version="5.0.0-rc.5" />
   </ItemGroup>
 
   <ItemGroup>
