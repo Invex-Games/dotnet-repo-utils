@@ -41,7 +41,7 @@ dotnet add package Invex.RepoUtils.Atom.Module          # in your Atom build pro
 - `Invex.RepoUtils.TestUtils` depends on JetBrains.Annotations (and System.Text.Json on `netstandard2.0`).
   It returns a JSON string, so pair it with a snapshot library such as [Verify](https://github.com/VerifyTests/Verify).
 - `Invex.RepoUtils.Atom.Module` builds on `Invex.Atom.Module.GitHubWorkflows`, `Invex.Atom.Module.Dotnet` and
-  `Octokit.GraphQL`. Version 2 requires Atom 4 or later.
+  `Octokit.GraphQL`. Version 3 requires Atom 5 or later.
 
 ## Quick start
 

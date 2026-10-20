@@ -62,7 +62,7 @@ new("Dependabot Enable auto-merge")
                 BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                 // Only run when the actor is dependabot[bot]
                 BuildOptions.Target.RunIfWorkflowCondition(
-                    TextExpressions.GitHub.GitHubActor.EqualToString("dependabot[bot]")),
+                    Tex.GitHub.Actor.Eq("dependabot[bot]")),
             ],
         },
     ],

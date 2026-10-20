@@ -47,7 +47,7 @@ new("Dependabot Enable auto-merge")
                 BuildOptions.Inject.Github.PullRequestNumber,
                 BuildOptions.Inject.Github.DependabotEnableAutoMergePat,
                 BuildOptions.Target.RunIfWorkflowCondition(
-                    TextExpressions.GitHub.GitHubActor.EqualToString("dependabot[bot]")),
+                    Tex.GitHub.Actor.Eq("dependabot[bot]")),
             ],
         },
     ],
@@ -97,7 +97,7 @@ new(nameof(CheckPrForBreakingChanges))
         })),
         BuildOptions.Inject.Github.PullRequestNumber,
         BuildOptions.Target.RunIfWorkflowCondition(
-            TextExpressions.GitHub.GitHubEventName.EqualToString("pull_request")),
+            Tex.GitHub.EventName.Eq("pull_request")),
     ],
 }
 ```
