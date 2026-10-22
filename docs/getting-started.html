@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Getting Started | Invex .NET Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Getting Started | Invex .NET Repo Utils ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/getting-started.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="Invex .NET Repo Utils">
+            Invex .NET Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="getting-started">Getting Started</h1>
+
+<p>This guide takes a library from no API checks to a full chain: the analyzer marks intentional API, a test
+snapshots it, and an Atom target fails pull requests whose version bump does not match the change. Each step
+is useful on its own, so stop wherever you like.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download">.NET 10 SDK</a></li>
+<li>For the analyzer: any C# project (the analyzer targets <code>netstandard2.0</code>)</li>
+<li>For the test utilities: a test project targeting <code>net10.0</code>, or any framework that consumes <code>netstandard2.0</code></li>
+<li>For the Atom module: an <a href="https://github.com/Invex-Games/atom">Atom</a> build project targeting <code>net10.0</code></li>
+</ul>
+<h2 id="1-declare-your-public-api">1. Declare your public API</h2>
+<p>Install the analyzer in each library project, together with a <code>[PublicAPI]</code> attribute:</p>
+<pre><code class="lang-shell">dotnet add package Invex.RepoUtils.PublicApiAnalyzers
+dotnet add package JetBrains.Annotations
+</code></pre>
+<p>The analyzer now runs during every build and reports <code>IPAA0001</code> for each public member that is not covered
+by a valid attribute:</p>
+<pre><code class="lang-csharp">using JetBrains.Annotations;
+
+// Annotated: this type and its public members are intentionally part of the public API.
+[PublicAPI]
+public class MyService
+{
+    public string Name { get; set; } = &quot;&quot;;
+
+    public void Execute() { }
+}
+
+// IPAA0001: Public member 'InternalHelper' is missing [PublicAPI] or other valid attribute
+public class InternalHelper { }
+</code></pre>
+<p>Either annotate <code>InternalHelper</code> or make it <code>internal</code>.</p>
+<h2 id="2-snapshot-the-public-surface">2. Snapshot the public surface</h2>
+<p>Add the test utilities and a snapshot library to your test project:</p>
+<pre><code class="lang-shell">dotnet add package Invex.RepoUtils.TestUtils
+dotnet add package Verify.NUnit
+</code></pre>
+<p>Then write one test per library assembly:</p>
+<pre><code class="lang-csharp">using Invex.RepoUtils.TestUtils;
+
+[TestFixture]
+public class PublicApiTests
+{
+    [Test]
+    public Task VerifyPublicApiSurface() =&gt;
+        VerifyJson(PublicApiSurfaceTestUtil.GetPublicApiSurface(typeof(MyService).Assembly));
+}
+</code></pre>
+<p>Run <code>dotnet test</code>, accept the new snapshot, and commit <code>PublicApiTests.VerifyPublicApiSurface.verified.txt</code>.</p>
+<h2 id="3-check-pull-requests-in-ci">3. Check pull requests in CI</h2>
+<p>Add the Atom module to your build project:</p>
+<pre><code class="lang-shell">dotnet add _atom/_atom.csproj package Invex.RepoUtils.Atom.Module
+</code></pre>
+<p>Mix <code>ICheckPrForBreakingChanges</code> into your build definition and point it at the snapshot files:</p>
+<pre><code class="lang-csharp">using Invex.RepoUtils.Atom.Module.Targets;
+
+[BuildDefinition]
+[GenerateEntryPoint]
+internal interface IBuild : IWorkflowBuildDefinition, ICheckPrForBreakingChanges
+{
+    IEnumerable&lt;RootedPath&gt; ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =&gt;
+        RootedFileSystem
+            .Directory
+            .GetFiles(RootedFileSystem.AtomRootDirectory / &quot;tests&quot;, &quot;*.verified.txt&quot;, SearchOption.AllDirectories)
+            .Select(RootedFileSystem.CreateRootedPath);
+}
+</code></pre>
+<p>Add the <code>CheckPrForBreakingChanges</code> target to your pull-request workflow (see the workflow example in
+<a href="atom-module/targets.html#icheckprforbreakingchanges">Targets</a>), then regenerate the workflow YAML with <code>atom gen</code>.
+The target compares the snapshots against your latest <code>v{semver}</code> release tag and posts a GitHub check run.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li>Learn about the <a href="public-api-analyzers/rules.html">analyzer rules</a> and <a href="public-api-analyzers/configuration.html">configuration options</a></li>
+<li>See what the <a href="test-utils/index.html">snapshot captures</a></li>
+<li>Understand <a href="atom-module/breaking-changes.html">breaking change detection</a></li>
+<li>Add <a href="atom-module/dependabot.html">Dependabot auto-merge</a> and the other <a href="atom-module/targets.html">targets</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/docs/getting-started.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex .NET Repo Utils · MIT License · Invex Games
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
