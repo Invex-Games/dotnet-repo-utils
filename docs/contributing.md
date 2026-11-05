@@ -7,7 +7,7 @@ test it, how CI works and what a pull request needs. Contributions are welcome.
 
 ### Prerequisites
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 10.0.0 or later, rolling forward to the latest major)
+- [.NET 10 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 10.0.403 or later, rolling forward to the latest major)
 - Git
 - A C# IDE (Rider, VS Code with C# Dev Kit, or Visual Studio)
 
@@ -63,7 +63,7 @@ dotnet run --project _atom/_atom.csproj -- ServeDocs
 │   └── Invex.RepoUtils.TestUtils.Tests/
 ├── docs/                                     # Documentation (this site)
 ├── Directory.Build.props                     # Shared build settings
-├── global.json                               # Required .NET SDK (10.0.0+, latest major roll-forward)
+├── global.json                               # Required .NET SDK (10.0.403+, latest major roll-forward)
 ├── GitVersion.yml                            # Versioning configuration
 └── Invex.RepoUtils.slnx                      # Solution
 ```
