@@ -63,7 +63,7 @@ dotnet run --project _atom/_atom.csproj -- ServeDocs
 │   └── Invex.RepoUtils.TestUtils.Tests/
 ├── docs/                                     # Documentation (this site)
 ├── Directory.Build.props                     # Shared build settings
-├── global.json                               # Required .NET SDK (11.0.100+, latest major roll-forward)
+├── global.json                               # Required .NET SDK (11.0.100+, rolls forward within 11.x)
 ├── GitVersion.yml                            # Versioning configuration
 └── Invex.RepoUtils.slnx                      # Solution
 ```
