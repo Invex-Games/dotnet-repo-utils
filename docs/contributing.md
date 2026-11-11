@@ -32,7 +32,7 @@ dotnet test Invex.RepoUtils.slnx
 dotnet test Invex.RepoUtils.slnx --framework net10.0
 ```
 
-Tests target .NET 10. CI runs the tests and also packs the
+Tests target .NET 10 and .NET 11. CI runs the tests and also packs the
 three NuGet projects.
 
 ### Building the documentation
@@ -117,7 +117,7 @@ public class MyNewFeature
 2. Make your changes following the guidelines above.
 3. Ensure `dotnet build` and `dotnet test` pass locally.
 4. Open a pull request into `main`.
-5. The **Validate** workflow runs automatically: build and pack, the tests on net10.0,
+5. The **Validate** workflow runs automatically: build and pack, the tests on net10.0 and net11.0,
    the breaking-change check, and a wait for GitHub Copilot's review.
 6. Address any review feedback.
 
