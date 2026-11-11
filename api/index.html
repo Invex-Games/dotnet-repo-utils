@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>API Reference | Invex .NET Repo Utils </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="API Reference | Invex .NET Repo Utils ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/api/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="Invex .NET Repo Utils">
+            Invex .NET Repo Utils
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="api-reference">API Reference</h1>
+
+<p>This reference covers the public types of the <code>Invex.RepoUtils.TestUtils</code> and <code>Invex.RepoUtils.Atom.Module</code>
+packages, generated from their XML documentation comments.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>Invex.RepoUtils.PublicApiAnalyzers</code> is a Roslyn analyzer with no consumable API, so it is not listed here.
+Its diagnostics are documented in <a href="../docs/public-api-analyzers/rules.html">Rules</a>.</p>
+</div>
+<h2 id="invexrepoutilstestutils">Invex.RepoUtils.TestUtils</h2>
+<h3 id="invexrepoutilstestutils-1">Invex.RepoUtils.TestUtils</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.TestUtils.PublicApiSurfaceTestUtil.html"><code>PublicApiSurfaceTestUtil</code></a></td>
+<td>Class</td>
+<td>Serialises the public types and member names of an assembly to JSON for snapshot testing.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="invexrepoutilsatommodule">Invex.RepoUtils.Atom.Module</h2>
+<h3 id="invexrepoutilsatommoduletargets">Invex.RepoUtils.Atom.Module.Targets</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Targets.ICheckPrForBreakingChanges.html"><code>ICheckPrForBreakingChanges</code></a></td>
+<td>Interface</td>
+<td>Target that checks a pull request for public API breaking changes and reports the result as a GitHub check run.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Targets.IApproveDependabotPr.html"><code>IApproveDependabotPr</code></a></td>
+<td>Interface</td>
+<td>Target that enables auto-merge on pull requests opened by Dependabot.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Targets.IWaitForCopilotReview.html"><code>IWaitForCopilotReview</code></a></td>
+<td>Interface</td>
+<td>Target that blocks until GitHub Copilot has finished reviewing a pull request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="invexrepoutilsatommodulehelpers">Invex.RepoUtils.Atom.Module.Helpers</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IApiSurfaceHelper.html"><code>IApiSurfaceHelper</code></a></td>
+<td>Interface</td>
+<td>Diffs API definition files between two commits and classifies changes as major (removals) or minor (additions).</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IPrBreakingChangeHelper.html"><code>IPrBreakingChangeHelper</code></a></td>
+<td>Interface</td>
+<td>Runs the end-to-end breaking change check for a pull request against the latest release baseline.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IGithubPrHelper.html"><code>IGithubPrHelper</code></a></td>
+<td>Interface</td>
+<td>Exposes the number of the pull request a target operates on.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.ICopilotReviewHelper.html"><code>ICopilotReviewHelper</code></a></td>
+<td>Interface</td>
+<td>Polls a pull request until GitHub Copilot's review has landed or a timeout elapses.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.IDocFxHelper.html"><code>IDocFxHelper</code></a></td>
+<td>Interface</td>
+<td>Builds, serves and publishes DocFX documentation to the <code>gh-pages</code> branch.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Helpers.INugetPackageUnlistHelper.html"><code>INugetPackageUnlistHelper</code></a></td>
+<td>Interface</td>
+<td>Discovers and unlists superseded or obsolete prerelease packages on a NuGet feed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="invexrepoutilsatommodulemodel">Invex.RepoUtils.Atom.Module.Model</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Model.BreakingChanges.html"><code>BreakingChanges</code></a></td>
+<td>Record</td>
+<td>Major and minor changes found when comparing two versions of the API surface.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Model.Change.html"><code>Change</code></a></td>
+<td>Record</td>
+<td>Lines added and deleted in a single file between two commits.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Model.ReleaseInfo.html"><code>ReleaseInfo</code></a></td>
+<td>Record</td>
+<td>Commit and version of the release used as the breaking-change baseline.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Model.UnlistResult.html"><code>UnlistResult</code></a></td>
+<td>Record</td>
+<td>Result of attempting to unlist one package version.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Model.UnlistOutcome.html"><code>UnlistOutcome</code></a></td>
+<td>Enum</td>
+<td>Whether a package version was unlisted, skipped or failed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="invexrepoutilsatommoduleextensions">Invex.RepoUtils.Atom.Module.Extensions</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Kind</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.html"><code>InjectionOptionsExtensions</code></a></td>
+<td>Class</td>
+<td>Adds <code>BuildOptions.Inject.Github</code> to Atom's injection options.</td>
+</tr>
+<tr>
+<td><a class="xref" href="Invex.RepoUtils.Atom.Module.Extensions.InjectionOptionsExtensions.GithubInjectionOptions.html"><code>InjectionOptionsExtensions.GithubInjectionOptions</code></a></td>
+<td>Class</td>
+<td>GitHub injection options: <code>PullRequestNumber</code> and <code>DependabotEnableAutoMergePat</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="typical-flow">Typical flow</h2>
+<pre><code class="lang-csharp">using Invex.RepoUtils.Atom.Module.Extensions;
+using Invex.RepoUtils.Atom.Module.Targets;
+
+[BuildDefinition]
+[GenerateEntryPoint]
+internal interface IBuild : IWorkflowBuildDefinition, ICheckPrForBreakingChanges
+{
+    // Snapshots written by PublicApiSurfaceTestUtil in your test projects.
+    IEnumerable&lt;RootedPath&gt; ICheckPrForBreakingChanges.BreakingChangeFilesToCheck =&gt;
+        RootedFileSystem
+            .Directory
+            .GetFiles(RootedFileSystem.AtomRootDirectory / &quot;tests&quot;, &quot;*.verified.txt&quot;, SearchOption.AllDirectories)
+            .Select(RootedFileSystem.CreateRootedPath);
+
+    IReadOnlyList&lt;WorkflowDefinition&gt; IWorkflowBuildDefinition.Workflows =&gt;
+    [
+        new(&quot;Validate&quot;)
+        {
+            Triggers = [WorkflowTriggers.PullIntoMain],
+            Targets =
+            [
+                new(nameof(SetupBuildInfo)),
+                new(nameof(CheckPrForBreakingChanges))
+                {
+                    Options =
+                    [
+                        BuildOptions.Inject.Secret(nameof(GitHubToken)),
+                        BuildOptions.GitHub.TokenPermissions.Set(new Permissions.Exact(new()
+                        {
+                            IdTokens = PermissionsLevel.Write,
+                            Contents = PermissionsLevel.Write,
+                            PullRequests = PermissionsLevel.Write,
+                            Checks = PermissionsLevel.Write,
+                        })),
+                        BuildOptions.Inject.Github.PullRequestNumber,
+                    ],
+                },
+            ],
+            Types = [WorkflowTypes.GitHub.Action],
+        },
+    ];
+}
+</code></pre>
+<p>For concepts and walkthroughs, start with the <a href="../docs/introduction.html">Introduction</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/dotnet-repo-utils/blob/main/api/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex .NET Repo Utils · MIT License · Invex Games
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
