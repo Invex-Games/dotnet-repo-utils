@@ -8,8 +8,8 @@ is useful on its own, so stop wherever you like.
 
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - For the analyzer: any C# project (the analyzer targets `netstandard2.0`)
-- For the test utilities: a test project targeting `net10.0`, or any framework that consumes `netstandard2.0`
-- For the Atom module: an [Atom](https://github.com/Invex-Games/atom) build project targeting `net10.0`
+- For the test utilities: a test project targeting `net10.0` or `net11.0`, or any framework that consumes `netstandard2.0`
+- For the Atom module: an [Atom](https://github.com/Invex-Games/atom) build project targeting `net10.0` or `net11.0`
 
 ## 1. Declare your public API
 

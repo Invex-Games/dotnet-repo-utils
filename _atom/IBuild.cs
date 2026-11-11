@@ -39,6 +39,7 @@ internal interface IBuild : IWorkflowBuildDefinition,
     static readonly string[] TestFrameworkNames =
     [
         WorkflowLabels.Dotnet.Framework.Net_10_0,
+        WorkflowLabels.Dotnet.Framework.Net_11_0,
     ];
 
     [ParamDefinition("test-framework", "Test framework to use for unit tests")]
@@ -95,6 +96,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
             .RequiresParam(nameof(NugetFeed))
             .RequiresParam(nameof(NugetApiKey))
             .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildId))
+            // PushProject picks packages by BuildVersion, and a release run's detached tag checkout can recompute a different one.
+            .ConsumesVariable(nameof(SetupBuildInfo), nameof(BuildVersion))
             .ConsumesArtifacts(nameof(PackProjects), ProjectsToPack)
             .DependsOn(nameof(TestProjects))
             .Executes(async cancellationToken =>
@@ -204,6 +207,8 @@ internal interface IBuild : IWorkflowBuildDefinition,
         BuildOptions.GitVersion.ProvideBuildId,
         BuildOptions.GitVersion.ProvideBuildVersion,
         BuildOptions.Steps.SetupDotnet.Dotnet100X(),
+        // .NET 11 SDK. The .NET 10 step above still provides the runtime for net10.0 tests.
+        BuildOptions.Steps.SetupDotnet.Dotnet110X(),
     ];
 
     IReadOnlyList<WorkflowDefinition> IWorkflowBuildDefinition.Workflows =>
