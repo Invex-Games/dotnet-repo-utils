@@ -7,7 +7,8 @@ test it, how CI works and what a pull request needs. Contributions are welcome.
 
 ### Prerequisites
 
-- [.NET 11 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 11.0.100 or later, rolling forward to the latest major)
+- [.NET 11 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 11.0.100 or later within 11.x)
+- .NET 10 runtime or SDK, for the `net10.0` tests and build project
 - Git
 - A C# IDE (Rider, VS Code with C# Dev Kit, or Visual Studio)
 
