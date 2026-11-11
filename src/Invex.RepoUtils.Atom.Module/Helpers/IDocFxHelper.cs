@@ -29,10 +29,9 @@ public interface IDocFxHelper : IDotnetCliHelper, IGitHubHelper, ISetupBuildInfo
     /// </param>
     /// <param name="cancellationToken">A token used to cancel the operation.</param>
     /// <remarks>
-    ///     On .NET 10 or newer the tool is executed directly via <c>dotnet tool exec docfx</c>. On
-    ///     earlier runtimes the DocFX global tool is updated/installed first and then invoked via
-    ///     <c>dotnet docfx</c>. The site is generated into the <c>_site</c> directory beneath the Atom
-    ///     root before being copied to the publish directory.
+    ///     DocFX is run via <c>dotnet tool exec -y docfx</c>, so no tool needs to be installed first.
+    ///     The site is generated into the <c>_site</c> directory beneath the Atom root before being
+    ///     copied to the publish directory.
     /// </remarks>
     async Task BuildDocFxDocs(
         IEnumerable<RootedPath>? projectsToPrebuild = null,
@@ -49,34 +48,12 @@ public interface IDocFxHelper : IDotnetCliHelper, IGitHubHelper, ISetupBuildInfo
 
         var siteDirectory = RootedFileSystem.AtomRootDirectory / "_site";
 
-        // If .NET 10, we can just do dotnet tool exec docfx
-        if (RuntimeInformation.FrameworkDescription.StartsWith(".NET 10"))
-        {
-            await ProcessRunner.RunAsync(new("dotnet", "tool exec -y docfx")
-                {
-                    WorkingDirectory = RootedFileSystem.AtomRootDirectory,
-                },
-                cancellationToken);
-        }
-        else
-        {
-            // Otherwise, we need to restore the tools and run docfx
-            Logger.LogInformation("Acquiring DocFX tool...");
-
-            await ProcessRunner.RunAsync(new("dotnet", "tool update docfx -g")
-                {
-                    WorkingDirectory = RootedFileSystem.AtomRootDirectory,
-                },
-                cancellationToken);
-
-            Logger.LogInformation("Running DocFX...");
-
-            await ProcessRunner.RunAsync(new("dotnet", "docfx")
-                {
-                    WorkingDirectory = RootedFileSystem.AtomRootDirectory,
-                },
-                cancellationToken);
-        }
+        // The package targets net10.0 and newer, so the SDK always has `dotnet tool exec`.
+        await ProcessRunner.RunAsync(new("dotnet", "tool exec -y docfx")
+            {
+                WorkingDirectory = RootedFileSystem.AtomRootDirectory,
+            },
+            cancellationToken);
 
         Logger.LogInformation("DocFX site generated at {Path}", siteDirectory);
 
