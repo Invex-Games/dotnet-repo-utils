@@ -8,16 +8,16 @@ and maintaining .NET repositories. Keep changes focused; the README documents co
 | Project | Role |
 |---------|------|
 | `Invex.RepoUtils.PublicApiAnalyzers` | Roslyn analyzer enforcing `[PublicAPI]` annotation (`netstandard2.0`). |
-| `Invex.RepoUtils.TestUtils` | Public API snapshot-testing utilities (`netstandard2.0`, `net10.0`). |
-| `Invex.RepoUtils.Atom.Module` | [Atom](https://github.com/Invex-Games/atom) CI/CD module (`net10.0`). |
+| `Invex.RepoUtils.TestUtils` | Public API snapshot-testing utilities (`netstandard2.0`, `net10.0`, `net11.0`). |
+| `Invex.RepoUtils.Atom.Module` | [Atom](https://github.com/Invex-Games/atom) CI/CD module (`net10.0`, `net11.0`). |
 
 Sources are under `src/`, tests under `tests/`, the Atom build definition under `_atom/`, and the
 DocFX site under `docs/`. The solution is `Invex.RepoUtils.slnx`.
 
 ## Build, test & cleanup
 
-The .NET 10 SDK is required by `global.json`; test projects target
-`net10.0`. C# `LangVersion 14`, `ImplicitUsings`, and `Nullable` are enabled, and
+The .NET 11 SDK is required by `global.json`; test projects target
+`net10.0` and `net11.0`, so the .NET 10 runtime (or SDK) is needed too. C# `LangVersion 15`, `ImplicitUsings`, and `Nullable` are enabled, and
 `TreatWarningsAsErrors` is on.
 
 ```shell

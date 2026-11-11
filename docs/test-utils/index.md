@@ -12,7 +12,7 @@ When combined with the [PublicApiAnalyzers](../public-api-analyzers/index.md) pa
 dotnet add package Invex.RepoUtils.TestUtils
 ```
 
-The package targets `netstandard2.0` and `net10.0`, so it works in test projects on `net10.0` and on
+The package targets `netstandard2.0`, `net10.0` and `net11.0`, so it works in test projects on `net10.0`, `net11.0` and on
 any other framework that supports `netstandard2.0`.
 
 ## Dependencies
@@ -94,7 +94,7 @@ The recommended workflow is:
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- netstandard2.0 or net10.0 (and anything that can consume them) is supported -->
+    <!-- netstandard2.0, net10.0 or net11.0 (and anything that can consume them) is supported -->
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
 

@@ -7,11 +7,12 @@ test it, how CI works and what a pull request needs. Contributions are welcome.
 
 ### Prerequisites
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 10.0.403 or later, rolling forward to the latest major)
+- [.NET 11 SDK](https://dotnet.microsoft.com/download) (`global.json` requires 11.0.100 or later within 11.x)
+- .NET 10 runtime or SDK, for the `net10.0` tests and build project
 - Git
 - A C# IDE (Rider, VS Code with C# Dev Kit, or Visual Studio)
 
-The projects use C# 14, nullable reference types, implicit usings, generated XML documentation and
+The projects use C# 15, nullable reference types, implicit usings, generated XML documentation and
 `TreatWarningsAsErrors`.
 
 ### Building and testing
@@ -31,7 +32,7 @@ dotnet test Invex.RepoUtils.slnx
 dotnet test Invex.RepoUtils.slnx --framework net10.0
 ```
 
-Tests target .NET 10. CI runs the tests and also packs the
+Tests target .NET 10 and .NET 11. CI runs the tests and also packs the
 three NuGet projects.
 
 ### Building the documentation
@@ -63,7 +64,7 @@ dotnet run --project _atom/_atom.csproj -- ServeDocs
 │   └── Invex.RepoUtils.TestUtils.Tests/
 ├── docs/                                     # Documentation (this site)
 ├── Directory.Build.props                     # Shared build settings
-├── global.json                               # Required .NET SDK (10.0.403+, latest major roll-forward)
+├── global.json                               # Required .NET SDK (11.0.100+, rolls forward within 11.x)
 ├── GitVersion.yml                            # Versioning configuration
 └── Invex.RepoUtils.slnx                      # Solution
 ```
@@ -116,7 +117,7 @@ public class MyNewFeature
 2. Make your changes following the guidelines above.
 3. Ensure `dotnet build` and `dotnet test` pass locally.
 4. Open a pull request into `main`.
-5. The **Validate** workflow runs automatically: build and pack, the tests on net10.0,
+5. The **Validate** workflow runs automatically: build and pack, the tests on net10.0 and net11.0,
    the breaking-change check, and a wait for GitHub Copilot's review.
 6. Address any review feedback.
 
